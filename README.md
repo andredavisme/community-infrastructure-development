@@ -1,23 +1,23 @@
 # Community Infrastructure Development
 
-A comparative analysis and documentation platform for community infrastructure development initiatives. This repository tracks environmental impact, water use, community engagement, and project progress across multiple development projects — enabling data-driven comparison as ideas grow.
+A comparative analysis and documentation platform for community infrastructure development initiatives. This repository uses **real data and published research** to model, analyze, and document the environmental, economic, and community impacts of infrastructure development scenarios.
+
+> ⚠️ **Disclaimer**: All development projects represented in this repository are **fictitious scenarios**. No actual development project is being proposed, permitted, or executed. Data and analysis are drawn from real-world sources and established benchmarks, and are structured so findings could be applied directly to any real development project of similar type.
 
 ## Purpose
 
-Infrastructure development affects communities in complex ways. This project exists to:
-
-- Document and compare environmental impacts across multiple development types
-- Create transparency around resource use (water, land, energy)
-- Track community engagement and feedback over time
-- Build an evidence base for responsible development decisions
+- Model and compare environmental impacts across multiple development types using real benchmarks
+- Create a transparent, reproducible framework for community impact analysis
+- Track how resource use, employment, and financial obligations compare across project types
+- Produce community-ready documentation and presentations grounded in factual data
 
 ## Projects Tracked
 
-| Project | Type | Status | Location | Started |
-|---------|------|--------|----------|---------|
-| Golf Course Development | Recreation / Land Use | 🟡 Planning | York Harbor, ME | 2026 |
+| Project | Type | Status | Scenario Location | Started |
+|---------|------|--------|-------------------|---------|
+| Golf Course (Fictitious) | Recreation / Land Use | 🟡 Analysis in Progress | Coastal Maine (illustrative) | 2026 |
 
-> Additional projects will be added as analysis expands.
+> Additional fictitious project scenarios will be added as analysis expands.
 
 ## Repository Structure
 
@@ -25,12 +25,16 @@ Infrastructure development affects communities in complex ways. This project exi
 community-infrastructure-development/
 ├── README.md                        # This file
 ├── projects/
-│   └── golf-course/                 # Golf course development initiative
-│       ├── README.md                # Project overview
+│   └── golf-course/                 # Golf course scenario analysis
+│       ├── README.md                # Scenario overview
 │       ├── water-use/               # Water use data, analysis, reports
+│       ├── utility-use/             # Energy, waste, and utility consumption
+│       ├── physical-footprint/      # Land use, acreage, construction impact
 │       ├── environmental-impact/    # Pesticides, runoff, habitat, stormwater
+│       ├── employment/              # Jobs created, wages, local hiring
 │       ├── community-engagement/    # Meeting notes, Q&A, feedback records
-│       └── milestones/              # Progress tracking and decisions log
+│       ├── financial-obligations/   # Taxes, fees, municipal contributions
+│       └── milestones/              # Progress log and decisions
 ├── shared/
 │   ├── schema/                      # Supabase database schema definitions
 │   ├── analysis/                    # Cross-project comparative analysis
@@ -43,22 +47,25 @@ community-infrastructure-development/
 
 ## Data Backend
 
-All structured data is stored in **Supabase** (PostgreSQL). This repository documents schema, migrations, and analysis outputs. Raw data is accessible via the project's Supabase instance.
+All structured data is stored in **Supabase** (PostgreSQL). This repository documents schema, migrations, and analysis outputs.
 
 ## Environmental Metrics Tracked
 
 - **Water Use**: Volume, source type (potable / reclaimed / surface), zone, date
+- **Utility Use**: Electricity, gas, waste generation and disposal
 - **Chemical Use**: Pesticide and fertilizer applications, rates, and buffers
 - **Stormwater & Runoff**: Events, volumes, containment measures
 - **Habitat**: Acreage by type (turf, native, wetland, buffer zones)
+- **Employment**: Jobs created, wage tiers, local vs. outside hiring
 - **Community Engagement**: Meeting attendance, issues raised, resolutions
+- **Financial Obligations**: Taxes, fees, impact payments, community benefit agreements
 
-## Contributing & Documentation Standards
+## Documentation Standards
 
-- All findings are documented with sources
+- All findings cite published sources (USGA, GCSAA, EPA, BLS, USGS, etc.)
 - Data entries reference Supabase record IDs for traceability
-- Session notes and analysis updates are committed with descriptive messages
-- Community-facing materials are maintained in `docs/community-presentation/`
+- Estimates are clearly distinguished from measured values
+- Community-facing materials use plain language and are maintained in `docs/community-presentation/`
 
 ---
 
