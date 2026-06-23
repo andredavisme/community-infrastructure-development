@@ -15,7 +15,20 @@ A proposed 18-hole golf course on approximately 150 acres in a coastal Maine set
 - `employment/` — Jobs created, wage data, local hiring
 - `community-engagement/` — Modeled public meeting scenarios, Q&A, feedback
 - `financial-obligations/` — Taxes, fees, municipal contributions, impact bonds
+- `community-context/` — Population, nearby communities, municipal finances, trends
 - `milestones/` — Analysis progress log
+
+## Analysis Perspectives
+
+All impact dimensions are analyzed at multiple scales:
+
+| Scale | Description |
+|-------|-------------|
+| **Individual** | Per-capita impact on residents (cost, benefit, exposure) |
+| **Aggregate — Host Community** | Total impact on the primary host municipality |
+| **Aggregate — Regional** | Impact across nearby communities within the service/impact radius |
+| **Fiscal** | Effect on municipal tax income and budgeted expenses |
+| **Trend** | 25-year historical context where data is available (2000–2025) |
 
 ## Data Sources
 
@@ -25,4 +38,8 @@ Analysis draws from:
 - U.S. Bureau of Labor Statistics (BLS)
 - U.S. Environmental Protection Agency (EPA)
 - U.S. Geological Survey (USGS)
-- Maine state environmental and permitting guidelines
+- U.S. Census Bureau (population and demographic trends)
+- Maine Revenue Services (municipal tax data)
+- Maine State Planning Office / Maine DACF
+- Maine municipal comprehensive plans and budgets
+- Federal Reserve / BEA regional economic data
