@@ -23,7 +23,7 @@
   <div class="section-inner">
     <div class="hero-eyebrow">Step 2 of 3 &mdash; Fictitious Scenario</div>
     <h1>Golf Course Proposal Review</h1>
-    <p class="hero-sub">An 18-hole golf course on ~150 acres in coastal Maine. Every number below is drawn from USGA, GCSAA, and EPA published benchmarks. This is what a project like this actually demands from a community like this.</p>
+    <p class="hero-sub">An 18-hole golf course on ~150 acres in coastal Maine. Water use data is loaded live from the project database. Benchmarks sourced from USGA, GCSAA, and EPA.</p>
   </div>
 </header>
 
@@ -34,38 +34,65 @@
       <h2>At a Glance</h2>
       <div class="glance-grid">
         <div class="glance-card"><div class="glance-num">150</div><div class="glance-label">Total Acres</div></div>
-        <div class="glance-card"><div class="glance-num">312,000</div><div class="glance-label">Peak Water Use (gpd)</div></div>
+        <div class="glance-card"><div class="glance-num" id="glance-peak-gpd">312,000</div><div class="glance-label">Peak Water Use (gpd)</div></div>
         <div class="glance-card"><div class="glance-num">1.5M</div><div class="glance-label">Electricity (kWh/yr)</div></div>
         <div class="glance-card"><div class="glance-num">35</div><div class="glance-label">FTE Jobs Created</div></div>
         <div class="glance-card"><div class="glance-num">$180K</div><div class="glance-label">Est. Annual Tax Revenue</div></div>
         <div class="glance-card"><div class="glance-num">$12M</div><div class="glance-label">Est. Construction Cost</div></div>
       </div>
-      <p class="source-note">Sources: USGA Water Resource Center; GCSAA Environmental Stewardship Report 2022; EPA WaterSense; York County mil rate estimate. All values marked as estimates.</p>
+      <p class="source-note">Peak water use loaded live from database. Sources: USGA Water Resource Center; GCSAA Environmental Stewardship Report 2022; EPA WaterSense; York County mil rate estimate. All values marked as estimates.</p>
     </div>
   </section>
 
   <section class="section section-alt">
     <div class="section-inner">
-      <h2>&#128167; Water: Proposal vs. Community Capacity</h2>
-      <p class="section-intro">A standard 18-hole course uses approximately <strong>520 gpd per irrigated acre</strong> (GCSAA average). With ~60 irrigated acres and seasonal peak factor, estimated peak demand is <strong>312,000 gpd</strong>.</p>
+      <h2>&#128167; Monthly Water Use Profile</h2>
+      <p class="section-intro">The chart below shows estimated daily water demand (gpd) by month, split between irrigation and clubhouse/maintenance. Data loaded live from <code>cid_utility_logs</code>.</p>
 
-      <div class="compare-block">
+      <div id="chart-loading" class="loading-msg">&#9203; Loading monthly water data&hellip;</div>
+      <div id="monthly-chart-wrap" style="display:none">
+        <canvas id="monthly-chart" height="280"></canvas>
+        <div class="chart-legend">
+          <span class="legend-dot" style="background:#3b82f6"></span> Irrigation (gpd)
+          <span class="legend-dot" style="background:#22c55e; margin-left:16px"></span> Clubhouse &amp; Maintenance (gpd)
+        </div>
+      </div>
+      <div class="source-note">Source: GCSAA Environmental Stewardship Report 2022; USGA TERO; EPA WaterSense. Northeast seasonal distribution applied to 60 irrigated acres. All estimates.</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <h2>&#128167; Water: Proposal vs. Community Capacity</h2>
+      <p class="section-intro">A standard 18-hole course uses approximately <strong>520 gpd per irrigated acre</strong> (GCSAA average). With ~60 irrigated acres and seasonal peak factor, estimated peak demand is <strong id="peak-demand-label">312,000 gpd</strong>.</p>
+
+      <div id="compare-loading" class="loading-msg">&#9203; Loading capacity comparison&hellip;</div>
+      <div id="compare-block" class="compare-block" style="display:none">
         <div class="compare-row">
-          <div class="compare-label">Community Water Headroom</div>
+          <div class="compare-label">Annual Headroom</div>
           <div class="compare-bar-wrap">
             <div class="compare-bar-track">
               <div class="compare-bar-fill fill-headroom" style="width:100%"></div>
             </div>
-            <div class="compare-bar-stat">2,300,000 gpd available</div>
+            <div class="compare-bar-stat" id="annual-headroom-stat">&mdash;</div>
+          </div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-label">Peak Headroom</div>
+          <div class="compare-bar-wrap">
+            <div class="compare-bar-track">
+              <div class="compare-bar-fill fill-peak" id="peak-headroom-compare-bar"></div>
+            </div>
+            <div class="compare-bar-stat" id="peak-headroom-stat">&mdash;</div>
           </div>
         </div>
         <div class="compare-row">
           <div class="compare-label">Golf Course Peak Demand</div>
           <div class="compare-bar-wrap">
             <div class="compare-bar-track">
-              <div class="compare-bar-fill fill-proposal" style="width:13.6%"></div>
+              <div class="compare-bar-fill fill-proposal" id="proposal-bar"></div>
             </div>
-            <div class="compare-bar-stat">312,000 gpd &mdash; <strong>13.6% of headroom</strong></div>
+            <div class="compare-bar-stat" id="proposal-stat">&mdash;</div>
           </div>
         </div>
       </div>
@@ -73,11 +100,11 @@
       <div class="callout callout-amber">
         &#9888;&#65039; <strong>Peak season overlap risk:</strong> Golf course irrigation peaks in July&ndash;August, the same window when Kennebunkport&rsquo;s population multiplies 3&ndash;5&times;. Effective headroom during peak months is substantially lower than the annual average suggests.
       </div>
-      <div class="source-note">Irrigation benchmark: GCSAA Environmental Stewardship Report 2022; USGA Turfgrass and Environmental Research Online (TERO).</div>
+      <div class="source-note">Irrigation benchmark: GCSAA Environmental Stewardship Report 2022; USGA TERO. Capacity data loaded live from database.</div>
     </div>
   </section>
 
-  <section class="section" id="environmental">
+  <section class="section section-alt" id="environmental">
     <div class="section-inner">
       <h2>&#9878;&#65039; Environmental Considerations</h2>
 
@@ -92,7 +119,7 @@
         </div>
         <div class="env-card env-amber">
           <h4>&#128167; Wellhead Protection</h4>
-          <p>York County has designated wellhead protection areas. Pesticide application near these zones is subject to Maine Board of Pesticides Control and USDA NRCS restrictions. Developer must identify all overlapping zones prior to any application program.</p>
+          <p>York County has designated wellhead protection areas. Pesticide application near these zones is subject to Maine Board of Pesticides Control and USDA NRCS restrictions.</p>
         </div>
         <div class="env-card env-green">
           <h4>&#127807; Land Use Breakdown (150 ac)</h4>
@@ -102,7 +129,7 @@
     </div>
   </section>
 
-  <section class="section section-alt">
+  <section class="section">
     <div class="section-inner">
       <h2>&#128181; Fiscal Reality Check</h2>
       <p class="section-intro">Does the proposal&rsquo;s estimated tax contribution justify its demand on community resources?</p>
@@ -120,9 +147,9 @@
         <div class="fiscal-card fiscal-amber">
           <h4>What the Community Provides</h4>
           <ul>
-            <li>312,000 gpd peak water capacity commitment</li>
+            <li id="ww-provide">Peak water capacity commitment (loading&hellip;)</li>
             <li>Road maintenance for traffic access</li>
-            <li>Emergency services (fire, EMS) coverage for the site</li>
+            <li>Emergency services (fire, EMS) coverage</li>
             <li>Permitting, monitoring, and enforcement staff time</li>
             <li>Long-term environmental monitoring obligations</li>
           </ul>
@@ -136,7 +163,7 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section-alt">
     <div class="section-inner cta-row">
       <div>
         <h3>How should communities make this decision?</h3>
@@ -153,10 +180,84 @@
     <p>Built on public data &mdash; for public understanding. Analysis by <a href="https://207analytix.com" target="_blank">207 Analytix</a>.</p>
     <p class="footer-links">
       <a href="https://github.com/andredavisme/community-infrastructure-development" target="_blank">Data Repo</a> &middot;
-      <a href="https://andredavisme.github.io/maine-civic-tracker/proposals.html" target="_blank">Maine Civic Tracker</a> &middot;
+      <a href="https://andredavisme.github.io/maine-civic-tracker/" target="_blank">Maine Civic Tracker</a> &middot;
       <a href="../glossary.md" target="_blank">Glossary</a>
     </p>
   </div>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script type="module">
+import { loadWaterCapacity, loadMonthlyTotalsGPD } from './water-data.js';
+
+function fmtN(n) { return Number(n).toLocaleString('en-US', { maximumFractionDigits: 0 }); }
+function pct(a,b) { return Math.min(Math.round((a/b)*100), 100); }
+
+// Monthly bar chart
+(async () => {
+  try {
+    const months = await loadMonthlyTotalsGPD();
+    const labels = months.map(r => r.month);
+    const irr    = months.map(r => Math.round(r.irrigation));
+    const fac    = months.map(r => Math.round(r.facility));
+    const peakGPD = Math.max(...months.map(r => r.total));
+
+    document.getElementById('glance-peak-gpd').textContent   = fmtN(peakGPD);
+    document.getElementById('peak-demand-label').textContent  = fmtN(peakGPD) + ' gpd';
+    document.getElementById('chart-loading').style.display   = 'none';
+    document.getElementById('monthly-chart-wrap').style.display = 'block';
+
+    new Chart(document.getElementById('monthly-chart'), {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: [
+          { label: 'Irrigation (gpd)',              data: irr, backgroundColor: '#3b82f6', stack: 'use' },
+          { label: 'Clubhouse & Maintenance (gpd)', data: fac, backgroundColor: '#22c55e', stack: 'use' }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false }, tooltip: { callbacks: {
+          label: ctx => ` ${ctx.dataset.label}: ${fmtN(ctx.raw)} gpd`
+        }}},
+        scales: {
+          x: { stacked: true },
+          y: { stacked: true, ticks: { callback: v => fmtN(v) }, title: { display: true, text: 'gpd (daily avg for month)' } }
+        }
+      }
+    });
+
+    // Comparison bars
+    const cap = await loadWaterCapacity();
+    if (cap) {
+      const rated    = Number(cap.rated_capacity_gpd);
+      const avg      = Number(cap.annual_avg_demand_gpd);
+      const peak     = Number(cap.peak_season_demand_gpd);
+      const aHead    = rated - avg;
+      const pkHead   = rated - peak;
+      const propPeak = peakGPD;
+
+      document.getElementById('annual-headroom-stat').textContent  = `${fmtN(aHead)} gpd available (annual)`;
+      document.getElementById('peak-headroom-stat').textContent    = `${fmtN(pkHead)} gpd available (peak season: ${cap.peak_season_months})`;
+      document.getElementById('proposal-stat').textContent         = `${fmtN(propPeak)} gpd — ${pct(propPeak, aHead)}% of annual headroom; ${pct(propPeak, pkHead)}% of peak headroom`;
+
+      document.getElementById('peak-headroom-compare-bar').style.width = pct(pkHead, aHead) + '%';
+      document.getElementById('proposal-bar').style.width               = pct(propPeak, aHead) + '%';
+
+      document.getElementById('ww-provide').textContent =
+        `${fmtN(propPeak)} gpd peak water capacity commitment`;
+
+      document.getElementById('compare-loading').style.display = 'none';
+      document.getElementById('compare-block').style.display   = 'flex';
+    }
+  } catch(e) {
+    ['chart-loading','compare-loading'].forEach(id => {
+      document.getElementById(id).textContent = '⚠ Could not load live data. See data-dictionary.md for source values.';
+    });
+    console.error(e);
+  }
+})();
+</script>
 </body>
 </html>

@@ -31,32 +31,43 @@
 
   <section class="section">
     <div class="section-inner">
-      <h2>&#128167; Water Capacity &mdash; Kennebunkport / KKWD</h2>
-      <p class="section-intro">Kennebunkport is served by the <strong>Kennebunk, Kennebunkport and Wells Water District (KKWD)</strong>, a regional utility. The figures below reflect the district&rsquo;s rated daily capacity against current average demand, then the headroom available for new demand.</p>
+      <h2>&#128167; Water Capacity &mdash; <span id="utility-name">KKWD</span></h2>
+      <p class="section-intro">Kennebunkport is served by the <strong>Kennebunk, Kennebunkport and Wells Water District (KKWD)</strong>, a regional utility. The figures below are loaded live from the project database and reflect rated daily capacity against current average and peak-season demand.</p>
 
-      <div class="capacity-bar-group">
+      <div id="water-loading" class="loading-msg">&#9203; Loading live water capacity data&hellip;</div>
+      <div id="water-bars" class="capacity-bar-group" style="display:none">
         <div class="cap-bar-row">
-          <div class="cap-bar-label">District Rated Capacity</div>
+          <div class="cap-bar-label">Rated Capacity</div>
           <div class="cap-bar-track"><div class="cap-bar-fill fill-total" style="width:100%"></div></div>
-          <div class="cap-bar-value">5,500,000 gpd</div>
+          <div class="cap-bar-value" id="rated-val">&mdash;</div>
         </div>
         <div class="cap-bar-row">
-          <div class="cap-bar-label">Current Avg Daily Use</div>
-          <div class="cap-bar-track"><div class="cap-bar-fill fill-used" style="width:58%"></div></div>
-          <div class="cap-bar-value">3,200,000 gpd <span class="pct-label">(58%)</span></div>
+          <div class="cap-bar-label">Annual Avg Demand</div>
+          <div class="cap-bar-track"><div class="cap-bar-fill fill-used" id="avg-bar"></div></div>
+          <div class="cap-bar-value" id="avg-val">&mdash;</div>
         </div>
         <div class="cap-bar-row">
-          <div class="cap-bar-label">Available Headroom</div>
-          <div class="cap-bar-track"><div class="cap-bar-fill fill-headroom" style="width:42%"></div></div>
-          <div class="cap-bar-value">2,300,000 gpd <span class="pct-label">(42%)</span></div>
+          <div class="cap-bar-label">Annual Headroom</div>
+          <div class="cap-bar-track"><div class="cap-bar-fill fill-headroom" id="headroom-bar"></div></div>
+          <div class="cap-bar-value" id="headroom-val">&mdash;</div>
+        </div>
+        <div class="cap-bar-row">
+          <div class="cap-bar-label">Peak Season Demand</div>
+          <div class="cap-bar-track"><div class="cap-bar-fill fill-peak" id="peak-bar"></div></div>
+          <div class="cap-bar-value" id="peak-val">&mdash;</div>
+        </div>
+        <div class="cap-bar-row">
+          <div class="cap-bar-label">Peak Headroom</div>
+          <div class="cap-bar-track"><div class="cap-bar-fill fill-peak-headroom" id="peak-headroom-bar"></div></div>
+          <div class="cap-bar-value" id="peak-headroom-val">&mdash;</div>
         </div>
       </div>
+      <div id="water-est-badge" style="display:none" class="est-row"></div>
 
       <div class="callout callout-amber">
         &#9888;&#65039; <strong>Seasonal note:</strong> Kennebunkport&rsquo;s summer population is estimated at 3&ndash;5&times; year-round. Peak-season water demand significantly reduces effective headroom during July and August &mdash; the same months when a golf course irrigation demand would peak.
       </div>
-
-      <div class="source-note">Source: KKWD rated capacity estimate; Maine DEP water utility records. Marked as estimate &mdash; verify against current KKWD Annual Report.</div>
+      <div class="source-note" id="water-source-note">Source: Loading&hellip;</div>
     </div>
   </section>
 
@@ -65,21 +76,22 @@
       <h2>&#128701; Wastewater Capacity</h2>
       <p class="section-intro">Wastewater capacity is a separate constraint from water supply. New facilities requiring restrooms, kitchens, or maintenance operations add to municipal sewer or septic system load.</p>
 
-      <div class="capacity-bar-group">
+      <div id="ww-loading" class="loading-msg">&#9203; Loading wastewater data&hellip;</div>
+      <div id="ww-bars" class="capacity-bar-group" style="display:none">
         <div class="cap-bar-row">
-          <div class="cap-bar-label">Estimated System Capacity</div>
+          <div class="cap-bar-label">System Capacity</div>
           <div class="cap-bar-track"><div class="cap-bar-fill fill-total" style="width:100%"></div></div>
-          <div class="cap-bar-value">800,000 gpd</div>
+          <div class="cap-bar-value" id="ww-cap-val">&mdash;</div>
         </div>
         <div class="cap-bar-row">
-          <div class="cap-bar-label">Current Estimated Use</div>
-          <div class="cap-bar-track"><div class="cap-bar-fill fill-used" style="width:60%"></div></div>
-          <div class="cap-bar-value">480,000 gpd <span class="pct-label">(60%)</span></div>
+          <div class="cap-bar-label">Current Use</div>
+          <div class="cap-bar-track"><div class="cap-bar-fill fill-used" id="ww-used-bar"></div></div>
+          <div class="cap-bar-value" id="ww-used-val">&mdash;</div>
         </div>
         <div class="cap-bar-row">
           <div class="cap-bar-label">Available Headroom</div>
-          <div class="cap-bar-track"><div class="cap-bar-fill fill-headroom" style="width:40%"></div></div>
-          <div class="cap-bar-value">320,000 gpd <span class="pct-label">(40%)</span></div>
+          <div class="cap-bar-track"><div class="cap-bar-fill fill-headroom" id="ww-headroom-bar"></div></div>
+          <div class="cap-bar-value" id="ww-headroom-val">&mdash;</div>
         </div>
       </div>
       <div class="source-note">Source: Estimated from municipal records and DEP facility data. Marked as estimate.</div>
@@ -133,7 +145,7 @@
       </div>
 
       <div class="callout callout-blue">
-        &#128161; <strong>What this means:</strong> Communities like Ogunquit and Kennebunk already extract very high tax revenue per resident, driven largely by tourism and high-value property. New development that adds cost-intensive infrastructure (roads, water lines, emergency services) without proportional year-round value can shift that balance.
+        &#128161; <strong>What this means:</strong> Communities like Ogunquit and Kennebunk already extract very high tax revenue per resident, driven largely by tourism and high-value property. New development that adds cost-intensive infrastructure without proportional year-round value can shift that balance.
       </div>
       <div class="source-note">Sources: Town of York Annual Financial Reports; Kennebunk Assessor; Maine Figures / MRS 2021 per-capita analysis. Full citations in <a href="https://github.com/andredavisme/community-infrastructure-development/blob/main/docs/data-dictionary.md" target="_blank">data-dictionary.md</a>.</div>
     </div>
@@ -156,10 +168,77 @@
     <p>Built on public data &mdash; for public understanding. Analysis by <a href="https://207analytix.com" target="_blank">207 Analytix</a>.</p>
     <p class="footer-links">
       <a href="https://github.com/andredavisme/community-infrastructure-development" target="_blank">Data Repo</a> &middot;
-      <a href="https://andredavisme.github.io/maine-civic-tracker/proposals.html" target="_blank">Maine Civic Tracker</a> &middot;
+      <a href="https://andredavisme.github.io/maine-civic-tracker/" target="_blank">Maine Civic Tracker</a> &middot;
       <a href="../glossary.md" target="_blank">Glossary</a>
     </p>
   </div>
 </footer>
+
+<script type="module">
+import { loadWaterCapacity } from './water-data.js';
+
+function fmt(n) {
+  return Number(n).toLocaleString('en-US', { maximumFractionDigits: 0 }) + ' gpd';
+}
+function pct(part, whole) {
+  return Math.round((part / whole) * 100);
+}
+function setBar(id, pctVal) {
+  document.getElementById(id).style.width = Math.min(pctVal, 100) + '%';
+}
+
+(async () => {
+  try {
+    const d = await loadWaterCapacity();
+    if (!d) throw new Error('No capacity data returned');
+
+    const rated     = Number(d.rated_capacity_gpd);
+    const avg       = Number(d.annual_avg_demand_gpd);
+    const headroom  = rated - avg;
+    const peak      = Number(d.peak_season_demand_gpd);
+    const pkHead    = rated - peak;
+
+    document.getElementById('utility-name').textContent = d.utility_abbreviation;
+    document.getElementById('rated-val').textContent    = fmt(rated);
+    document.getElementById('avg-val').textContent      = fmt(avg) + ` (${pct(avg,rated)}%)`;
+    document.getElementById('headroom-val').textContent = fmt(headroom) + ` (${pct(headroom,rated)}%)`;
+    document.getElementById('peak-val').textContent     = fmt(peak) + ` (${pct(peak,rated)}%) — ${d.peak_season_months}`;
+    document.getElementById('peak-headroom-val').textContent = fmt(pkHead) + ` (${pct(pkHead,rated)}%)`;
+
+    setBar('avg-bar',           pct(avg,rated));
+    setBar('headroom-bar',      pct(headroom,rated));
+    setBar('peak-bar',          pct(peak,rated));
+    setBar('peak-headroom-bar', pct(pkHead,rated));
+
+    // Wastewater
+    const wwCap  = Number(d.wastewater_capacity_gpd);
+    const wwUsed = Number(d.wastewater_current_gpd);
+    const wwHead = wwCap - wwUsed;
+    document.getElementById('ww-cap-val').textContent     = fmt(wwCap);
+    document.getElementById('ww-used-val').textContent    = fmt(wwUsed) + ` (${pct(wwUsed,wwCap)}%)`;
+    document.getElementById('ww-headroom-val').textContent= fmt(wwHead) + ` (${pct(wwHead,wwCap)}%)`;
+    setBar('ww-used-bar',    pct(wwUsed,wwCap));
+    setBar('ww-headroom-bar',pct(wwHead,wwCap));
+
+    if (d.is_estimate) {
+      document.getElementById('water-est-badge').innerHTML =
+        '<span class="est">est.</span> All figures are estimates. Verify against current KKWD Annual Report.';
+      document.getElementById('water-est-badge').style.display = 'block';
+    }
+
+    document.getElementById('water-source-note').textContent = d.source_citation;
+    document.getElementById('water-loading').style.display = 'none';
+    document.getElementById('ww-loading').style.display = 'none';
+    document.getElementById('water-bars').style.display = 'flex';
+    document.getElementById('ww-bars').style.display = 'flex';
+  } catch(e) {
+    document.getElementById('water-loading').textContent = '⚠ Could not load live data. Values shown are estimates from published sources.';
+    document.getElementById('ww-loading').textContent = '';
+    document.getElementById('water-bars').style.display = 'flex';
+    document.getElementById('ww-bars').style.display = 'flex';
+    console.error(e);
+  }
+})();
+</script>
 </body>
 </html>
