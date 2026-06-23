@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hyperscale Data Center Proposal | Coastal Maine Infrastructure</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+.dc-type-badge { display:inline-block; background:#e74c3c; color:#fff; font-size:.75rem; font-weight:700; letter-spacing:.08em; padding:3px 10px; border-radius:20px; text-transform:uppercase; margin-bottom:.5rem; }
+.spec-table { width:100%; border-collapse:collapse; font-size:.9rem; }
+.spec-table th { background:#1e3a5f; color:#fff; padding:.5rem .8rem; text-align:left; }
+.spec-table td { padding:.5rem .8rem; border-bottom:1px solid #e5e7eb; }
+.spec-table tr:last-child td { border-bottom:none; }
+.spec-table tr:nth-child(even) td { background:#f9fafb; }
+.nav-dropdown { position:relative; display:inline-block; }
+.nav-dropdown-content { display:none; position:absolute; top:100%; left:0; background:#1e3a5f; min-width:200px; border-radius:6px; box-shadow:0 4px 16px rgba(0,0,0,.15); z-index:100; }
+.nav-dropdown:hover .nav-dropdown-content { display:block; }
+.nav-dropdown-content a { display:block; padding:.6rem 1rem; color:#e2e8f0; font-size:.88rem; white-space:nowrap; }
+.nav-dropdown-content a:hover { background:#2d5986; }
+.nav-dropdown > a::after { content:' \25BE'; }
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="nav-inner">
+    <span class="nav-logo">&#127968; Coastal Maine Infrastructure</span>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="capacity.html">Community Capacity</a>
+      <div class="nav-dropdown"><a href="proposal.html" class="active">Proposals</a>
+        <div class="nav-dropdown-content">
+          <a href="proposal.html">&#9971; Golf Course</a>
+          <a href="proposal-datacenter-edge.html">&#128225; Edge Data Center</a>
+          <a href="proposal-datacenter-enterprise.html">&#128187; Enterprise Data Center</a>
+          <a href="proposal-datacenter-hyperscale.html" class="active">&#9889; Hyperscale Data Center</a>
+        </div>
+      </div>
+      <a href="comparison.html">Comparison</a>
+      <a href="framework.html">Decision Framework</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="section-inner">
+    <div class="hero-eyebrow">Data Center Proposal — Fictitious Scenario</div>
+    <span class="dc-type-badge">Hyperscale / Cloud Campus</span>
+    <h1>Hyperscale Data Center Proposal</h1>
+    <p class="hero-sub">A large-scale cloud campus typical of major tech operators (AWS, Microsoft, Google). ~200 acres, ~300 MW draw, mixed evaporative/direct liquid cooling. The most resource-intensive class of data center development. Benchmarks: Uptime Institute, LBNL, IEA, and publicly disclosed hyperscaler ESG reports.</p>
+  </div>
+</header>
+
+<main>
+
+  <section class="section">
+    <div class="section-inner">
+      <h2>At a Glance</h2>
+      <div class="glance-grid">
+        <div class="glance-card"><div class="glance-num">200</div><div class="glance-label">Total Acres</div></div>
+        <div class="glance-card"><div class="glance-num">300 MW</div><div class="glance-label">IT Power Draw</div></div>
+        <div class="glance-card"><div class="glance-num">500M</div><div class="glance-label">Gal Water / Year</div></div>
+        <div class="glance-card"><div class="glance-num">250</div><div class="glance-label">FTE Jobs (ops)</div></div>
+        <div class="glance-card"><div class="glance-num">$10M</div><div class="glance-label">Est. Annual Tax Revenue</div></div>
+        <div class="glance-card"><div class="glance-num">$3B+</div><div class="glance-label">Est. Construction Cost</div></div>
+      </div>
+      <p class="source-note">Power: Uptime Institute 2023; IEA Data Centres and Data Transmission Networks 2023. Water: LBNL evaporative benchmark applied at scale. Jobs: BLS; hyperscaler ESG disclosures (AWS, Microsoft). Tax: York County mil rate applied to estimated assessed value with TIF risk caveat. All estimates.</p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="section-inner">
+      <h2>&#9889; Power &amp; Energy Profile</h2>
+      <p class="section-intro">Hyperscale facilities represent a categorically different level of grid impact. At 300 MW IT load and PUE 1.3, total facility draw is <strong>~390 MW</strong> — nearly <strong>3.4 million MWh per year</strong>. For context, Maine's entire annual electricity consumption is approximately 12 million MWh.</p>
+      <table class="spec-table">
+        <thead><tr><th>Metric</th><th>Value</th><th>Source</th></tr></thead>
+        <tbody>
+          <tr><td>IT Load (design)</td><td>300 MW</td><td>Uptime Institute 2023</td></tr>
+          <tr><td>Power Usage Effectiveness (PUE)</td><td>1.30 (hyperscale optimized)</td><td>LBNL 2022; Google/Microsoft ESG</td></tr>
+          <tr><td>Total Facility Draw</td><td>~390 MW / ~3,416,400 MWh/yr</td><td>Derived</td></tr>
+          <tr><td>Grid Connection Requirement</td><td>400–500 MW dedicated — requires new 345kV transmission</td><td>ISO-NE; CMP</td></tr>
+          <tr><td>Maine Grid Context</td><td>Maine peak load ~1,800 MW — this facility = ~22% of peak</td><td>ISO-NE 2023 Summer Capability Report</td></tr>
+          <tr><td>Renewable Energy Requirement</td><td>Operators typically require 24/7 CFE matching — Maine wind/solar may qualify</td><td>Google CFE methodology; RE100</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout-red">
+        &#128308; <strong>Grid reality:</strong> A 400 MW dedicated feed would require new 345kV transmission infrastructure from ISO-NE bulk system. This is a multi-year, multi-hundred-million-dollar project that fundamentally reshapes Maine's transmission grid. Ratepayer cost allocation is an unresolved policy question under FERC Order 1000.
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <h2>&#128167; Water Use — Community-Scale Impact</h2>
+      <p class="section-intro">At ~500 million gallons per year, this proposal's water consumption approaches the scale of the entire community's annual supply. <strong>This is not a marginal demand — it is a structural reallocation of community water resources.</strong></p>
+      <div class="compare-block" style="display:flex;flex-direction:column;gap:.75rem;">
+        <div class="compare-row">
+          <div class="compare-label">Hyperscale DC Annual Water Use</div>
+          <div class="compare-bar-wrap">
+            <div class="compare-bar-track"><div class="compare-bar-fill fill-proposal" style="width:77%"></div></div>
+            <div class="compare-bar-stat">~500M gal/yr — ~77% of estimated community annual supply</div>
+          </div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-label">Community Annual Headroom</div>
+          <div class="compare-bar-wrap">
+            <div class="compare-bar-track"><div class="compare-bar-fill fill-headroom" style="width:100%"></div></div>
+            <div class="compare-bar-stat">~650M gal/yr (estimated)</div>
+          </div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-label">Remaining Headroom If Approved</div>
+          <div class="compare-bar-wrap">
+            <div class="compare-bar-track"><div class="compare-bar-fill" style="width:23%;background:#ef4444;"></div></div>
+            <div class="compare-bar-stat">~150M gal/yr remaining — no room for any future growth</div>
+          </div>
+        </div>
+      </div>
+      <div class="callout callout-red">&#128308; <strong>Water verdict: CRITICAL.</strong> Approving this proposal effectively commits the entire community water supply to one private tenant for an indefinite period. Any drought year, system upgrade, or population growth event would produce a direct conflict between the data center contract and residential water service.</div>
+      <div class="source-note">Water estimate: evaporative WUE 1.8 L/kWh (LBNL 2022) at 300 MW IT load, 100% utilization. Comparable: Virginia hyperscale clusters consume 1–4 billion gal/yr; Maine community context is dramatically smaller. Sources: LBNL; Northern Virginia Water Authority 2022 Water Resource Plan.</div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="environmental">
+    <div class="section-inner">
+      <h2>&#9878;&#65039; Environmental Considerations</h2>
+      <div class="env-grid">
+        <div class="env-card env-red">
+          <h4>&#128308; Water Withdrawal: MAJOR PERMIT</h4>
+          <p>500M gal/yr from any Maine source triggers full DEP Water Withdrawal Permitting with legislative notification under 38 MRSA §469-A. Likely requires Environmental Impact Assessment and public hearing. Aquifer depletion risk in sand/gravel aquifer areas of York County is well-documented.</p>
+        </div>
+        <div class="env-card env-red">
+          <h4>&#128308; Land Use: Large Irreversible Footprint</h4>
+          <p>200-acre campus. Typical build: 100+ acres impervious surface. Multiple large-scale stormwater detention systems required. If any wetlands present on parcel, Section 404 permitting at this scale triggers Army Corps programmatic review. Habitat fragmentation is a documented impact.</p>
+        </div>
+        <div class="env-card env-amber">
+          <h4>&#9888;&#65039; Construction Traffic &amp; Air Quality</h4>
+          <p>3-year+ construction phase with 1,000+ heavy vehicle trips per day at peak. Local road infrastructure rated for this? Diesel emissions during construction are not trivial at this scale — community air quality monitoring should be a permit condition.</p>
+        </div>
+        <div class="env-card env-amber">
+          <h4>&#9889; Noise &amp; Light Pollution — Permanent</h4>
+          <p>Cooling tower fans, HVAC, and backup generators create a permanent acoustic and visual footprint. Northern Virginia communities adjacent to hyperscale campuses report 55–65 dB ambient noise at property lines. Maine's rural character is materially altered.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <h2>&#128181; Fiscal Reality Check</h2>
+      <div class="fiscal-compare">
+        <div class="fiscal-card fiscal-green">
+          <h4>What the Community Gets</h4>
+          <ul>
+            <li>~$10,000,000/yr estimated property tax <span class="est">est. — before TIF</span></li>
+            <li>250 FTE year-round operations jobs <span class="est">est.</span> (high wage, few local hires typical)</li>
+            <li>~2,000 construction jobs (3+ years, non-local workforce common)</li>
+            <li>$3B+ one-time construction activity (most spending leaves state)</li>
+          </ul>
+        </div>
+        <div class="fiscal-card fiscal-red">
+          <h4>What the Community Provides</h4>
+          <ul>
+            <li>Structural commitment of community water supply (~77% of capacity)</li>
+            <li>New 345kV transmission infrastructure (ratepayer-funded)</li>
+            <li>Full wastewater treatment upgrade for thermal blowdown at scale</li>
+            <li>Road reconstruction across multiple corridors (heavy trucks, 3+ yrs)</li>
+            <li>Permanent land commitment — hyperscale campuses are not reversible</li>
+            <li>High risk: BETR eliminates equipment tax; TIF defers property tax 20+ yrs</li>
+            <li>Downstream communities bear water impact with no compensation</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout callout-red">&#128308; <strong>The asymmetry problem:</strong> A hyperscale operator with $3B in construction investment will have legal and financial resources that vastly exceed the community's capacity to negotiate, enforce, or exit a bad agreement. Once approved and built, the community has no leverage. Every condition must be locked in before the first shovel.</div>
+      <div class="source-note">Tax estimate: York County mil rate applied to $1B assessed value (conservative; equipment often BETR-exempt). Virginia comparison: Loudoun County collected $250M/yr from DCs but spent $150M+ on infrastructure to support them. Full methodology: <a href="https://github.com/andredavisme/community-infrastructure-development/blob/main/docs/methodology.md" target="_blank">methodology.md</a>.</div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="section-inner cta-row">
+      <div>
+        <h3>See how this compares to other proposals</h3>
+        <p>The comparison page puts all four scenarios side by side against community capacity.</p>
+      </div>
+      <a href="comparison.html" class="btn btn-primary">View Full Comparison &rarr;</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>Built on public data &mdash; for public understanding. Analysis by <a href="https://207analytix.com" target="_blank">207 Analytix</a>.</p>
+    <p class="footer-links">
+      <a href="https://github.com/andredavisme/community-infrastructure-development" target="_blank">Data Repo</a> &middot;
+      <a href="https://andredavisme.github.io/maine-civic-tracker/" target="_blank">Maine Civic Tracker</a> &middot;
+      <a href="../glossary.md" target="_blank">Glossary</a>
+    </p>
+  </div>
+</footer>
+</body>
+</html>

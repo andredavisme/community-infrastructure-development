@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Edge Data Center Proposal | Coastal Maine Infrastructure</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+.dc-type-badge { display:inline-block; background:#3b82f6; color:#fff; font-size:.75rem; font-weight:700; letter-spacing:.08em; padding:3px 10px; border-radius:20px; text-transform:uppercase; margin-bottom:.5rem; }
+.tier-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem; margin:1.5rem 0; }
+.tier-card { background:#fff; border:1.5px solid #e5e7eb; border-radius:10px; padding:1.2rem 1rem; }
+.tier-card .tier-num { font-size:2rem; font-weight:800; color:#1e3a5f; line-height:1; }
+.tier-card .tier-label { font-size:.8rem; color:#6b7280; margin-top:.25rem; }
+.spec-table { width:100%; border-collapse:collapse; font-size:.9rem; }
+.spec-table th { background:#1e3a5f; color:#fff; padding:.5rem .8rem; text-align:left; }
+.spec-table td { padding:.5rem .8rem; border-bottom:1px solid #e5e7eb; }
+.spec-table tr:last-child td { border-bottom:none; }
+.spec-table tr:nth-child(even) td { background:#f9fafb; }
+.nav-dropdown { position:relative; display:inline-block; }
+.nav-dropdown-content { display:none; position:absolute; top:100%; left:0; background:#1e3a5f; min-width:200px; border-radius:6px; box-shadow:0 4px 16px rgba(0,0,0,.15); z-index:100; }
+.nav-dropdown:hover .nav-dropdown-content { display:block; }
+.nav-dropdown-content a { display:block; padding:.6rem 1rem; color:#e2e8f0; font-size:.88rem; white-space:nowrap; }
+.nav-dropdown-content a:hover { background:#2d5986; }
+.nav-dropdown > a::after { content:' \25BE'; }
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="nav-inner">
+    <span class="nav-logo">&#127968; Coastal Maine Infrastructure</span>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="capacity.html">Community Capacity</a>
+      <div class="nav-dropdown"><a href="proposal.html" class="active">Proposals</a>
+        <div class="nav-dropdown-content">
+          <a href="proposal.html">&#9971; Golf Course</a>
+          <a href="proposal-datacenter-edge.html" class="active">&#128225; Edge Data Center</a>
+          <a href="proposal-datacenter-enterprise.html">&#128187; Enterprise Data Center</a>
+          <a href="proposal-datacenter-hyperscale.html">&#9889; Hyperscale Data Center</a>
+        </div>
+      </div>
+      <a href="comparison.html">Comparison</a>
+      <a href="framework.html">Decision Framework</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="section-inner">
+    <div class="hero-eyebrow">Data Center Proposal — Fictitious Scenario</div>
+    <span class="dc-type-badge">Edge / Regional</span>
+    <h1>Edge Data Center Proposal</h1>
+    <p class="hero-sub">A small-footprint regional edge data center serving local network demand and content delivery. ~5 acres, ~10 MW draw. Benchmarks sourced from Uptime Institute, Lawrence Berkeley National Laboratory, and EPA WaterSense.</p>
+  </div>
+</header>
+
+<main>
+
+  <section class="section">
+    <div class="section-inner">
+      <h2>At a Glance</h2>
+      <div class="glance-grid">
+        <div class="glance-card"><div class="glance-num">5</div><div class="glance-label">Total Acres</div></div>
+        <div class="glance-card"><div class="glance-num">10 MW</div><div class="glance-label">IT Power Draw</div></div>
+        <div class="glance-card"><div class="glance-num">500K</div><div class="glance-label">Gal Water / Year</div></div>
+        <div class="glance-card"><div class="glance-num">25</div><div class="glance-label">FTE Jobs (ops)</div></div>
+        <div class="glance-card"><div class="glance-num">$200K</div><div class="glance-label">Est. Annual Tax Revenue</div></div>
+        <div class="glance-card"><div class="glance-num">$40M</div><div class="glance-label">Est. Construction Cost</div></div>
+      </div>
+      <p class="source-note">Power draw: Uptime Institute 2023 Global Data Center Survey. Water: LBNL United States Data Center Energy Use Report. Jobs: BLS Data Center SOC profiles. Tax: York County mil rate applied to assessed value estimate. All values marked as estimates.</p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="section-inner">
+      <h2>&#9889; Power &amp; Energy Profile</h2>
+      <p class="section-intro">Edge data centers are the smallest tier — typically collocated near population nodes to reduce latency. At 10 MW, this proposal draws roughly <strong>87,600 MWh/year</strong> at continuous operation (PUE 1.5 applied = ~131,400 MWh total facility draw).</p>
+      <table class="spec-table">
+        <thead><tr><th>Metric</th><th>Value</th><th>Source</th></tr></thead>
+        <tbody>
+          <tr><td>IT Load (design)</td><td>10 MW</td><td>Uptime Institute 2023</td></tr>
+          <tr><td>Power Usage Effectiveness (PUE)</td><td>1.50 (industry avg small DC)</td><td>LBNL 2022</td></tr>
+          <tr><td>Total Facility Draw</td><td>~15 MW / ~131,400 MWh/yr</td><td>Derived</td></tr>
+          <tr><td>Grid Connection Requirement</td><td>15–20 MW dedicated feed</td><td>ISO-NE interconnection standards</td></tr>
+          <tr><td>Peak vs. Avg Utilization</td><td>~70–85% (edge tier typical)</td><td>Uptime Institute 2023</td></tr>
+          <tr><td>Renewable Energy Potential</td><td>On-site solar: partial offset possible on 5-ac roof</td><td>NREL PVWatts (Maine irradiance)</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout-amber">
+        &#9888;&#65039; <strong>Grid note:</strong> A 15–20 MW dedicated feed is a material ask in rural York County. ISO-NE interconnection queues have lengthened to 4–6 years for new large loads. CMP distribution upgrade costs may be passed to the municipality or ratepayers.
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <h2>&#128167; Water Use</h2>
+      <p class="section-intro">Air-cooled edge facilities use far less water than evaporative-cooled mid-to-large DCs. Estimated annual consumption is approximately <strong>500,000 gallons/year</strong> — roughly equivalent to 2–3 single-family homes continuously.</p>
+      <div class="compare-block" style="display:flex;flex-direction:column;gap:.75rem;">
+        <div class="compare-row">
+          <div class="compare-label">Edge DC Annual Water Use</div>
+          <div class="compare-bar-wrap">
+            <div class="compare-bar-track"><div class="compare-bar-fill fill-proposal" style="width:1%"></div></div>
+            <div class="compare-bar-stat">~500,000 gal/yr — &lt;0.1% of community annual supply</div>
+          </div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-label">Community Annual Headroom</div>
+          <div class="compare-bar-wrap">
+            <div class="compare-bar-track"><div class="compare-bar-fill fill-headroom" style="width:100%"></div></div>
+            <div class="compare-bar-stat">~650M gal/yr (estimated)</div>
+          </div>
+        </div>
+      </div>
+      <div class="callout callout-blue">&#128161; <strong>Water verdict:</strong> Minimal impact. At air-cooled design, this proposal places negligible demand on community water supply — less than a small commercial laundry.</div>
+      <div class="source-note">Water estimate: LBNL United States Data Center Energy Use Report 2022; air-cooled WUE benchmark 0.14 L/kWh applied to 10 MW IT load.</div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="environmental">
+    <div class="section-inner">
+      <h2>&#9878;&#65039; Environmental Considerations</h2>
+      <div class="env-grid">
+        <div class="env-card env-green">
+          <h4>&#9989; Chemical Use: MINIMAL</h4>
+          <p>No agricultural chemicals. Battery backup systems (UPS) require lead-acid or lithium battery handling under EPA RCRA. Routine refrigerant management (R-410A or similar) subject to EPA Section 608. Small volume — low risk.</p>
+        </div>
+        <div class="env-card env-green">
+          <h4>&#9989; Footprint: LOW</h4>
+          <p>5-acre parcel. Typical build: ~30,000 sq ft hardened single-story structure plus parking and generator pad. Impervious surface ~2–3 acres. Stormwater management required under Maine DEP Chapter 500.</p>
+        </div>
+        <div class="env-card env-amber">
+          <h4>&#128204; Noise &amp; Lighting</h4>
+          <p>Backup diesel generators create periodic noise during test cycles (monthly, ~30 min). Cooling equipment (CRAC units) generates low-frequency hum 24/7. Dark-sky lighting compliance recommended for rural Maine settings.</p>
+        </div>
+        <div class="env-card env-amber">
+          <h4>&#9889; E-Waste Lifecycle</h4>
+          <p>Hardware refresh cycles (3–5 yrs) generate significant e-waste. Maine has an E-Waste Statute (38 MRSA §1610) governing disposal. Contract must include certified e-waste recycling requirement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <h2>&#128181; Fiscal Reality Check</h2>
+      <div class="fiscal-compare">
+        <div class="fiscal-card fiscal-green">
+          <h4>What the Community Gets</h4>
+          <ul>
+            <li>~$200,000/yr estimated property tax <span class="est">est.</span></li>
+            <li>25 FTE operations jobs <span class="est">est.</span> (year-round, higher-wage)</li>
+            <li>~150 construction jobs (12–18 months, temporary)</li>
+            <li>$40M one-time construction activity</li>
+            <li>Local fiber/network infrastructure upgrade (indirect benefit)</li>
+          </ul>
+        </div>
+        <div class="fiscal-card fiscal-amber">
+          <h4>What the Community Provides</h4>
+          <ul>
+            <li>Grid infrastructure upgrades (may require ratepayer cost share)</li>
+            <li>Road reinforcement for construction equipment</li>
+            <li>Emergency services (hazmat-rated for battery/generator)</li>
+            <li>Permitting and environmental monitoring</li>
+            <li>Potential tax stabilization agreements (TIF risk)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout callout-blue">&#128161; <strong>Key question:</strong> At $200K/yr in tax revenue, the margin is similar to the golf course. However, edge DC jobs tend to be higher-wage, year-round positions — a meaningfully different economic profile than seasonal hospitality work.</div>
+      <div class="source-note">Tax estimate: York County mil rate applied to $20M assessed value (conservative for 5-acre tech facility). BLS SOC 15-1230 (Computer Network Architects) wage data. Full methodology: <a href="https://github.com/andredavisme/community-infrastructure-development/blob/main/docs/methodology.md" target="_blank">methodology.md</a>.</div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="section-inner cta-row">
+      <div>
+        <h3>See how this compares to other proposals</h3>
+        <p>The comparison page puts all four scenarios &mdash; golf course, edge DC, enterprise DC, and hyperscale DC &mdash; side by side against community capacity.</p>
+      </div>
+      <a href="comparison.html" class="btn btn-primary">View Full Comparison &rarr;</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>Built on public data &mdash; for public understanding. Analysis by <a href="https://207analytix.com" target="_blank">207 Analytix</a>.</p>
+    <p class="footer-links">
+      <a href="https://github.com/andredavisme/community-infrastructure-development" target="_blank">Data Repo</a> &middot;
+      <a href="https://andredavisme.github.io/maine-civic-tracker/" target="_blank">Maine Civic Tracker</a> &middot;
+      <a href="../glossary.md" target="_blank">Glossary</a>
+    </p>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Enterprise Data Center Proposal | Coastal Maine Infrastructure</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+.dc-type-badge { display:inline-block; background:#e67e22; color:#fff; font-size:.75rem; font-weight:700; letter-spacing:.08em; padding:3px 10px; border-radius:20px; text-transform:uppercase; margin-bottom:.5rem; }
+.spec-table { width:100%; border-collapse:collapse; font-size:.9rem; }
+.spec-table th { background:#1e3a5f; color:#fff; padding:.5rem .8rem; text-align:left; }
+.spec-table td { padding:.5rem .8rem; border-bottom:1px solid #e5e7eb; }
+.spec-table tr:last-child td { border-bottom:none; }
+.spec-table tr:nth-child(even) td { background:#f9fafb; }
+.nav-dropdown { position:relative; display:inline-block; }
+.nav-dropdown-content { display:none; position:absolute; top:100%; left:0; background:#1e3a5f; min-width:200px; border-radius:6px; box-shadow:0 4px 16px rgba(0,0,0,.15); z-index:100; }
+.nav-dropdown:hover .nav-dropdown-content { display:block; }
+.nav-dropdown-content a { display:block; padding:.6rem 1rem; color:#e2e8f0; font-size:.88rem; white-space:nowrap; }
+.nav-dropdown-content a:hover { background:#2d5986; }
+.nav-dropdown > a::after { content:' \25BE'; }
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="nav-inner">
+    <span class="nav-logo">&#127968; Coastal Maine Infrastructure</span>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="capacity.html">Community Capacity</a>
+      <div class="nav-dropdown"><a href="proposal.html" class="active">Proposals</a>
+        <div class="nav-dropdown-content">
+          <a href="proposal.html">&#9971; Golf Course</a>
+          <a href="proposal-datacenter-edge.html">&#128225; Edge Data Center</a>
+          <a href="proposal-datacenter-enterprise.html" class="active">&#128187; Enterprise Data Center</a>
+          <a href="proposal-datacenter-hyperscale.html">&#9889; Hyperscale Data Center</a>
+        </div>
+      </div>
+      <a href="comparison.html">Comparison</a>
+      <a href="framework.html">Decision Framework</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="section-inner">
+    <div class="hero-eyebrow">Data Center Proposal — Fictitious Scenario</div>
+    <span class="dc-type-badge">Enterprise / Mid-Scale</span>
+    <h1>Enterprise Data Center Proposal</h1>
+    <p class="hero-sub">A mid-scale enterprise colocation facility serving regional businesses and cloud backups. ~30 acres, ~60 MW draw, evaporative cooling. Benchmarks sourced from Uptime Institute, LBNL, and the Westbrook, ME datacenter public record.</p>
+  </div>
+</header>
+
+<main>
+
+  <section class="section">
+    <div class="section-inner">
+      <h2>At a Glance</h2>
+      <div class="glance-grid">
+        <div class="glance-card"><div class="glance-num">30</div><div class="glance-label">Total Acres</div></div>
+        <div class="glance-card"><div class="glance-num">60 MW</div><div class="glance-label">IT Power Draw</div></div>
+        <div class="glance-card"><div class="glance-num">50M</div><div class="glance-label">Gal Water / Year</div></div>
+        <div class="glance-card"><div class="glance-num">80</div><div class="glance-label">FTE Jobs (ops)</div></div>
+        <div class="glance-card"><div class="glance-num">$2M</div><div class="glance-label">Est. Annual Tax Revenue</div></div>
+        <div class="glance-card"><div class="glance-num">$350M</div><div class="glance-label">Est. Construction Cost</div></div>
+      </div>
+      <p class="source-note">Power draw range: Uptime Institute 2023; Westbrook, ME permit filings (public record). Water: evaporative WUE benchmark ~1.8 L/kWh applied to 60 MW. Jobs: BLS; Greenfield Economics. Tax: York County mil rate applied to assessed value estimate. All values estimates.</p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="section-inner">
+      <h2>&#9889; Power &amp; Energy Profile</h2>
+      <p class="section-intro">Enterprise facilities at this scale typically run evaporative cooling to achieve better PUE, but at the cost of significant water consumption. Total facility draw at PUE 1.4 = <strong>~84 MW</strong>, or approximately <strong>735,840 MWh/year</strong>.</p>
+      <table class="spec-table">
+        <thead><tr><th>Metric</th><th>Value</th><th>Source</th></tr></thead>
+        <tbody>
+          <tr><td>IT Load (design)</td><td>60 MW</td><td>Uptime Institute 2023</td></tr>
+          <tr><td>Power Usage Effectiveness (PUE)</td><td>1.40 (enterprise avg)</td><td>LBNL 2022</td></tr>
+          <tr><td>Total Facility Draw</td><td>~84 MW / ~735,840 MWh/yr</td><td>Derived</td></tr>
+          <tr><td>Grid Connection Requirement</td><td>90–100 MW dedicated feed</td><td>ISO-NE interconnection standards</td></tr>
+          <tr><td>Substation Requirement</td><td>New 115kV substation likely required</td><td>CMP standard practice</td></tr>
+          <tr><td>Renewable Energy Potential</td><td>PPA likely; minimal on-site generation at this scale</td><td>NREL; ISO-NE REC market</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout-red">
+        &#128308; <strong>Grid impact:</strong> An 84 MW dedicated feed is a transformative load for rural Maine distribution. A new 115kV substation and transmission line upgrades would almost certainly be required. ISO-NE interconnection costs at this scale routinely exceed $50M and take 5–8 years to complete.
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <h2>&#128167; Water Use — Critical Concern</h2>
+      <p class="section-intro">Evaporative cooling at this scale consumes approximately <strong>50 million gallons per year</strong> — the equivalent of the annual water use of roughly 450 average Maine households. This is where the enterprise DC scenario diverges sharply from the edge tier.</p>
+      <div class="compare-block" style="display:flex;flex-direction:column;gap:.75rem;">
+        <div class="compare-row">
+          <div class="compare-label">Enterprise DC Annual Water Use</div>
+          <div class="compare-bar-wrap">
+            <div class="compare-bar-track"><div class="compare-bar-fill fill-proposal" style="width:7.7%"></div></div>
+            <div class="compare-bar-stat">~50M gal/yr — ~7.7% of estimated community annual supply</div>
+          </div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-label">Community Annual Headroom</div>
+          <div class="compare-bar-wrap">
+            <div class="compare-bar-track"><div class="compare-bar-fill fill-headroom" style="width:100%"></div></div>
+            <div class="compare-bar-stat">~650M gal/yr (estimated)</div>
+          </div>
+        </div>
+      </div>
+      <div class="callout callout-amber">
+        &#9888;&#65039; <strong>Peak season compounding:</strong> Data centers draw water continuously, year-round. Unlike seasonal proposals, there is no off-season relief. The 50M gal/yr demand hits peak-season headroom just as hard as shoulder-season headroom.
+      </div>
+      <div class="source-note">Water estimate: evaporative cooling WUE benchmark 1.8 L/kWh (LBNL 2022) applied to 60 MW IT load at 100% utilization. Westbrook, ME permit: 200M gal/yr modeled for comparable ~100 MW facility (Westbrook City Council public record, 2025–2026).</div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="environmental">
+    <div class="section-inner">
+      <h2>&#9878;&#65039; Environmental Considerations</h2>
+      <div class="env-grid">
+        <div class="env-card env-amber">
+          <h4>&#9888;&#65039; Water Withdrawal Permitting</h4>
+          <p>Maine DEP Water Withdrawal Permit required for any withdrawal &gt;10,000 gpd from surface or groundwater. At 50M gal/yr (~137,000 gpd), this proposal triggers full DEP review including public comment and potential Great Ponds Act analysis.</p>
+        </div>
+        <div class="env-card env-red">
+          <h4>&#128308; Thermal Discharge</h4>
+          <p>Cooling tower blowdown and thermal discharge into municipal wastewater creates heat loading in receiving waters. Maine DEP Chapter 581 water temperature standards apply. May require dedicated discharge treatment.</p>
+        </div>
+        <div class="env-card env-amber">
+          <h4>&#128204; Impervious Surface &amp; Stormwater</h4>
+          <p>30-acre site: typical build covers ~20 acres with impervious surface (buildings, parking, generator pads). Stormwater detention required. Potential wetland impact depending on parcel — Sec. 404 Army Corps review if wetlands present.</p>
+        </div>
+        <div class="env-card env-amber">
+          <h4>&#9889; Backup Generation — Air Quality</h4>
+          <p>Large facilities require multi-MW diesel backup generator capacity. Regular load testing (monthly) generates NOx and PM2.5. Maine DEP Air Emission License required above 200 HP aggregate. Proximity to residences matters significantly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <h2>&#128181; Fiscal Reality Check</h2>
+      <div class="fiscal-compare">
+        <div class="fiscal-card fiscal-green">
+          <h4>What the Community Gets</h4>
+          <ul>
+            <li>~$2,000,000/yr estimated property tax <span class="est">est.</span></li>
+            <li>80 FTE year-round operations jobs <span class="est">est.</span></li>
+            <li>~500 construction jobs (24–36 months, temporary)</li>
+            <li>$350M one-time construction activity</li>
+            <li>Fiber and power infrastructure that may serve broader community</li>
+          </ul>
+        </div>
+        <div class="fiscal-card fiscal-red">
+          <h4>What the Community Provides</h4>
+          <ul>
+            <li>New 115kV substation + transmission upgrades (~$50M+)</li>
+            <li>50M gal/yr continuous water commitment (year-round)</li>
+            <li>Wastewater treatment capacity for thermal blowdown</li>
+            <li>Road reinforcement for heavy construction traffic (multi-year)</li>
+            <li>Emergency services (hazmat-rated, 24/7)</li>
+            <li>High risk: Tax stabilization agreements (TIF/BETR) common in Maine — could defer real revenue 20+ years</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout callout-red">&#128308; <strong>TIF/BETR warning:</strong> In Maine, data centers routinely negotiate Tax Increment Financing (TIF) or Business Equipment Tax Reimbursement (BETR) agreements that significantly reduce or defer property and equipment tax obligations. The headline $2M/yr tax figure may not materialize for 10–20 years. Always demand the net present value calculation before any vote.</div>
+      <div class="source-note">Tax estimate: York County mil rate applied to $200M assessed value. TIF/BETR risk: Maine Revenue Services BETR program data; Portland Press Herald coverage of Westbrook DC negotiations 2025–2026. Full methodology: <a href="https://github.com/andredavisme/community-infrastructure-development/blob/main/docs/methodology.md" target="_blank">methodology.md</a>.</div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="section-inner cta-row">
+      <div>
+        <h3>See how this compares to other proposals</h3>
+        <p>The comparison page puts all four scenarios side by side against community capacity.</p>
+      </div>
+      <a href="comparison.html" class="btn btn-primary">View Full Comparison &rarr;</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>Built on public data &mdash; for public understanding. Analysis by <a href="https://207analytix.com" target="_blank">207 Analytix</a>.</p>
+    <p class="footer-links">
+      <a href="https://github.com/andredavisme/community-infrastructure-development" target="_blank">Data Repo</a> &middot;
+      <a href="https://andredavisme.github.io/maine-civic-tracker/" target="_blank">Maine Civic Tracker</a> &middot;
+      <a href="../glossary.md" target="_blank">Glossary</a>
+    </p>
+  </div>
+</footer>
+</body>
+</html>
