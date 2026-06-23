@@ -11,7 +11,7 @@
  */
 
 const SUPABASE_URL  = 'https://hhyhulqngdkwsxhymmcd.supabase.co';
-const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhoeWh1bHFuZ2Rrd3N4aHltbWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA2MTM0OTYsImV4cCI6MjA2NjE4OTQ5Nn0.xMbGQJgjFQq9Y3SDSA0cHhfQ6L2XN1t5Ct6XA6kJRCk';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhoeWh1bHFuZ2Rrd3N4aHltbWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxMzEyMDEsImV4cCI6MjA5MjcwNzIwMX0.dmSy7Q8Je5lEY4XCFzwvfPnkBYLebPE0yZMhy6Y8czI';
 const SCENARIO_ID   = '7b244e5f-7140-4de9-9959-4a8ac8924618';
 
 async function supabaseFetch(path) {
