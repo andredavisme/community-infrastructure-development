@@ -4,6 +4,16 @@ A comparative analysis and documentation platform for community infrastructure d
 
 > ⚠️ **Disclaimer**: All development projects represented in this repository are **fictitious scenarios**. No actual development project is being proposed, permitted, or executed. Data and analysis are drawn from real-world sources and established benchmarks, and are structured so findings could be applied directly to any real development project of similar type.
 
+## Public Presentation Site
+
+**[Community Capacity & Infrastructure | Coastal Maine](https://andredavisme.github.io/community-infrastructure-development/community-presentation/index.html)**
+
+A public-facing analysis site covering four fictitious development scenarios against York County community capacity. Pages:
+- [Home](https://andredavisme.github.io/community-infrastructure-development/community-presentation/index.html)
+- [Community Capacity](https://andredavisme.github.io/community-infrastructure-development/community-presentation/capacity.html)
+- [Compare All Proposals](https://andredavisme.github.io/community-infrastructure-development/community-presentation/comparison.html)
+- [Decision Framework](https://andredavisme.github.io/community-infrastructure-development/community-presentation/framework.html)
+
 ## Purpose
 
 - Model and compare environmental impacts across multiple development types using real benchmarks
@@ -16,8 +26,11 @@ A comparative analysis and documentation platform for community infrastructure d
 | Project | Type | Status | Scenario Location | Started |
 |---------|------|--------|-------------------|---------|
 | Golf Course (Fictitious) | Recreation / Land Use | 🟡 Analysis in Progress | Coastal Maine (illustrative) | 2026 |
+| Edge Data Center (Fictitious) | Technology / Energy | 🟡 Benchmarks Complete | Coastal Maine (illustrative) | 2026 |
+| Enterprise Data Center (Fictitious) | Technology / Energy | 🟡 Benchmarks Complete | Coastal Maine (illustrative) | 2026 |
+| Hyperscale Data Center (Fictitious) | Technology / Energy | 🟡 Benchmarks Complete | Coastal Maine (illustrative) | 2026 |
 
-> Additional fictitious project scenarios will be added as analysis expands.
+> All four scenarios are compared side-by-side at [`comparison.html`](https://andredavisme.github.io/community-infrastructure-development/community-presentation/comparison.html).
 
 ## Repository Structure
 
@@ -41,8 +54,18 @@ community-infrastructure-development/
 │   └── templates/                   # Reusable reporting and data templates
 └── docs/
     ├── data-dictionary.md           # Definitions for all tracked metrics
+    ├── glossary.md                  # Acronyms, abbreviations, and units
     ├── methodology.md               # How data is collected and validated
-    └── community-presentation/      # Public-facing materials
+    └── community-presentation/      # Public-facing GitHub Pages site
+        ├── index.html               # Home — scenario overview
+        ├── capacity.html            # Community capacity baseline
+        ├── proposal.html            # Golf course proposal review
+        ├── proposal-datacenter-edge.html
+        ├── proposal-datacenter-enterprise.html
+        ├── proposal-datacenter-hyperscale.html
+        ├── comparison.html          # All proposals side-by-side
+        ├── framework.html           # Decision-making framework
+        └── style.css
 ```
 
 ## Data Backend
@@ -83,9 +106,9 @@ This repository is the **data and analysis layer**. `maine-civic-tracker` is the
 
 ## Documentation Standards
 
-- All findings cite published sources (USGA, GCSAA, EPA, BLS, USGS, etc.)
+- All findings cite published sources (USGA, GCSAA, EPA, BLS, USGS, Uptime Institute, Lawrence Berkeley National Lab, ISO-NE, etc.)
 - Data entries reference Supabase record IDs for traceability
-- Estimates are clearly distinguished from measured values
+- Estimates are clearly distinguished from measured values (`is_estimate = true`)
 - Community-facing materials use plain language and are maintained in `docs/community-presentation/`
 
 ---
