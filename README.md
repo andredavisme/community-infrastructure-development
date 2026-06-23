@@ -47,7 +47,27 @@ community-infrastructure-development/
 
 ## Data Backend
 
-All structured data is stored in **Supabase** (PostgreSQL). This repository documents schema, migrations, and analysis outputs.
+All structured data is stored in **Supabase** (PostgreSQL). This repository documents schema, migrations, and analysis outputs. See [`shared/schema/`](shared/schema/) for all migration files.
+
+## Related Projects
+
+### [maine-civic-tracker](https://github.com/andredavisme/maine-civic-tracker)
+
+> A public accountability tracker connecting what Maine residents pay into their civic systems with what they actually get out of them — budget sources, fund allocations, outcome tracking, community evidence, and proposed infrastructure, all in one place.
+
+This repository is the **data and analysis layer**. `maine-civic-tracker` is the **public display layer**.
+
+- Proposed infrastructure records (`cid_proposed_infrastructure`) are created and managed here
+- `maine-civic-tracker` reads approved proposals via the Supabase anon key and renders them at [`proposals.html`](https://andredavisme.github.io/maine-civic-tracker/proposals.html)
+- Community capacity benchmarks (water, utility, environmental tolerance) stored here feed the comparison view in the tracker
+- Budget sources, allocations, and outcomes in `maine-civic-tracker` use the `civic_*` schema (separate) but are conceptually downstream of the same municipal finance data tracked here in `cid_municipal_finance_snapshots`
+
+### [civic-identity-toolkit](https://github.com/andredavisme/civic-identity-toolkit)
+
+> Documentation and tooling for structuring civic identity, community engagement records, and public accountability workflows.
+
+- Provides the methodological foundation and documentation standards applied across both this repo and `maine-civic-tracker`
+- Source citation practices, community engagement record structure, and public presentation guidelines originate here
 
 ## Environmental Metrics Tracked
 
@@ -59,6 +79,7 @@ All structured data is stored in **Supabase** (PostgreSQL). This repository docu
 - **Employment**: Jobs created, wage tiers, local vs. outside hiring
 - **Community Engagement**: Meeting attendance, issues raised, resolutions
 - **Financial Obligations**: Taxes, fees, impact payments, community benefit agreements
+- **Proposed Infrastructure**: Capacity demand vs. community utility, water, and environmental tolerance — see [`shared/schema/005_cid_proposed_infrastructure.sql`](shared/schema/005_cid_proposed_infrastructure.sql)
 
 ## Documentation Standards
 
@@ -69,4 +90,4 @@ All structured data is stored in **Supabase** (PostgreSQL). This repository docu
 
 ---
 
-*Maintained by [André Maurice Davis](https://andremauricedavis.com/) — 207 Analytix*
+*Maintained by [André Maurice Davis](https://andremauricedavis.com/) — [207 Analytix](https://207analytix.com)*
