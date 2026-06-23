@@ -7,31 +7,31 @@
 <link rel="stylesheet" href="style.css" />
 <style>
 .cmp-table-wrap { overflow-x:auto; margin:1.5rem 0; }
-.cmp-table { width:100%; border-collapse:collapse; font-size:.88rem; min-width:700px; }
-.cmp-table th { background:#1e3a5f; color:#fff; padding:.6rem .8rem; text-align:left; white-space:nowrap; }
+.cmp-table { width:100%; border-collapse:collapse; font-size:.85rem; min-width:900px; }
+.cmp-table th { background:#1e3a5f; color:#fff; padding:.6rem .7rem; text-align:left; white-space:nowrap; }
 .cmp-table th.col-golf  { background:#2e7d32; }
 .cmp-table th.col-edge  { background:#1565c0; }
 .cmp-table th.col-ent   { background:#e65100; }
 .cmp-table th.col-hyper { background:#b71c1c; }
+.cmp-table th.col-hsub  { background:#0d9488; }
+.cmp-table th.col-hmix  { background:#7c3aed; }
+.cmp-table th.col-hmul  { background:#b45309; }
 .cmp-table th.col-cap   { background:#37474f; }
-.cmp-table td { padding:.55rem .8rem; border-bottom:1px solid #e5e7eb; vertical-align:top; }
+.cmp-table td { padding:.5rem .7rem; border-bottom:1px solid #e5e7eb; vertical-align:top; }
 .cmp-table tr:nth-child(even) td { background:#f9fafb; }
 .cmp-table td.metric-name { font-weight:600; color:#374151; white-space:nowrap; }
-.badge-low    { display:inline-block; background:#dcfce7; color:#166534; font-size:.72rem; font-weight:700; padding:1px 7px; border-radius:10px; }
-.badge-med    { display:inline-block; background:#fef9c3; color:#854d0e; font-size:.72rem; font-weight:700; padding:1px 7px; border-radius:10px; }
-.badge-high   { display:inline-block; background:#fee2e2; color:#991b1b; font-size:.72rem; font-weight:700; padding:1px 7px; border-radius:10px; }
-.badge-crit   { display:inline-block; background:#7f1d1d; color:#fff; font-size:.72rem; font-weight:700; padding:1px 7px; border-radius:10px; }
-.badge-pos    { display:inline-block; background:#dbeafe; color:#1e3a8a; font-size:.72rem; font-weight:700; padding:1px 7px; border-radius:10px; }
-.bar-cell { display:flex; align-items:center; gap:.5rem; }
-.bar-mini-track { flex:1; background:#e5e7eb; border-radius:4px; height:10px; min-width:80px; }
-.bar-mini-fill { height:10px; border-radius:4px; }
-.bar-label { font-size:.8rem; white-space:nowrap; }
+.badge-low    { display:inline-block; background:#dcfce7; color:#166534; font-size:.7rem; font-weight:700; padding:1px 6px; border-radius:10px; }
+.badge-med    { display:inline-block; background:#fef9c3; color:#854d0e; font-size:.7rem; font-weight:700; padding:1px 6px; border-radius:10px; }
+.badge-high   { display:inline-block; background:#fee2e2; color:#991b1b; font-size:.7rem; font-weight:700; padding:1px 6px; border-radius:10px; }
+.badge-crit   { display:inline-block; background:#7f1d1d; color:#fff; font-size:.7rem; font-weight:700; padding:1px 6px; border-radius:10px; }
+.badge-pos    { display:inline-block; background:#dbeafe; color:#1e3a8a; font-size:.7rem; font-weight:700; padding:1px 6px; border-radius:10px; }
 .capacity-row { background:#f0f4ff !important; font-style:italic; }
 .capacity-row td { color:#374151; }
 .section-note { font-size:.8rem; color:#6b7280; margin-top:.5rem; }
 .legend-strip { display:flex; flex-wrap:wrap; gap:.75rem; margin:1rem 0; }
 .legend-item  { display:flex; align-items:center; gap:.4rem; font-size:.82rem; }
 .legend-swatch { width:14px; height:14px; border-radius:3px; flex-shrink:0; }
+.section-divider { background:#f3f4f6; font-weight:700; font-size:.78rem; color:#6b7280; letter-spacing:.05em; padding:.4rem .7rem; }
 </style>
 </head>
 <body>
@@ -49,14 +49,13 @@
 
 <header class="page-hero">
   <div class="section-inner">
-    <div class="hero-eyebrow">All Proposals — Side by Side</div>
+    <div class="hero-eyebrow">All Proposals &mdash; Side by Side</div>
     <h1>Proposal Comparison</h1>
     <p class="hero-sub">Every key metric for each proposal, measured against community capacity. All scenarios are fictitious. All benchmarks are from public sources. The goal is apples-to-apples comparison so communities can make informed decisions.</p>
   </div>
 </header>
 
 <main>
-
   <section class="section">
     <div class="section-inner">
 
@@ -65,6 +64,9 @@
         <div class="legend-item"><div class="legend-swatch" style="background:#1565c0"></div> Edge DC</div>
         <div class="legend-item"><div class="legend-swatch" style="background:#e65100"></div> Enterprise DC</div>
         <div class="legend-item"><div class="legend-swatch" style="background:#b71c1c"></div> Hyperscale DC</div>
+        <div class="legend-item"><div class="legend-swatch" style="background:#0d9488"></div> Small Subdivision</div>
+        <div class="legend-item"><div class="legend-swatch" style="background:#7c3aed"></div> Mixed-Income</div>
+        <div class="legend-item"><div class="legend-swatch" style="background:#b45309"></div> Large Multi-Family</div>
         <div class="legend-item"><div class="legend-swatch" style="background:#37474f"></div> Community Capacity</div>
       </div>
 
@@ -73,93 +75,203 @@
           <thead>
             <tr>
               <th>Metric</th>
-              <th class="col-golf">&#9971; Golf Course</th>
+              <th class="col-golf">&#9971; Golf</th>
               <th class="col-edge">&#128225; Edge DC</th>
               <th class="col-ent">&#128187; Enterprise DC</th>
               <th class="col-hyper">&#9889; Hyperscale DC</th>
-              <th class="col-cap">&#127968; Community Capacity</th>
+              <th class="col-hsub">&#127968; Subdivision</th>
+              <th class="col-hmix">&#127970; Mixed-Income</th>
+              <th class="col-hmul">&#127963; Multi-Family</th>
+              <th class="col-cap">&#127968; Capacity</th>
             </tr>
           </thead>
           <tbody>
 
-            <tr><td colspan="6" style="background:#f3f4f6;font-weight:700;font-size:.8rem;color:#6b7280;letter-spacing:.05em;padding:.4rem .8rem;">FOOTPRINT</td></tr>
+            <tr><td colspan="9" class="section-divider">FOOTPRINT</td></tr>
             <tr>
               <td class="metric-name">Total Acres</td>
-              <td>150 ac</td>
-              <td>5 ac</td>
-              <td>30 ac</td>
-              <td>200 ac</td>
-              <td class="capacity-row">—</td>
+              <td>150 ac</td><td>5 ac</td><td>30 ac</td><td>200 ac</td>
+              <td>40 ac</td><td>20 ac</td><td>25 ac</td>
+              <td class="capacity-row">&mdash;</td>
             </tr>
             <tr>
               <td class="metric-name">Impervious Surface</td>
               <td>~15 ac <span class="badge-low">LOW</span></td>
               <td>~3 ac <span class="badge-low">LOW</span></td>
               <td>~20 ac <span class="badge-med">MED</span></td>
-              <td>~100 ac <span class="badge-crit">CRITICAL</span></td>
-              <td>—</td>
+              <td>~100 ac <span class="badge-crit">CRIT</span></td>
+              <td>~8 ac <span class="badge-low">LOW</span></td>
+              <td>~10 ac <span class="badge-low">LOW</span></td>
+              <td>~16 ac <span class="badge-med">MED</span></td>
+              <td>&mdash;</td>
             </tr>
             <tr>
-              <td class="metric-name">Land Use Reversibility</td>
-              <td>Moderate (turf restoration possible)</td>
-              <td>High (small structure)</td>
-              <td>Low (large hardened building)</td>
-              <td>None (permanent campus) <span class="badge-crit">CRITICAL</span></td>
-              <td>—</td>
+              <td class="metric-name">Reversibility</td>
+              <td>Moderate</td><td>High</td><td>Low</td><td>None <span class="badge-crit">CRIT</span></td>
+              <td>Low (sold lots)</td><td>Moderate</td><td>Low</td>
+              <td>&mdash;</td>
             </tr>
 
-            <tr><td colspan="6" style="background:#f3f4f6;font-weight:700;font-size:.8rem;color:#6b7280;letter-spacing:.05em;padding:.4rem .8rem;">WATER USE</td></tr>
+            <tr><td colspan="9" class="section-divider">WATER USE</td></tr>
             <tr>
               <td class="metric-name">Annual Water Use</td>
-              <td><div class="bar-cell"><div class="bar-mini-track"><div class="bar-mini-fill" style="width:17%;background:#2e7d32"></div></div><span class="bar-label">~110M gal/yr</span></div></td>
-              <td><div class="bar-cell"><div class="bar-mini-track"><div class="bar-mini-fill" style="width:1%;background:#1565c0"></div></div><span class="bar-label">&lt;1M gal/yr</span></div></td>
-              <td><div class="bar-cell"><div class="bar-mini-track"><div class="bar-mini-fill" style="width:7.7%;background:#e65100"></div></div><span class="bar-label">~50M gal/yr</span></div></td>
-              <td><div class="bar-cell"><div class="bar-mini-track"><div class="bar-mini-fill" style="width:77%;background:#b71c1c"></div></div><span class="bar-label">~500M gal/yr <span class="badge-crit">CRITICAL</span></span></div></td>
-              <td class="capacity-row">~650M gal/yr supply capacity</td>
+              <td>~110M gal/yr (17%)</td>
+              <td>&lt;1M gal/yr (&lt;1%)</td>
+              <td>~50M gal/yr (8%)</td>
+              <td>~500M gal/yr (77%) <span class="badge-crit">CRIT</span></td>
+              <td>~6.8M gal/yr (1%)</td>
+              <td>~20.5M gal/yr (3%)</td>
+              <td>~41M gal/yr (6%) <span class="badge-med">MED</span></td>
+              <td class="capacity-row">~650M gal/yr</td>
             </tr>
-            <tr><td class="metric-name">Water Use: % of Capacity</td><td>~17% <span class="badge-low">LOW</span></td><td>&lt;1% <span class="badge-low">LOW</span></td><td>~8% <span class="badge-med">MED</span></td><td>~77% <span class="badge-crit">CRITICAL</span></td><td>100% = rated capacity</td></tr>
-            <tr><td class="metric-name">Water Use: Seasonal Pattern</td><td>Highly seasonal (Jul–Aug peak)</td><td>Flat / year-round <span class="badge-low">LOW</span></td><td>Flat / year-round <span class="badge-med">MED</span></td><td>Flat / year-round <span class="badge-crit">CRITICAL</span></td><td>Peak: Jul–Aug (tourism pop. 3–5×)</td></tr>
-            <tr><td class="metric-name">Peak Day Demand</td><td>~312,000 gpd (summer)</td><td>~1,400 gpd</td><td>~137,000 gpd</td><td>~1.37M gpd</td><td>Rated peak capacity varies — see capacity.html</td></tr>
-            <tr><td class="metric-name">Water Withdrawal Permit Required?</td><td>Yes (Maine DEP, seasonal use)</td><td>No (&lt;10,000 gpd threshold)</td><td>Yes (DEP, &gt;10K gpd) <span class="badge-med">MED</span></td><td>Yes (full legislative notice) <span class="badge-crit">CRITICAL</span></td><td>—</td></tr>
+            <tr>
+              <td class="metric-name">Peak Day Demand</td>
+              <td>~312,000 gpd</td>
+              <td>~1,400 gpd</td>
+              <td>~137,000 gpd</td>
+              <td>~1.37M gpd</td>
+              <td>~28,000 gpd</td>
+              <td>~75,000 gpd</td>
+              <td>~150,000 gpd <span class="badge-med">MED</span></td>
+              <td class="capacity-row">Varies &mdash; see capacity.html</td>
+            </tr>
+            <tr>
+              <td class="metric-name">Seasonal Pattern</td>
+              <td>Summer peak <span class="badge-high">HIGH</span></td>
+              <td>Flat</td><td>Flat</td><td>Flat <span class="badge-crit">CRIT</span></td>
+              <td>Summer peak risk</td>
+              <td>Year-round</td>
+              <td>Year-round <span class="badge-med">MED</span></td>
+              <td class="capacity-row">Peak Jul&ndash;Aug</td>
+            </tr>
 
-            <tr><td colspan="6" style="background:#f3f4f6;font-weight:700;font-size:.8rem;color:#6b7280;letter-spacing:.05em;padding:.4rem .8rem;">ENERGY &amp; GRID</td></tr>
-            <tr><td class="metric-name">Annual Electricity (MWh/yr)</td><td>~1,500 MWh/yr <span class="badge-low">LOW</span></td><td>~131,400 MWh/yr <span class="badge-med">MED</span></td><td>~735,840 MWh/yr <span class="badge-high">HIGH</span></td><td>~3,416,400 MWh/yr <span class="badge-crit">CRITICAL</span></td><td>Maine total: ~12M MWh/yr (ISO-NE 2023)</td></tr>
-            <tr><td class="metric-name">Grid Connection Required</td><td>Standard commercial <span class="badge-low">LOW</span></td><td>15–20 MW dedicated feed <span class="badge-med">MED</span></td><td>New 115kV substation <span class="badge-high">HIGH</span></td><td>New 345kV transmission <span class="badge-crit">CRITICAL</span></td><td>Existing rural distribution infrastructure</td></tr>
-            <tr><td class="metric-name">Grid Upgrade Cost Estimate</td><td>Minimal</td><td>$5–10M <span class="badge-med">MED</span></td><td>$50M+ <span class="badge-high">HIGH</span></td><td>$200M+ <span class="badge-crit">CRITICAL</span></td><td>—</td></tr>
+            <tr><td colspan="9" class="section-divider">ENERGY &amp; GRID</td></tr>
+            <tr>
+              <td class="metric-name">Annual Electricity</td>
+              <td>~1,500 MWh/yr</td>
+              <td>~131,400 MWh/yr</td>
+              <td>~735,840 MWh/yr</td>
+              <td>~3.4M MWh/yr <span class="badge-crit">CRIT</span></td>
+              <td>~350 MWh/yr</td>
+              <td>~1,050 MWh/yr</td>
+              <td>~2,100 MWh/yr</td>
+              <td class="capacity-row">Maine: ~12M MWh/yr</td>
+            </tr>
+            <tr>
+              <td class="metric-name">Grid Impact</td>
+              <td>Standard commercial</td>
+              <td>15&ndash;20 MW feed <span class="badge-med">MED</span></td>
+              <td>New 115kV substation <span class="badge-high">HIGH</span></td>
+              <td>New 345kV transmission <span class="badge-crit">CRIT</span></td>
+              <td>Standard residential</td>
+              <td>Standard residential</td>
+              <td>Standard commercial</td>
+              <td class="capacity-row">Existing rural distribution</td>
+            </tr>
 
-            <tr><td colspan="6" style="background:#f3f4f6;font-weight:700;font-size:.8rem;color:#6b7280;letter-spacing:.05em;padding:.4rem .8rem;">EMPLOYMENT</td></tr>
-            <tr><td class="metric-name">Permanent FTE Jobs</td><td>35 <span class="badge-low">LOW</span></td><td>25 <span class="badge-low">LOW</span></td><td>80 <span class="badge-med">MED</span></td><td>250 <span class="badge-pos">HIGH</span></td><td>—</td></tr>
-            <tr><td class="metric-name">Job Quality (wage tier)</td><td>Mixed: seasonal/hospitality <span class="badge-med">MED</span></td><td>High: tech/engineering <span class="badge-pos">HIGH</span></td><td>High: tech/engineering <span class="badge-pos">HIGH</span></td><td>High, but few local hires typical <span class="badge-med">MED</span></td><td>—</td></tr>
-            <tr><td class="metric-name">Construction Jobs (temp)</td><td>~120 (12–18 mo)</td><td>~150 (12–18 mo)</td><td>~500 (24–36 mo)</td><td>~2,000 (36+ mo, non-local)</td><td>—</td></tr>
+            <tr><td colspan="9" class="section-divider">EMPLOYMENT</td></tr>
+            <tr>
+              <td class="metric-name">Permanent FTE Jobs</td>
+              <td>35 (seasonal)</td>
+              <td>25 (year-round)</td>
+              <td>80 (year-round)</td>
+              <td>250 <span class="badge-pos">POS</span></td>
+              <td>~5 (landscaping/mgmt)</td>
+              <td>~8 (property mgmt)</td>
+              <td>~15 (property mgmt)</td>
+              <td>&mdash;</td>
+            </tr>
+            <tr>
+              <td class="metric-name">Job Quality</td>
+              <td>Mixed/seasonal</td>
+              <td>High/tech <span class="badge-pos">POS</span></td>
+              <td>High/tech <span class="badge-pos">POS</span></td>
+              <td>High, few local</td>
+              <td>Construction only</td>
+              <td>Construction + mgmt</td>
+              <td>Construction + mgmt</td>
+              <td>&mdash;</td>
+            </tr>
 
-            <tr><td colspan="6" style="background:#f3f4f6;font-weight:700;font-size:.8rem;color:#6b7280;letter-spacing:.05em;padding:.4rem .8rem;">FISCAL IMPACT</td></tr>
-            <tr><td class="metric-name">Est. Annual Tax Revenue</td><td>~$180K/yr</td><td>~$200K/yr</td><td>~$2M/yr</td><td>~$10M/yr</td><td>—</td></tr>
-            <tr><td class="metric-name">TIF/Tax Exemption Risk</td><td>Low <span class="badge-low">LOW</span></td><td>Low <span class="badge-low">LOW</span></td><td>High — BETR commonly applied <span class="badge-high">HIGH</span></td><td>Very high — typically 20+ yr deferral <span class="badge-crit">CRITICAL</span></td><td>—</td></tr>
-            <tr><td class="metric-name">Est. Construction Cost</td><td>$12M</td><td>$40M</td><td>$350M</td><td>$3B+</td><td>—</td></tr>
+            <tr><td colspan="9" class="section-divider">FISCAL IMPACT</td></tr>
+            <tr>
+              <td class="metric-name">Est. Annual Tax Revenue</td>
+              <td>~$180K/yr</td>
+              <td>~$200K/yr</td>
+              <td>~$2M/yr</td>
+              <td>~$10M/yr</td>
+              <td>~$275K/yr</td>
+              <td>~$600K/yr</td>
+              <td>~$1.1M/yr <span class="badge-pos">POS</span></td>
+              <td>&mdash;</td>
+            </tr>
+            <tr>
+              <td class="metric-name">School Cost Risk</td>
+              <td>Low (no residents)</td>
+              <td>None</td><td>None</td><td>None</td>
+              <td>Moderate (seasonal offset) <span class="badge-med">MED</span></td>
+              <td>High (year-round families) <span class="badge-high">HIGH</span></td>
+              <td>Moderate&ndash;High <span class="badge-med">MED</span></td>
+              <td>&mdash;</td>
+            </tr>
+            <tr>
+              <td class="metric-name">TIF/Exemption Risk</td>
+              <td>Low</td>
+              <td>Low</td>
+              <td>High (BETR) <span class="badge-high">HIGH</span></td>
+              <td>Very high <span class="badge-crit">CRIT</span></td>
+              <td>Low</td>
+              <td>Moderate (LIHTC) <span class="badge-med">MED</span></td>
+              <td>Low</td>
+              <td>&mdash;</td>
+            </tr>
+            <tr>
+              <td class="metric-name">Est. Construction Cost</td>
+              <td>$12M</td><td>$40M</td><td>$350M</td><td>$3B+</td>
+              <td>$15M</td><td>$45M</td><td>$90M</td>
+              <td>&mdash;</td>
+            </tr>
 
-            <tr><td colspan="6" style="background:#f3f4f6;font-weight:700;font-size:.8rem;color:#6b7280;letter-spacing:.05em;padding:.4rem .8rem;">ENVIRONMENTAL RISK</td></tr>
-            <tr><td class="metric-name">Chemical Use</td><td>Pesticides/fertilizers <span class="badge-med">MED</span></td><td>Battery/refrigerant only <span class="badge-low">LOW</span></td><td>Battery/refrigerant; thermal discharge <span class="badge-med">MED</span></td><td>Battery/refrigerant; thermal; diesel exhaust at scale <span class="badge-high">HIGH</span></td><td>—</td></tr>
-            <tr><td class="metric-name">Noise Impact</td><td>Low (mowers, carts)</td><td>Low–moderate (CRAC, generators)</td><td>Moderate (cooling towers, generators)</td><td>High — permanent 55–65 dB <span class="badge-high">HIGH</span></td><td>Rural ambient: ~35–45 dB</td></tr>
-            <tr><td class="metric-name">Community Negotiating Leverage</td><td>Moderate <span class="badge-med">MED</span></td><td>High (small operator, local permits key) <span class="badge-pos">HIGH</span></td><td>Moderate <span class="badge-med">MED</span></td><td>Very low — $3B sunk cost = operator controls terms <span class="badge-crit">CRITICAL</span></td><td>—</td></tr>
+            <tr><td colspan="9" class="section-divider">ENVIRONMENTAL RISK</td></tr>
+            <tr>
+              <td class="metric-name">Chemical Use</td>
+              <td>Pesticides/fertilizers <span class="badge-med">MED</span></td>
+              <td>Battery/refrigerant <span class="badge-low">LOW</span></td>
+              <td>Battery/refrigerant/thermal <span class="badge-med">MED</span></td>
+              <td>Battery/thermal/diesel <span class="badge-high">HIGH</span></td>
+              <td>Residential lawn (diffuse) <span class="badge-low">LOW</span></td>
+              <td>Minimal <span class="badge-low">LOW</span></td>
+              <td>Minimal <span class="badge-low">LOW</span></td>
+              <td>&mdash;</td>
+            </tr>
+            <tr>
+              <td class="metric-name">Community Leverage</td>
+              <td>Moderate</td>
+              <td>High <span class="badge-pos">POS</span></td>
+              <td>Moderate</td>
+              <td>Very low <span class="badge-crit">CRIT</span></td>
+              <td>High (subdivision approval)</td>
+              <td>High (zoning + permits) <span class="badge-pos">POS</span></td>
+              <td>High (PUD required) <span class="badge-pos">POS</span></td>
+              <td>&mdash;</td>
+            </tr>
 
           </tbody>
         </table>
       </div>
-
-      <p class="section-note">All proposal values are estimates from published benchmarks. Community capacity figures are modeled from Maine public records and municipal data. See <a href="../methodology.md" target="_blank">methodology.md</a> and each proposal page for full source citations. Badges: <span class="badge-low">LOW</span> <span class="badge-med">MED</span> <span class="badge-high">HIGH</span> <span class="badge-crit">CRITICAL</span> risk relative to community capacity. <span class="badge-pos">POSITIVE</span> = community benefit.</p>
+      <p class="section-note">All values are estimates from published benchmarks. See each proposal page and <a href="../methodology.md" target="_blank">methodology.md</a> for full citations. Badges: <span class="badge-low">LOW</span> <span class="badge-med">MED</span> <span class="badge-high">HIGH</span> <span class="badge-crit">CRIT</span> risk relative to community capacity. <span class="badge-pos">POS</span> = community benefit.</p>
     </div>
   </section>
 
   <section class="section section-alt">
     <div class="section-inner">
-      <h2>&#128200; Visual Comparison — Key Metrics</h2>
-      <p class="section-intro">Bar charts showing each proposal's demand as a percentage of estimated community capacity for water, electricity, land, and employment.</p>
-      <canvas id="cmp-water-chart" height="160"></canvas>
-      <p class="section-note" style="margin-top:.5rem">Annual water use as % of estimated community annual supply (~650M gal/yr). Golf course figure includes full seasonal demand; data center figures are year-round flat consumption.</p>
-      <canvas id="cmp-jobs-chart" height="160" style="margin-top:2rem"></canvas>
-      <p class="section-note" style="margin-top:.5rem">Permanent FTE operations jobs created. Construction jobs (temporary) not included. Job quality (wage tier) is a separate dimension — see proposal pages.</p>
-      <canvas id="cmp-tax-chart" height="160" style="margin-top:2rem"></canvas>
-      <p class="section-note" style="margin-top:.5rem">Estimated gross annual tax revenue before TIF/BETR adjustments. Enterprise and hyperscale figures are pre-incentive; actual net revenue may be substantially lower or deferred for decades.</p>
+      <h2>&#128200; Visual Comparison &mdash; Key Metrics</h2>
+      <canvas id="cmp-water-chart" height="200"></canvas>
+      <p class="section-note" style="margin-top:.5rem">Annual water use as % of estimated community annual supply (~650M gal/yr).</p>
+      <canvas id="cmp-jobs-chart" height="200" style="margin-top:2rem"></canvas>
+      <p class="section-note" style="margin-top:.5rem">Permanent FTE operations jobs. Housing scenarios generate few direct jobs beyond property management.</p>
+      <canvas id="cmp-tax-chart" height="200" style="margin-top:2rem"></canvas>
+      <p class="section-note" style="margin-top:.5rem">Estimated gross annual tax revenue before TIF/BETR/LIHTC adjustments.</p>
     </div>
   </section>
 
@@ -167,9 +279,9 @@
     <div class="section-inner">
       <h2>&#128203; What the Comparison Tells Us</h2>
       <div class="three-col">
-        <div class="card card-blue"><div class="card-icon">&#128167;</div><h3>Water is the binding constraint</h3><p>For coastal Maine communities, water supply headroom &mdash; not tax revenue &mdash; is the practical ceiling on what can be approved. The hyperscale scenario fails this test outright. The enterprise scenario demands careful modeling of peak-season compounding.</p></div>
-        <div class="card card-green"><div class="card-icon">&#128181;</div><h3>Headline revenue ≠ net benefit</h3><p>The larger the project, the more likely that TIF/BETR agreements will defer or eliminate tax benefits for 10–20 years. Communities should require net present value analysis of all incentive agreements before any vote.</p></div>
-        <div class="card card-amber"><div class="card-icon">&#9878;&#65039;</div><h3>Scale changes leverage</h3><p>A community can negotiate meaningfully with a small or mid-scale operator. Once a $3B facility is approved and under construction, the balance of power shifts permanently. Every condition must be legally binding <em>before</em> the first permit issues.</p></div>
+        <div class="card card-blue"><div class="card-icon">&#128167;</div><h3>Water is the binding constraint</h3><p>For coastal Maine communities, water supply headroom &mdash; not tax revenue &mdash; is the practical ceiling. Hyperscale DC fails outright. Large multi-family and enterprise DC both demand explicit peak-season modeling before approval.</p></div>
+        <div class="card card-green"><div class="card-icon">&#128181;</div><h3>Housing is the most honest fiscal trade-off</h3><p>Housing generates real tax revenue without TIF/BETR risk &mdash; but it also generates real school and services costs. Mixed-income development is the only scenario that addresses a documented community need while producing a defensible long-term fiscal return.</p></div>
+        <div class="card card-amber"><div class="card-icon">&#9878;&#65039;</div><h3>Scale and leverage move together</h3><p>Communities retain the most negotiating power with small-to-mid scale proposals. Once a $3B data center or a 300-unit development is approved and under construction, leverage shifts to the developer. Every condition must be legally binding before the first permit issues.</p></div>
       </div>
     </div>
   </section>
@@ -196,11 +308,11 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script>
-const labels = ['Golf Course', 'Edge DC', 'Enterprise DC', 'Hyperscale DC'];
-const colors = ['#2e7d32','#1565c0','#e65100','#b71c1c'];
-new Chart(document.getElementById('cmp-water-chart'), { type:'bar', data:{ labels, datasets:[{ label:'Annual Water Use (% of community capacity)', data:[17,0.08,7.7,77], backgroundColor:colors, borderRadius:4 }] }, options:{ indexAxis:'y', responsive:true, plugins:{ legend:{display:false}, tooltip:{callbacks:{label:ctx=>ctx.parsed.x.toFixed(1)+'% of community capacity'}} }, scales:{ x:{max:100,title:{display:true,text:'% of estimated annual community water supply'},ticks:{callback:v=>v+'%'}}, y:{ticks:{font:{size:11}}} } } });
-new Chart(document.getElementById('cmp-jobs-chart'), { type:'bar', data:{ labels, datasets:[{ label:'Permanent FTE Operations Jobs', data:[35,25,80,250], backgroundColor:colors, borderRadius:4 }] }, options:{ indexAxis:'y', responsive:true, plugins:{ legend:{display:false}, tooltip:{callbacks:{label:ctx=>ctx.parsed.x+' permanent FTE jobs'}} }, scales:{ x:{title:{display:true,text:'Permanent FTE operations jobs (est.)'}}, y:{ticks:{font:{size:11}}} } } });
-new Chart(document.getElementById('cmp-tax-chart'), { type:'bar', data:{ labels, datasets:[{ label:'Est. Annual Tax Revenue ($)', data:[180000,200000,2000000,10000000], backgroundColor:colors, borderRadius:4 }] }, options:{ indexAxis:'y', responsive:true, plugins:{ legend:{display:false}, tooltip:{callbacks:{label:ctx=>'$'+ctx.parsed.x.toLocaleString()+'/yr (pre-TIF est.)'}} }, scales:{ x:{title:{display:true,text:'Est. gross annual tax revenue (pre-incentive)'},ticks:{callback:v=>'$'+(v/1000000).toFixed(1)+'M'}}, y:{ticks:{font:{size:11}}} } } });
+const labels = ['Golf Course','Edge DC','Enterprise DC','Hyperscale DC','Subdivision','Mixed-Income','Multi-Family'];
+const colors = ['#2e7d32','#1565c0','#e65100','#b71c1c','#0d9488','#7c3aed','#b45309'];
+new Chart(document.getElementById('cmp-water-chart'),{type:'bar',data:{labels,datasets:[{label:'Annual Water Use (% of community capacity)',data:[17,0.08,7.7,77,1.05,3.15,6.31],backgroundColor:colors,borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.parsed.x.toFixed(2)+'% of community capacity'}}},scales:{x:{max:100,title:{display:true,text:'% of estimated annual community water supply'},ticks:{callback:v=>v+'%'}},y:{ticks:{font:{size:11}}}}}});
+new Chart(document.getElementById('cmp-jobs-chart'),{type:'bar',data:{labels,datasets:[{label:'Permanent FTE Operations Jobs',data:[35,25,80,250,5,8,15],backgroundColor:colors,borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.parsed.x+' permanent FTE jobs'}}},scales:{x:{title:{display:true,text:'Permanent FTE operations jobs (est.)'}},y:{ticks:{font:{size:11}}}}}});
+new Chart(document.getElementById('cmp-tax-chart'),{type:'bar',data:{labels,datasets:[{label:'Est. Annual Tax Revenue ($)',data:[180000,200000,2000000,10000000,275000,600000,1100000],backgroundColor:colors,borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>'$'+ctx.parsed.x.toLocaleString()+'/yr (pre-incentive est.)'}}},scales:{x:{title:{display:true,text:'Est. gross annual tax revenue (pre-incentive)'},ticks:{callback:v=>'$'+(v>=1000000?(v/1000000).toFixed(1)+'M':(v/1000).toFixed(0)+'K')}},y:{ticks:{font:{size:11}}}}}});
 </script>
 </body>
 </html>
