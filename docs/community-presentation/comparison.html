@@ -680,14 +680,14 @@ document.getElementById('community-checks').addEventListener('change', ()=>{ upd
 // Load extra communities from Supabase
 (async()=>{
   try {
-    const communities=await sbFetch('cid_communities?select=name,community_type,water_capacity_mgal_yr,total_assessed_value&order=name.asc');
+    const communities=await sbFetch('cid_communities?select=name,community_type&order=name.asc');
     const known=new Set(['Kennebunkport','Westbrook','Portland','Gorham']);
     const extra=communities.filter(c=>c.community_type==='municipal'&&!known.has(c.name));
     const checksEl=document.getElementById('community-checks');
     checksEl.querySelector('label[style]').remove();
     extra.forEach(c=>{
-      // Enrich COMMUNITIES if data available
-      if(!COMMUNITIES[c.name]) COMMUNITIES[c.name]={water:c.water_capacity_mgal_yr||null,taxBase:c.total_assessed_value||null,pop:null,area:''};
+      // Enrich COMMUNITIES if not already known (water/taxBase unavailable from this endpoint)
+      if(!COMMUNITIES[c.name]) COMMUNITIES[c.name]={water:null,taxBase:null,pop:null,area:''};
       const lbl=document.createElement('label');
       lbl.innerHTML=`<input type="checkbox" value="${c.name}"> ${c.name}`;
       checksEl.appendChild(lbl);
