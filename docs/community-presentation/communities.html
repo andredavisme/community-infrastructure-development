@@ -203,9 +203,10 @@ async function supabaseFetch(path) {
   return res.json();
 }
 
-// Communities that have a dedicated capacity page
+// Communities that have a dedicated page
 const COMMUNITY_PAGES = {
-  'Kennebunkport': 'capacity.html'
+  'Kennebunkport': 'capacity.html',
+  'Westbrook':     'westbrook.html'
 };
 
 // Icons keyed by community type
@@ -232,8 +233,8 @@ function renderCard(c, waterMap) {
     : '';
 
   const footerHtml = page
-    ? `<div class="cc-footer">View capacity page &rarr;</div>`
-    : `<div class="cc-footer no-page">Capacity page coming soon</div>`;
+    ? `<div class="cc-footer">View community page &rarr;</div>`
+    : `<div class="cc-footer no-page">Community page coming soon</div>`;
 
   const card = document.createElement(page ? 'a' : 'div');
   card.className = 'community-card';
