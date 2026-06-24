@@ -6,132 +6,51 @@
 <title>Compare All | Coastal Maine Infrastructure</title>
 <link rel="stylesheet" href="style.css" />
 <style>
-/* ── Selector panel ── */
 .selector-panel {
-  background:#f8fafc;
-  border:1px solid #e5e7eb;
-  border-radius:12px;
-  padding:1.5rem;
-  margin-bottom:2rem;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:1.5rem;
+  background:#f8fafc; border:1px solid #e5e7eb; border-radius:12px;
+  padding:1.5rem; margin-bottom:2rem;
+  display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;
 }
 @media(max-width:640px){ .selector-panel{ grid-template-columns:1fr; } }
 .selector-panel h3 {
-  font-size:.9rem;
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:.06em;
-  color:#374151;
-  margin:0 0 .75rem;
+  font-size:.9rem; font-weight:700; text-transform:uppercase;
+  letter-spacing:.06em; color:#374151; margin:0 0 .75rem;
 }
-.check-group {
-  display:flex;
-  flex-direction:column;
-  gap:.45rem;
-}
+.check-group { display:flex; flex-direction:column; gap:.45rem; }
 .check-group label {
-  display:flex;
-  align-items:center;
-  gap:.5rem;
-  font-size:.88rem;
-  color:#374151;
-  cursor:pointer;
+  display:flex; align-items:center; gap:.5rem;
+  font-size:.88rem; color:#374151; cursor:pointer;
 }
-.check-group input[type=checkbox] {
-  accent-color:#2563eb;
-  width:15px;
-  height:15px;
-  flex-shrink:0;
-}
-.swatch {
-  display:inline-block;
-  width:10px;
-  height:10px;
-  border-radius:2px;
-  flex-shrink:0;
-}
+.check-group input[type=checkbox] { accent-color:#2563eb; width:15px; height:15px; flex-shrink:0; }
+.swatch { display:inline-block; width:10px; height:10px; border-radius:2px; flex-shrink:0; }
 .selector-actions {
-  grid-column:1/-1;
-  display:flex;
-  gap:.75rem;
-  align-items:center;
-  flex-wrap:wrap;
-  padding-top:.5rem;
-  border-top:1px solid #e5e7eb;
+  grid-column:1/-1; display:flex; gap:.75rem; align-items:center;
+  flex-wrap:wrap; padding-top:.5rem; border-top:1px solid #e5e7eb;
 }
 .btn-sm {
-  background:#2563eb;
-  color:#fff;
-  border:none;
-  border-radius:6px;
-  padding:.35rem .9rem;
-  font-size:.83rem;
-  font-weight:600;
-  cursor:pointer;
+  background:#2563eb; color:#fff; border:none; border-radius:6px;
+  padding:.35rem .9rem; font-size:.83rem; font-weight:600; cursor:pointer;
 }
-.btn-sm.btn-ghost {
-  background:#f3f4f6;
-  color:#374151;
-  border:1px solid #e5e7eb;
-}
+.btn-sm.btn-ghost { background:#f3f4f6; color:#374151; border:1px solid #e5e7eb; }
 .btn-sm:hover { opacity:.88; }
-
-/* ── Custom inputs ── */
 .custom-inputs {
-  background:#fff;
-  border:1px solid #e5e7eb;
-  border-radius:12px;
-  padding:1.25rem 1.5rem;
-  margin-bottom:2rem;
-}
-.custom-inputs h3 {
-  font-size:.9rem;
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:.06em;
-  color:#374151;
-  margin:0 0 1rem;
+  background:#fff; border:1px solid #e5e7eb; border-radius:12px;
+  padding:1.25rem 1.5rem; margin-bottom:2rem;
 }
 .custom-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
-  gap:.75rem 1.25rem;
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:.75rem 1.25rem;
 }
-.custom-grid label {
-  display:flex;
-  flex-direction:column;
-  gap:.25rem;
-  font-size:.82rem;
-  color:#6b7280;
-  font-weight:500;
-}
-.custom-grid input {
-  border:1px solid #d1d5db;
-  border-radius:6px;
-  padding:.35rem .6rem;
-  font-size:.88rem;
-  color:#111827;
-}
+.custom-grid label { display:flex; flex-direction:column; gap:.25rem; font-size:.82rem; color:#6b7280; font-weight:500; }
+.custom-grid input { border:1px solid #d1d5db; border-radius:6px; padding:.35rem .6rem; font-size:.88rem; color:#111827; }
 .custom-grid input:focus { outline:2px solid #2563eb; border-color:#2563eb; }
 .custom-note { font-size:.78rem; color:#9ca3af; margin-top:.75rem; }
-
-/* ── Comparison table ── */
 .cmp-table-wrap { overflow-x:auto; margin:1.5rem 0; }
 .cmp-table { width:100%; border-collapse:collapse; font-size:.85rem; }
-.cmp-table th {
-  background:#1e3a5f;
-  color:#fff;
-  padding:.6rem .7rem;
-  text-align:left;
-  white-space:nowrap;
-}
+.cmp-table th { background:#1e3a5f; color:#fff; padding:.6rem .7rem; text-align:left; white-space:nowrap; }
 .cmp-table td { padding:.5rem .7rem; border-bottom:1px solid #e5e7eb; vertical-align:top; }
 .cmp-table tr:nth-child(even) td { background:#f9fafb; }
 .cmp-table td.metric-name { font-weight:600; color:#374151; white-space:nowrap; }
 .section-divider { background:#f3f4f6 !important; font-weight:700; font-size:.78rem; color:#6b7280; letter-spacing:.05em; padding:.4rem .7rem; }
-.capacity-row td { color:#374151; font-style:italic; }
 .badge-low  { display:inline-block; background:#dcfce7; color:#166534; font-size:.7rem; font-weight:700; padding:1px 6px; border-radius:10px; }
 .badge-med  { display:inline-block; background:#fef9c3; color:#854d0e; font-size:.7rem; font-weight:700; padding:1px 6px; border-radius:10px; }
 .badge-high { display:inline-block; background:#fee2e2; color:#991b1b; font-size:.7rem; font-weight:700; padding:1px 6px; border-radius:10px; }
@@ -140,105 +59,52 @@
 .section-note { font-size:.8rem; color:#6b7280; margin-top:.5rem; }
 .no-results { text-align:center; color:#9ca3af; padding:2rem; font-style:italic; }
 
-/* ── Viz section ── */
+/* viz */
 .viz-section { margin:2rem 0; }
-.viz-header {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:.75rem;
-  margin-bottom:1rem;
-}
+.viz-header { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.75rem; margin-bottom:1rem; }
 .viz-header h2 { margin:0; }
-.view-toggle {
-  display:flex;
-  gap:.5rem;
-  background:#f3f4f6;
-  border-radius:8px;
-  padding:3px;
-}
+.view-toggle { display:flex; gap:.5rem; background:#f3f4f6; border-radius:8px; padding:3px; }
 .view-btn {
-  background:transparent;
-  border:none;
-  border-radius:6px;
-  padding:.3rem .75rem;
-  font-size:.82rem;
-  font-weight:600;
-  color:#6b7280;
-  cursor:pointer;
-  transition:all .15s;
+  background:transparent; border:none; border-radius:6px;
+  padding:.3rem .75rem; font-size:.82rem; font-weight:600; color:#6b7280; cursor:pointer; transition:all .15s;
 }
-.view-btn.active {
-  background:#fff;
-  color:#1e3a5f;
-  box-shadow:0 1px 3px rgba(0,0,0,.12);
-}
+.view-btn.active { background:#fff; color:#1e3a5f; box-shadow:0 1px 3px rgba(0,0,0,.12); }
 
-/* ── Bubble chart ── */
-.bubble-wrap {
-  position:relative;
-  background:#fff;
-  border:1px solid #e5e7eb;
-  border-radius:12px;
-  padding:1.5rem;
+/* community dimension toggle */
+.dim-bar {
+  display:flex; align-items:center; gap:.6rem; flex-wrap:wrap;
+  background:#f8fafc; border:1px solid #e5e7eb; border-radius:8px;
+  padding:.55rem 1rem; margin-bottom:1.25rem; font-size:.82rem;
 }
-.bubble-legend {
-  display:flex;
-  flex-wrap:wrap;
-  gap:.5rem 1rem;
-  margin-top:1rem;
-  font-size:.78rem;
-  color:#374151;
+.dim-bar strong { color:#374151; margin-right:.25rem; }
+.dim-btn {
+  background:#fff; border:1px solid #d1d5db; border-radius:6px;
+  padding:.2rem .65rem; font-size:.8rem; font-weight:600; color:#6b7280; cursor:pointer;
 }
-.bubble-legend-item {
-  display:flex;
-  align-items:center;
-  gap:.35rem;
-}
-.bubble-legend-dot {
-  width:12px; height:12px;
-  border-radius:50%;
-  flex-shrink:0;
-}
+.dim-btn.active { background:#1e3a5f; color:#fff; border-color:#1e3a5f; }
+.dim-note { font-size:.76rem; color:#9ca3af; margin-left:auto; }
 
-/* ── Heatmap ── */
-.heatmap-wrap {
-  overflow-x:auto;
-}
-.heatmap-table {
-  width:100%;
-  border-collapse:collapse;
-  font-size:.83rem;
-}
+/* bubble */
+.bubble-wrap { background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:1.5rem; }
+.bubble-legend { display:flex; flex-wrap:wrap; gap:.5rem 1rem; margin-top:1rem; font-size:.78rem; color:#374151; }
+.bubble-legend-item { display:flex; align-items:center; gap:.35rem; }
+.bubble-legend-dot { width:12px; height:12px; border-radius:50%; flex-shrink:0; }
+
+/* heatmap */
+.heatmap-wrap { overflow-x:auto; }
+.heatmap-table { width:100%; border-collapse:collapse; font-size:.83rem; }
 .heatmap-table th {
-  background:#1e3a5f;
-  color:#fff;
-  padding:.55rem .75rem;
-  text-align:left;
-  white-space:nowrap;
-  font-size:.78rem;
-  font-weight:700;
-  letter-spacing:.04em;
-  text-transform:uppercase;
+  background:#1e3a5f; color:#fff; padding:.55rem .75rem;
+  text-align:left; white-space:nowrap; font-size:.78rem; font-weight:700;
+  letter-spacing:.04em; text-transform:uppercase;
 }
-.heatmap-table th.metric-col { text-align:left; }
 .heatmap-table td {
-  padding:.5rem .75rem;
-  border-bottom:1px solid rgba(255,255,255,.25);
-  text-align:center;
-  font-size:.82rem;
-  font-weight:600;
-  white-space:nowrap;
+  padding:.5rem .75rem; border-bottom:1px solid rgba(0,0,0,.06);
+  text-align:center; font-size:.82rem; font-weight:600; white-space:nowrap;
 }
 .heatmap-table td.row-label {
-  text-align:left;
-  font-weight:700;
-  font-size:.82rem;
-  color:#374151;
-  background:#f8fafc;
-  border-bottom:1px solid #e5e7eb;
-  white-space:nowrap;
+  text-align:left; font-weight:700; font-size:.82rem; color:#374151;
+  background:#f8fafc; border-bottom:1px solid #e5e7eb; white-space:nowrap;
 }
 .hm-none  { background:#f3f4f6; color:#9ca3af; }
 .hm-pos   { background:#bfdbfe; color:#1e3a8a; }
@@ -246,82 +112,44 @@
 .hm-med   { background:#fde68a; color:#78350f; }
 .hm-high  { background:#fca5a5; color:#7f1d1d; }
 .hm-crit  { background:#7f1d1d; color:#fff; }
+.heatmap-community-header { background:#374151 !important; font-size:.75rem !important; letter-spacing:.08em; }
 
-/* ── Risk scorecard ── */
-.scorecard-wrap {
-  overflow-x:auto;
-}
-.scorecard-table {
-  width:100%;
-  border-collapse:collapse;
-  font-size:.83rem;
-}
+/* scorecard */
+.scorecard-wrap { overflow-x:auto; }
+.scorecard-table { width:100%; border-collapse:collapse; font-size:.83rem; }
 .scorecard-table th {
-  background:#1e3a5f;
-  color:#fff;
-  padding:.55rem .75rem;
-  text-align:center;
-  white-space:nowrap;
-  font-size:.78rem;
-  font-weight:700;
-  letter-spacing:.04em;
-  text-transform:uppercase;
+  background:#1e3a5f; color:#fff; padding:.55rem .75rem; text-align:center;
+  white-space:nowrap; font-size:.78rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
 }
 .scorecard-table th.proj-col { text-align:left; }
+.scorecard-table th.community-header { background:#374151; font-size:.75rem; }
 .scorecard-table td {
-  padding:.45rem .6rem;
-  border-bottom:1px solid #e5e7eb;
-  text-align:center;
-  font-size:.75rem;
-  font-weight:700;
-  letter-spacing:.03em;
+  padding:.45rem .6rem; border-bottom:1px solid #e5e7eb;
+  text-align:center; font-size:.75rem; font-weight:700; letter-spacing:.03em;
 }
 .scorecard-table td.proj-label {
-  text-align:left;
-  font-weight:700;
-  font-size:.83rem;
-  color:#1e3a5f;
-  white-space:nowrap;
-  background:#f8fafc;
+  text-align:left; font-weight:700; font-size:.83rem;
+  color:#1e3a5f; white-space:nowrap; background:#f8fafc;
 }
-.sc-pos  { background:#bfdbfe; color:#1e3a8a; border-radius:4px; }
-.sc-low  { background:#bbf7d0; color:#14532d; border-radius:4px; }
-.sc-med  { background:#fde68a; color:#78350f; border-radius:4px; }
-.sc-high { background:#fca5a5; color:#7f1d1d; border-radius:4px; }
-.sc-crit { background:#7f1d1d; color:#fff; border-radius:4px; }
-.sc-na   { background:#f3f4f6; color:#9ca3af; border-radius:4px; }
+.scorecard-table td.community-divider {
+  background:#f3f4f6; font-weight:700; font-size:.75rem;
+  color:#6b7280; text-align:left; letter-spacing:.05em; padding:.3rem .6rem;
+}
+.sc-pos  { background:#bfdbfe; color:#1e3a8a; }
+.sc-low  { background:#bbf7d0; color:#14532d; }
+.sc-med  { background:#fde68a; color:#78350f; }
+.sc-high { background:#fca5a5; color:#7f1d1d; }
+.sc-crit { background:#7f1d1d; color:#fff; }
+.sc-na   { background:#f3f4f6; color:#9ca3af; }
+.scorecard-key { display:flex; gap:.5rem 1rem; flex-wrap:wrap; margin-top:.75rem; font-size:.76rem; }
+.scorecard-key span { display:flex; align-items:center; gap:.3rem; }
+.key-chip { display:inline-block; padding:1px 7px; border-radius:4px; font-size:.72rem; font-weight:700; }
 
-.scorecard-key {
-  display:flex;
-  gap:.5rem 1rem;
-  flex-wrap:wrap;
-  margin-top:.75rem;
-  font-size:.76rem;
-}
-.scorecard-key span {
-  display:flex;
-  align-items:center;
-  gap:.3rem;
-}
-.key-chip {
-  display:inline-block;
-  padding:1px 7px;
-  border-radius:4px;
-  font-size:.72rem;
-  font-weight:700;
-}
-
-/* ── Recommendation callout ── */
+/* callout */
 .rec-callout {
-  background:#eff6ff;
-  border:1px solid #bfdbfe;
-  border-left:4px solid #2563eb;
-  border-radius:8px;
-  padding:1rem 1.25rem;
-  margin-bottom:1.75rem;
-  font-size:.88rem;
-  color:#1e3a5f;
-  line-height:1.55;
+  background:#eff6ff; border:1px solid #bfdbfe; border-left:4px solid #2563eb;
+  border-radius:8px; padding:1rem 1.25rem; margin-bottom:1.75rem;
+  font-size:.88rem; color:#1e3a5f; line-height:1.55;
 }
 .rec-callout strong { color:#1d4ed8; }
 .rec-callout ul { margin:.5rem 0 0 1.25rem; padding:0; }
@@ -346,7 +174,7 @@
   <div class="section-inner">
     <div class="hero-eyebrow">Interactive Comparison Tool</div>
     <h1>Compare All</h1>
-    <p class="hero-sub">Select any combination of communities and project types to compare side-by-side. Add your own numbers to explore custom scenarios.</p>
+    <p class="hero-sub">Select communities and project types to compare side-by-side. Switch the community dimension to see how the same project lands differently depending on local capacity.</p>
   </div>
 </header>
 
@@ -354,17 +182,16 @@
   <section class="section">
     <div class="section-inner">
 
-      <!-- ── Recommendation callout ── -->
       <div class="rec-callout">
-        <strong>&#128161; How to read this page:</strong> Two visual approaches are provided to tell the multi-project story at a glance.
+        <strong>&#128161; How to read this page:</strong> Two visual approaches tell the multi-project story at a glance.
         <ul>
-          <li><strong>Bubble &amp; Heatmap (default):</strong> The bubble chart shows the fiscal/water/jobs tradeoff in one view — Hyperscale DC is an outlier in every direction. The heatmap replaces raw numbers with color-coded severity for instant pattern recognition.</li>
-          <li><strong>Risk Scorecard:</strong> Each project gets a row of colored risk tiles per category — scannable, no math required. Use the toggle above the charts to switch views.</li>
+          <li><strong>Bubble + Heatmap (default):</strong> Bubble chart = fiscal/water/jobs tradeoff in one view. Heatmap = color-coded severity across all metrics.</li>
+          <li><strong>Risk Scorecard:</strong> Each project &times; community row gets colored risk tiles per category &mdash; scannable, no math required.</li>
+          <li><strong>Community Dimension:</strong> Use the <em>View by&hellip;</em> bar to pivot between &ldquo;projects only&rdquo; and per-community breakdowns &mdash; see how a golf course affects Gorham differently than Westbrook.</li>
         </ul>
-        The data table below remains as the source of truth.
       </div>
 
-      <!-- ── Selector ── -->
+      <!-- Selector -->
       <div class="selector-panel">
         <div>
           <h3>&#127961; Communities</h3>
@@ -390,13 +217,13 @@
         </div>
         <div class="selector-actions">
           <button class="btn-sm" id="btn-apply">&#8635; Update Comparison</button>
-          <button class="btn-sm btn-ghost" id="btn-all">Select All</button>
+          <button class="btn-sm btn-ghost" id="btn-all">Select All Projects</button>
           <button class="btn-sm btn-ghost" id="btn-none">Clear Projects</button>
           <span id="selection-summary" style="font-size:.82rem;color:#6b7280;"></span>
         </div>
       </div>
 
-      <!-- ── Custom inputs ── -->
+      <!-- Custom inputs -->
       <details class="custom-inputs">
         <summary style="cursor:pointer;font-size:.9rem;font-weight:700;color:#374151;">&#9998; Enter your own scenario numbers <span style="font-size:.78rem;font-weight:400;color:#9ca3af;">(optional)</span></summary>
         <div style="margin-top:1rem;">
@@ -409,12 +236,12 @@
             <label>Est. annual tax revenue ($)<input type="number" id="cust-tax" placeholder="e.g. 400000" /></label>
             <label>Est. construction cost ($)<input type="number" id="cust-const" placeholder="e.g. 25000000" /></label>
           </div>
-          <p class="custom-note">Your numbers are not saved and will not affect any published data. This tool is for local exploration only.</p>
+          <p class="custom-note">Your numbers are not saved and will not affect any published data.</p>
           <button class="btn-sm" id="btn-custom-apply" style="margin-top:.75rem;">Add My Scenario &rarr;</button>
         </div>
       </details>
 
-      <!-- ── Table ── -->
+      <!-- Table -->
       <div id="cmp-output">
         <div class="cmp-table-wrap">
           <table class="cmp-table" id="cmp-table">
@@ -422,51 +249,58 @@
             <tbody id="cmp-tbody"></tbody>
           </table>
         </div>
-        <p class="section-note">All values are estimates from published benchmarks. Badges: <span class="badge-low">LOW</span> <span class="badge-med">MED</span> <span class="badge-high">HIGH</span> <span class="badge-crit">CRIT</span> risk. <span class="badge-pos">POS</span> = community benefit. See <a href="../methodology.md" target="_blank">methodology.md</a> for citations.</p>
+        <p class="section-note">All values are estimates from published benchmarks. <span class="badge-low">LOW</span> <span class="badge-med">MED</span> <span class="badge-high">HIGH</span> <span class="badge-crit">CRIT</span> risk. <span class="badge-pos">POS</span> = community benefit. See <a href="../methodology.md" target="_blank">methodology.md</a>.</p>
       </div>
 
-      <!-- ── Visual Comparison ── -->
+      <!-- Visual Comparison -->
       <div class="viz-section">
         <div class="viz-header">
           <h2>&#128200; Visual Comparison</h2>
           <div class="view-toggle">
-            <button class="view-btn active" id="btn-view-bubble-heatmap">Bubble + Heatmap</button>
+            <button class="view-btn active" id="btn-view-bubble">Bubble + Heatmap</button>
             <button class="view-btn" id="btn-view-scorecard">Risk Scorecard</button>
           </div>
         </div>
 
-        <!-- Bubble + Heatmap view -->
+        <!-- Community dimension bar (shared) -->
+        <div class="dim-bar" id="dim-bar">
+          <strong>View by:</strong>
+          <button class="dim-btn active" data-dim="projects">Projects only</button>
+          <!-- community buttons injected here by JS -->
+          <span class="dim-note" id="dim-note">Select a community to see how risk ratings shift relative to its local capacity.</span>
+        </div>
+
+        <!-- ===== BUBBLE + HEATMAP view ===== -->
         <div id="view-bubble-heatmap">
           <div class="bubble-wrap">
             <h3 style="margin:0 0 .25rem;font-size:.95rem;color:#1e3a5f;">&#128308; Fiscal &amp; Resource Tradeoff</h3>
-            <p style="font-size:.8rem;color:#6b7280;margin:0 0 1rem;">X-axis = annual tax revenue &bull; Y-axis = annual water use &bull; Bubble size = permanent FTE jobs. Outliers reveal projects that strain resources or dominate returns.</p>
+            <p style="font-size:.8rem;color:#6b7280;margin:0 0 1rem;">X&#8209;axis&nbsp;=&nbsp;annual tax revenue &bull; Y&#8209;axis&nbsp;=&nbsp;annual water use &bull; Bubble size&nbsp;=&nbsp;permanent FTE jobs. Outliers reveal projects that strain resources or dominate returns.</p>
             <canvas id="chart-bubble" style="max-height:420px;"></canvas>
             <div class="bubble-legend" id="bubble-legend"></div>
           </div>
-
           <div style="margin-top:2rem;">
             <h3 style="margin:0 0 .25rem;font-size:.95rem;color:#1e3a5f;">&#127775; Multi-Metric Severity Heatmap</h3>
-            <p style="font-size:.8rem;color:#6b7280;margin:0 0 1rem;">Color intensity = severity or benefit. Scan rows to compare a single metric; scan columns to see a project&rsquo;s full profile.</p>
+            <p style="font-size:.8rem;color:#6b7280;margin:0 0 1rem;">Color intensity = severity or benefit. Scan rows (one metric across projects); scan columns (one project&rsquo;s full profile). When a community is selected, <em>% of capacity</em> rows appear.</p>
             <div class="heatmap-wrap">
               <table class="heatmap-table" id="heatmap-table">
                 <thead id="heatmap-thead"></thead>
                 <tbody id="heatmap-tbody"></tbody>
               </table>
             </div>
-            <p class="section-note" style="margin-top:.5rem;">
-              <span style="display:inline-flex;align-items:center;gap:.3rem;margin-right:.75rem;"><span style="background:#bfdbfe;color:#1e3a8a;padding:1px 7px;border-radius:4px;font-size:.72rem;font-weight:700;">POS</span> community benefit</span>
-              <span style="display:inline-flex;align-items:center;gap:.3rem;margin-right:.75rem;"><span style="background:#bbf7d0;color:#14532d;padding:1px 7px;border-radius:4px;font-size:.72rem;font-weight:700;">LOW</span></span>
-              <span style="display:inline-flex;align-items:center;gap:.3rem;margin-right:.75rem;"><span style="background:#fde68a;color:#78350f;padding:1px 7px;border-radius:4px;font-size:.72rem;font-weight:700;">MED</span></span>
-              <span style="display:inline-flex;align-items:center;gap:.3rem;margin-right:.75rem;"><span style="background:#fca5a5;color:#7f1d1d;padding:1px 7px;border-radius:4px;font-size:.72rem;font-weight:700;">HIGH</span></span>
-              <span style="display:inline-flex;align-items:center;gap:.3rem;"><span style="background:#7f1d1d;color:#fff;padding:1px 7px;border-radius:4px;font-size:.72rem;font-weight:700;">CRIT</span></span>
-            </p>
+            <div style="display:flex;flex-wrap:wrap;gap:.5rem .75rem;margin-top:.6rem;font-size:.76rem;">
+              <span><span style="background:#bfdbfe;color:#1e3a8a;padding:1px 7px;border-radius:4px;font-weight:700;">POS</span> benefit</span>
+              <span><span style="background:#bbf7d0;color:#14532d;padding:1px 7px;border-radius:4px;font-weight:700;">LOW</span></span>
+              <span><span style="background:#fde68a;color:#78350f;padding:1px 7px;border-radius:4px;font-weight:700;">MED</span></span>
+              <span><span style="background:#fca5a5;color:#7f1d1d;padding:1px 7px;border-radius:4px;font-weight:700;">HIGH</span></span>
+              <span><span style="background:#7f1d1d;color:#fff;padding:1px 7px;border-radius:4px;font-weight:700;">CRIT</span></span>
+            </div>
           </div>
         </div>
 
-        <!-- Risk Scorecard view -->
+        <!-- ===== RISK SCORECARD view ===== -->
         <div id="view-scorecard" style="display:none;">
           <h3 style="margin:0 0 .25rem;font-size:.95rem;color:#1e3a5f;">&#127937; Stacked Risk Scorecard</h3>
-          <p style="font-size:.8rem;color:#6b7280;margin:0 0 1rem;">Each project gets a color tile per risk category. No math required — scan any row to read a project&rsquo;s full risk profile at a glance.</p>
+          <p style="font-size:.8rem;color:#6b7280;margin:0 0 1rem;">Each row = one project (×&nbsp;community when a community is selected). Colored tiles = risk per category. No math required.</p>
           <div class="scorecard-wrap">
             <table class="scorecard-table" id="scorecard-table">
               <thead id="scorecard-thead"></thead>
@@ -474,15 +308,15 @@
             </table>
           </div>
           <div class="scorecard-key">
-            <span><span class="key-chip sc-pos">POS</span> Community benefit</span>
+            <span><span class="key-chip sc-pos">POS</span> Benefit</span>
             <span><span class="key-chip sc-low">LOW</span> Low risk</span>
-            <span><span class="key-chip sc-med">MED</span> Moderate risk</span>
+            <span><span class="key-chip sc-med">MED</span> Moderate</span>
             <span><span class="key-chip sc-high">HIGH</span> High risk</span>
-            <span><span class="key-chip sc-crit">CRIT</span> Critical risk</span>
-            <span><span class="key-chip sc-na">N/A</span> Not applicable</span>
+            <span><span class="key-chip sc-crit">CRIT</span> Critical</span>
+            <span><span class="key-chip sc-na">N/A</span> N/A</span>
           </div>
         </div>
-      </div>
+      </div><!-- end viz-section -->
 
     </div>
   </section>
@@ -490,7 +324,7 @@
   <section class="section section-alt">
     <div class="section-inner">
       <h2>&#128203; Per-community pages</h2>
-      <p>Each community also has its own dedicated comparison page showing how these project types stack up specifically against that community&rsquo;s baseline.</p>
+      <p>Each community also has its own dedicated comparison page showing how project types stack up against that community&rsquo;s baseline.</p>
       <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem;">
         <a href="westbrook-comparison.html" class="btn btn-primary">Westbrook &rarr;</a>
         <a href="portland-comparison.html" class="btn btn-primary">Portland &rarr;</a>
@@ -532,256 +366,253 @@ async function sbFetch(path) {
   return r.json();
 }
 
-// ── Static project data ──
+// ── Project definitions ──
 const PROJECTS = {
-  golf:  { label:'Golf Course',        emoji:'⛳', color:'#2e7d32', acres:150, water:110,  elec:1500,    jobs:35,  tax:180000,   cost:'$12M' },
-  edge:  { label:'Edge DC',            emoji:'📡', color:'#1565c0', acres:5,   water:0.08, elec:131400,  jobs:25,  tax:200000,   cost:'$40M' },
-  ent:   { label:'Enterprise DC',      emoji:'💻', color:'#e65100', acres:30,  water:50,   elec:735840,  jobs:80,  tax:2000000,  cost:'$350M' },
-  hyper: { label:'Hyperscale DC',      emoji:'⚡', color:'#b71c1c', acres:200, water:500,  elec:3400000, jobs:250, tax:10000000, cost:'$3B+' },
-  hsub:  { label:'Subdivision',        emoji:'🏘', color:'#0d9488', acres:40,  water:6.8,  elec:350,     jobs:5,   tax:275000,   cost:'$15M' },
-  hmix:  { label:'Mixed-Income',       emoji:'🏢', color:'#7c3aed', acres:20,  water:20.5, elec:1050,    jobs:8,   tax:600000,   cost:'$45M' },
-  hmul:  { label:'Multi-Family',       emoji:'🏗', color:'#b45309', acres:25,  water:41,   elec:2100,    jobs:15,  tax:1100000,  cost:'$90M' },
+  golf:  { label:'Golf Course',   emoji:'⛳', color:'#2e7d32', acres:150, water:110,    elec:1500,    jobs:35,  tax:180000,   cost:'$12M' },
+  edge:  { label:'Edge DC',       emoji:'📡', color:'#1565c0', acres:5,   water:0.08,   elec:131400,  jobs:25,  tax:200000,   cost:'$40M' },
+  ent:   { label:'Enterprise DC', emoji:'💻', color:'#e65100', acres:30,  water:50,     elec:735840,  jobs:80,  tax:2000000,  cost:'$350M' },
+  hyper: { label:'Hyperscale DC', emoji:'⚡', color:'#b71c1c', acres:200, water:500,    elec:3400000, jobs:250, tax:10000000, cost:'$3B+' },
+  hsub:  { label:'Subdivision',   emoji:'🏘', color:'#0d9488', acres:40,  water:6.8,    elec:350,     jobs:5,   tax:275000,   cost:'$15M' },
+  hmix:  { label:'Mixed-Income',  emoji:'🏢', color:'#7c3aed', acres:20,  water:20.5,   elec:1050,    jobs:8,   tax:600000,   cost:'$45M' },
+  hmul:  { label:'Multi-Family',  emoji:'🏗', color:'#b45309', acres:25,  water:41,     elec:2100,    jobs:15,  tax:1100000,  cost:'$90M' },
 };
 
-// ── Risk scoring per dimension (returns class + label) ──
-// Dimensions: water, energy, jobs, tax, footprint, infrastructure
-function scoreWater(w) {
-  if (w == null) return {cls:'sc-na',lbl:'N/A'};
-  if (w < 5)    return {cls:'sc-low', lbl:'LOW'};
-  if (w < 30)   return {cls:'sc-med', lbl:'MED'};
-  if (w < 150)  return {cls:'sc-high',lbl:'HIGH'};
-  return {cls:'sc-crit',lbl:'CRIT'};
+// ── Community capacity baselines ──
+// water = total municipal water supply (M gal/yr); taxBase = total taxable valuation ($)
+// waterPct: % of community water supply the project would consume
+// taxPct:   project annual tax as % of community tax base (at ~15 mills)
+const COMMUNITIES = {
+  'Kennebunkport': { water: 650,   taxBase: null,          pop: 3500,   area: 'small coastal' },
+  'Westbrook':     { water: null,  taxBase: 2733062900,    pop: 19000,  area: 'mid suburban' },
+  'Portland':      { water: null,  taxBase: 14872866446,   pop: 68000,  area: 'large urban' },
+  'Gorham':        { water: null,  taxBase: 2819038000,    pop: 18000,  area: 'mid suburban' },
+};
+// estimated annual tax revenue as proportion of community's total levy capacity
+// rough proxy: millRate ~14 mills; annual levy ≈ taxBase * 0.014
+function communityTaxLevy(c) {
+  return c.taxBase ? c.taxBase * 0.014 : null;
 }
-function scoreEnergy(e) {
-  if (e == null)    return {cls:'sc-na',lbl:'N/A'};
-  if (e < 2000)     return {cls:'sc-low', lbl:'LOW'};
-  if (e < 100000)   return {cls:'sc-med', lbl:'MED'};
-  if (e < 1000000)  return {cls:'sc-high',lbl:'HIGH'};
-  return {cls:'sc-crit',lbl:'CRIT'};
+// water capacity % used by project
+function waterPct(projWater, comm) {
+  if (!comm.water || !projWater) return null;
+  return (projWater / comm.water) * 100;
 }
-function scoreJobs(j) {
-  if (j == null) return {cls:'sc-na',lbl:'N/A'};
-  if (j >= 100)  return {cls:'sc-pos', lbl:'POS'};
-  if (j >= 20)   return {cls:'sc-pos', lbl:'POS'};
-  if (j >= 5)    return {cls:'sc-low', lbl:'LOW'};
-  return {cls:'sc-med',lbl:'MED'};
-}
-function scoreTax(t) {
-  if (t == null)    return {cls:'sc-na',lbl:'N/A'};
-  if (t >= 2000000) return {cls:'sc-pos', lbl:'POS'};
-  if (t >= 500000)  return {cls:'sc-pos', lbl:'POS'};
-  if (t >= 100000)  return {cls:'sc-low', lbl:'LOW'};
-  return {cls:'sc-med',lbl:'MED'};
-}
-function scoreFootprint(a) {
-  if (a == null) return {cls:'sc-na',lbl:'N/A'};
-  if (a < 15)    return {cls:'sc-low', lbl:'LOW'};
-  if (a < 50)    return {cls:'sc-med', lbl:'MED'};
-  if (a < 100)   return {cls:'sc-high',lbl:'HIGH'};
-  return {cls:'sc-crit',lbl:'CRIT'};
-}
-function scoreInfra(p) {
-  // Proxy: construction cost string -> rough infra demand
-  if (!p || p === '&mdash;') return {cls:'sc-na',lbl:'N/A'};
-  const n = parseFloat(p.replace(/[^0-9.]/g,''));
-  const isB = p.includes('B');
-  const isM = p.includes('M');
-  const val = isB ? n*1000 : isM ? n : n/1e6;
-  if (val < 20)   return {cls:'sc-low', lbl:'LOW'};
-  if (val < 100)  return {cls:'sc-med', lbl:'MED'};
-  if (val < 500)  return {cls:'sc-high',lbl:'HIGH'};
-  return {cls:'sc-crit',lbl:'CRIT'};
+// tax impact % of community's annual levy
+function taxPct(projTax, comm) {
+  const levy = communityTaxLevy(comm);
+  if (!levy || !projTax) return null;
+  return (projTax / levy) * 100;
 }
 
-// ── Heatmap row definitions ──
-const HEATMAP_ROWS = [
-  { label:'Water Use',       key:'water',      fmt: w => w != null ? (w < 1 ? (w*1000).toFixed(0)+'K gal/yr' : w.toFixed(1)+'M gal/yr') : '—',
-    cls: w => { if(w==null)return 'hm-none'; if(w<5)return 'hm-low'; if(w<30)return 'hm-med'; if(w<150)return 'hm-high'; return 'hm-crit'; } },
-  { label:'Energy (MWh/yr)', key:'elec',       fmt: e => e != null ? (e>=1e6?(e/1e6).toFixed(1)+'M':e>=1000?(e/1000).toFixed(0)+'K':e) : '—',
-    cls: e => { if(e==null)return 'hm-none'; if(e<2000)return 'hm-low'; if(e<100000)return 'hm-med'; if(e<1000000)return 'hm-high'; return 'hm-crit'; } },
-  { label:'Land (acres)',    key:'acres',      fmt: a => a != null ? a+' ac' : '—',
-    cls: a => { if(a==null)return 'hm-none'; if(a<15)return 'hm-low'; if(a<50)return 'hm-med'; if(a<100)return 'hm-high'; return 'hm-crit'; } },
-  { label:'FTE Jobs',        key:'jobs',       fmt: j => j != null ? j : '—',
-    cls: j => { if(j==null)return 'hm-none'; if(j<5)return 'hm-med'; if(j<20)return 'hm-low'; return 'hm-pos'; } },
-  { label:'Tax Revenue/yr',  key:'tax',        fmt: t => t != null ? '$'+(t>=1e6?(t/1e6).toFixed(1)+'M':(t/1000).toFixed(0)+'K') : '—',
-    cls: t => { if(t==null)return 'hm-none'; if(t<100000)return 'hm-med'; if(t<500000)return 'hm-low'; return 'hm-pos'; } },
-];
+// ── Risk scoring ──
+function scoreWater(w)    { if(w==null)return{cls:'sc-na',lbl:'N/A'}; if(w<5)return{cls:'sc-low',lbl:'LOW'}; if(w<30)return{cls:'sc-med',lbl:'MED'}; if(w<150)return{cls:'sc-high',lbl:'HIGH'}; return{cls:'sc-crit',lbl:'CRIT'}; }
+function scoreEnergy(e)   { if(e==null)return{cls:'sc-na',lbl:'N/A'}; if(e<2000)return{cls:'sc-low',lbl:'LOW'}; if(e<100000)return{cls:'sc-med',lbl:'MED'}; if(e<1000000)return{cls:'sc-high',lbl:'HIGH'}; return{cls:'sc-crit',lbl:'CRIT'}; }
+function scoreJobs(j)     { if(j==null)return{cls:'sc-na',lbl:'N/A'}; if(j>=20)return{cls:'sc-pos',lbl:'POS'}; if(j>=5)return{cls:'sc-low',lbl:'LOW'}; return{cls:'sc-med',lbl:'MED'}; }
+function scoreTax(t)      { if(t==null)return{cls:'sc-na',lbl:'N/A'}; if(t>=2000000)return{cls:'sc-pos',lbl:'POS'}; if(t>=500000)return{cls:'sc-pos',lbl:'POS'}; if(t>=100000)return{cls:'sc-low',lbl:'LOW'}; return{cls:'sc-med',lbl:'MED'}; }
+function scoreFootprint(a){ if(a==null)return{cls:'sc-na',lbl:'N/A'}; if(a<15)return{cls:'sc-low',lbl:'LOW'}; if(a<50)return{cls:'sc-med',lbl:'MED'}; if(a<100)return{cls:'sc-high',lbl:'HIGH'}; return{cls:'sc-crit',lbl:'CRIT'}; }
+function scoreInfra(p)    { if(!p||p==='&mdash;')return{cls:'sc-na',lbl:'N/A'}; const n=parseFloat(p.replace(/[^0-9.]/g,'')); const v=p.includes('B')?n*1000:p.includes('M')?n:n/1e6; if(v<20)return{cls:'sc-low',lbl:'LOW'}; if(v<100)return{cls:'sc-med',lbl:'MED'}; if(v<500)return{cls:'sc-high',lbl:'HIGH'}; return{cls:'sc-crit',lbl:'CRIT'}; }
+// Community-relative scores
+function scoreWaterRel(pct) { if(pct==null)return{cls:'sc-na',lbl:'N/A'}; if(pct<5)return{cls:'sc-low',lbl:'LOW'}; if(pct<15)return{cls:'sc-med',lbl:'MED'}; if(pct<40)return{cls:'sc-high',lbl:'HIGH'}; return{cls:'sc-crit',lbl:'CRIT'}; }
+function scoreTaxRel(pct)   { if(pct==null)return{cls:'sc-na',lbl:'N/A'}; if(pct>=5)return{cls:'sc-pos',lbl:'POS'}; if(pct>=1)return{cls:'sc-pos',lbl:'POS'}; if(pct>=0.1)return{cls:'sc-low',lbl:'LOW'}; return{cls:'sc-med',lbl:'MED'}; }
 
-const SCORECARD_CATS = [
-  { label:'Water',       score: p => scoreWater(p.water) },
-  { label:'Energy',      score: p => scoreEnergy(p.elec) },
-  { label:'Land Use',    score: p => scoreFootprint(p.acres) },
-  { label:'Jobs',        score: p => scoreJobs(p.jobs) },
-  { label:'Tax Revenue', score: p => scoreTax(p.tax) },
-  { label:'Infra Load',  score: p => scoreInfra(p.cost) },
+const SCORECARD_CATS_BASE = [
+  { label:'Water Demand', score: p => scoreWater(p.water) },
+  { label:'Energy',       score: p => scoreEnergy(p.elec) },
+  { label:'Land Use',     score: p => scoreFootprint(p.acres) },
+  { label:'Jobs',         score: p => scoreJobs(p.jobs) },
+  { label:'Tax Revenue',  score: p => scoreTax(p.tax) },
+  { label:'Infra Load',   score: p => scoreInfra(p.cost) },
 ];
+function scorecardCatsForCommunity(commName) {
+  const comm = COMMUNITIES[commName];
+  if (!comm) return SCORECARD_CATS_BASE;
+  return [
+    ...SCORECARD_CATS_BASE,
+    { label:'Water % of Supply',  score: p => scoreWaterRel(waterPct(p.water, comm)) },
+    { label:'Tax % of Levy',      score: p => scoreTaxRel(taxPct(p.tax, comm)) },
+  ];
+}
+
+const HEATMAP_ROWS_BASE = [
+  { label:'Water Use',      key:'water', fmt: w => w!=null?(w<1?(w*1000).toFixed(0)+'K gal/yr':w.toFixed(1)+'M gal/yr'):'—', cls: w => { if(w==null)return 'hm-none'; if(w<5)return 'hm-low'; if(w<30)return 'hm-med'; if(w<150)return 'hm-high'; return 'hm-crit'; } },
+  { label:'Energy (MWh/yr)',key:'elec',  fmt: e => e!=null?(e>=1e6?(e/1e6).toFixed(1)+'M':e>=1000?(e/1000).toFixed(0)+'K':e):'—', cls: e => { if(e==null)return 'hm-none'; if(e<2000)return 'hm-low'; if(e<100000)return 'hm-med'; if(e<1000000)return 'hm-high'; return 'hm-crit'; } },
+  { label:'Land (acres)',   key:'acres', fmt: a => a!=null?a+' ac':'—', cls: a => { if(a==null)return 'hm-none'; if(a<15)return 'hm-low'; if(a<50)return 'hm-med'; if(a<100)return 'hm-high'; return 'hm-crit'; } },
+  { label:'FTE Jobs',       key:'jobs',  fmt: j => j!=null?j:'—', cls: j => { if(j==null)return 'hm-none'; if(j<5)return 'hm-med'; if(j<20)return 'hm-low'; return 'hm-pos'; } },
+  { label:'Tax Revenue/yr', key:'tax',   fmt: t => t!=null?'$'+(t>=1e6?(t/1e6).toFixed(1)+'M':(t/1000).toFixed(0)+'K'):'—', cls: t => { if(t==null)return 'hm-none'; if(t<100000)return 'hm-med'; if(t<500000)return 'hm-low'; return 'hm-pos'; } },
+];
+function heatmapRowsForCommunity(commName) {
+  const comm = COMMUNITIES[commName];
+  if (!comm) return HEATMAP_ROWS_BASE;
+  const extra = [];
+  if (comm.water) extra.push({
+    label: `Water % of ${commName} Supply`,
+    fn: p => waterPct(p.water, comm),
+    fmt: v => v!=null?v.toFixed(1)+'%':'—',
+    cls: v => { if(v==null)return 'hm-none'; if(v<5)return 'hm-low'; if(v<15)return 'hm-med'; if(v<40)return 'hm-high'; return 'hm-crit'; },
+    custom: true
+  });
+  if (comm.taxBase) extra.push({
+    label: `Tax % of ${commName} Levy`,
+    fn: p => taxPct(p.tax, comm),
+    fmt: v => v!=null?v.toFixed(2)+'%':'—',
+    cls: v => { if(v==null)return 'hm-none'; if(v>=5)return 'hm-pos'; if(v>=1)return 'hm-pos'; if(v>=0.1)return 'hm-low'; return 'hm-med'; },
+    custom: true
+  });
+  return [...HEATMAP_ROWS_BASE, ...extra];
+}
 
 let customScenario = null;
 let bubbleChart = null;
+let activeDim = 'projects';  // 'projects' | community name
+let activeView = 'bubble';   // 'bubble' | 'scorecard'
 
-function getSelectedProjects() {
-  return [...document.querySelectorAll('.proj-check:checked')].map(el => el.value);
-}
-function getSelectedCommunities() {
-  return [...document.querySelectorAll('#community-checks input[type=checkbox]:checked:not(:disabled)')].map(el => el.value);
-}
+function getSelectedProjects() { return [...document.querySelectorAll('.proj-check:checked')].map(el => el.value); }
+function getSelectedCommunities() { return [...document.querySelectorAll('#community-checks input[type=checkbox]:checked:not(:disabled)')].map(el => el.value); }
 
 function fmt(n) { return Number(n).toLocaleString(); }
-function fmtM(n) { return n >= 1000 ? (n/1000).toFixed(1)+'B' : n >= 1 ? n.toFixed(1)+'M' : (n*1000).toFixed(0)+'K'; }
+function fmtM(n) { return n>=1000?(n/1000).toFixed(1)+'B':n>=1?n.toFixed(1)+'M':(n*1000).toFixed(0)+'K'; }
 
+// ── Table (unchanged) ──
 function buildTable(projKeys) {
-  const thead = document.getElementById('cmp-thead');
-  const tbody = document.getElementById('cmp-tbody');
-  const cols = projKeys.map(k => PROJECTS[k]);
-  if (customScenario) cols.push(customScenario);
-  if (cols.length === 0) {
-    thead.innerHTML = '';
-    tbody.innerHTML = '<tr><td class="no-results" colspan="2">Select at least one project type above.</td></tr>';
-    return;
-  }
-  let hRow = '<tr><th>Metric</th>';
-  cols.forEach(c => { hRow += `<th style="background:${c.color}">${c.emoji || ''} ${c.label}</th>`; });
-  thead.innerHTML = hRow + '</tr>';
-  const rows = [
-    { divider: 'FOOTPRINT' },
-    { label:'Total Acres', vals: cols.map(c => c.acres ? c.acres+' ac' : '&mdash;') },
-    { label:'Est. Construction Cost', vals: cols.map(c => c.cost || '&mdash;') },
-    { divider: 'WATER USE' },
-    { label:'Annual Water Use (M gal/yr)', vals: cols.map(c => c.water != null ? fmtM(c.water*1000000)+' gal/yr' : '&mdash;') },
-    { divider: 'ENERGY' },
-    { label:'Annual Electricity (MWh/yr)', vals: cols.map(c => c.elec ? fmt(c.elec)+' MWh' : '&mdash;') },
-    { divider: 'EMPLOYMENT' },
-    { label:'Permanent FTE Jobs', vals: cols.map(c => c.jobs != null ? c.jobs : '&mdash;') },
-    { divider: 'FISCAL IMPACT' },
-    { label:'Est. Annual Tax Revenue', vals: cols.map(c => c.tax ? '$'+fmt(c.tax) : '&mdash;') },
+  const thead=document.getElementById('cmp-thead'), tbody=document.getElementById('cmp-tbody');
+  const cols=projKeys.map(k=>PROJECTS[k]);
+  if(customScenario)cols.push(customScenario);
+  if(cols.length===0){thead.innerHTML='';tbody.innerHTML='<tr><td class="no-results" colspan="2">Select at least one project type above.</td></tr>';return;}
+  let hRow='<tr><th>Metric</th>';
+  cols.forEach(c=>{hRow+=`<th style="background:${c.color}">${c.emoji||''} ${c.label}</th>`;});
+  thead.innerHTML=hRow+'</tr>';
+  const rows=[
+    {divider:'FOOTPRINT'},{label:'Total Acres',vals:cols.map(c=>c.acres?c.acres+' ac':'&mdash;')},{label:'Est. Construction Cost',vals:cols.map(c=>c.cost||'&mdash;')},
+    {divider:'WATER USE'},{label:'Annual Water Use (M gal/yr)',vals:cols.map(c=>c.water!=null?fmtM(c.water*1000000)+' gal/yr':'&mdash;')},
+    {divider:'ENERGY'},{label:'Annual Electricity (MWh/yr)',vals:cols.map(c=>c.elec?fmt(c.elec)+' MWh':'&mdash;')},
+    {divider:'EMPLOYMENT'},{label:'Permanent FTE Jobs',vals:cols.map(c=>c.jobs!=null?c.jobs:'&mdash;')},
+    {divider:'FISCAL IMPACT'},{label:'Est. Annual Tax Revenue',vals:cols.map(c=>c.tax?'$'+fmt(c.tax):'&mdash;')},
   ];
-  let html = '';
-  rows.forEach(r => {
-    if (r.divider) {
-      html += `<tr><td colspan="${cols.length+1}" class="section-divider">${r.divider}</td></tr>`;
-    } else {
-      html += `<tr><td class="metric-name">${r.label}</td>`;
-      r.vals.forEach(v => { html += `<td>${v}</td>`; });
-      html += '</tr>';
-    }
+  let html='';
+  rows.forEach(r=>{
+    if(r.divider){html+=`<tr><td colspan="${cols.length+1}" class="section-divider">${r.divider}</td></tr>`;}
+    else{html+=`<tr><td class="metric-name">${r.label}</td>`;r.vals.forEach(v=>{html+=`<td>${v}</td>`;});html+='</tr>';}
   });
-  tbody.innerHTML = html;
+  tbody.innerHTML=html;
 }
 
+// ── Bubble chart ──
 function buildBubbleChart(projKeys) {
-  const cols = projKeys.map(k => PROJECTS[k]);
-  if (customScenario) cols.push(customScenario);
-  if (bubbleChart) { bubbleChart.destroy(); bubbleChart = null; }
-  if (cols.length === 0) return;
-
-  // Normalize bubble size: jobs → radius px (min 8, max 50)
-  const maxJobs = Math.max(...cols.map(c => c.jobs || 0));
-  const minR = 8, maxR = 48;
-  const rScale = j => j != null && maxJobs > 0 ? minR + ((j / maxJobs) * (maxR - minR)) : minR;
-
-  const datasets = cols.map(c => ({
-    label: c.label,
-    data: [{
-      x: c.tax || 0,
-      y: c.water || 0,
-      r: rScale(c.jobs || 0)
-    }],
-    backgroundColor: c.color + 'cc',
-    borderColor: c.color,
-    borderWidth: 2,
+  const cols=projKeys.map(k=>PROJECTS[k]);
+  if(customScenario)cols.push(customScenario);
+  if(bubbleChart){bubbleChart.destroy();bubbleChart=null;}
+  if(cols.length===0)return;
+  const maxJobs=Math.max(...cols.map(c=>c.jobs||0));
+  const rScale=j=>j!=null&&maxJobs>0?8+((j/maxJobs)*40):8;
+  // When a community dim is active, overlay community-relative markers
+  const comm = activeDim!=='projects' ? COMMUNITIES[activeDim] : null;
+  const datasets=cols.map(c=>({
+    label:c.label,
+    data:[{x:c.tax||0, y:c.water||0, r:rScale(c.jobs||0)}],
+    backgroundColor:c.color+'cc', borderColor:c.color, borderWidth:2,
   }));
-
-  bubbleChart = new Chart(document.getElementById('chart-bubble'), {
-    type: 'bubble',
-    data: { datasets },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          callbacks: {
-            label: ctx => {
-              const c = cols[ctx.datasetIndex];
-              return [
-                `${c.label}`,
-                `Tax: $${fmt(c.tax || 0)}/yr`,
-                `Water: ${c.water != null ? c.water.toFixed(2) : '—'} M gal/yr`,
-                `Jobs: ${c.jobs ?? '—'} FTE`,
-              ];
-            }
+  bubbleChart=new Chart(document.getElementById('chart-bubble'),{
+    type:'bubble', data:{datasets},
+    options:{
+      responsive:true,
+      plugins:{
+        legend:{display:false},
+        tooltip:{callbacks:{label:ctx=>{
+          const c=cols[ctx.datasetIndex];
+          const lines=[c.label,`Tax: $${fmt(c.tax||0)}/yr`,`Water: ${c.water!=null?c.water.toFixed(2):'—'} M gal/yr`,`Jobs: ${c.jobs??'—'} FTE`];
+          if(comm){
+            const wp=waterPct(c.water,comm); const tp=taxPct(c.tax,comm);
+            if(wp!=null) lines.push(`Water % of ${activeDim} supply: ${wp.toFixed(1)}%`);
+            if(tp!=null) lines.push(`Tax % of ${activeDim} levy: ${tp.toFixed(2)}%`);
           }
-        }
+          return lines;
+        }}}
       },
-      scales: {
-        x: {
-          title: { display: true, text: 'Est. Annual Tax Revenue ($)', font: { size: 11 } },
-          ticks: { callback: v => v >= 1e6 ? '$'+(v/1e6).toFixed(1)+'M' : v >= 1000 ? '$'+(v/1000).toFixed(0)+'K' : '$'+v }
-        },
-        y: {
-          title: { display: true, text: 'Annual Water Use (M gal/yr)', font: { size: 11 } },
-        }
+      scales:{
+        x:{title:{display:true,text:'Est. Annual Tax Revenue ($)',font:{size:11}},ticks:{callback:v=>v>=1e6?'$'+(v/1e6).toFixed(1)+'M':v>=1000?'$'+(v/1000).toFixed(0)+'K':'$'+v}},
+        y:{title:{display:true,text:'Annual Water Use (M gal/yr)',font:{size:11}}}
       }
     }
   });
-
-  // Legend
-  const leg = document.getElementById('bubble-legend');
-  leg.innerHTML = cols.map(c =>
-    `<div class="bubble-legend-item"><div class="bubble-legend-dot" style="background:${c.color}"></div>${c.emoji||''} ${c.label} (${c.jobs ?? '—'} jobs)</div>`
-  ).join('');
+  const leg=document.getElementById('bubble-legend');
+  leg.innerHTML=cols.map(c=>`<div class="bubble-legend-item"><div class="bubble-legend-dot" style="background:${c.color}"></div>${c.emoji||''} ${c.label} (${c.jobs??'—'} jobs)</div>`).join('');
 }
 
+// ── Heatmap ──
 function buildHeatmap(projKeys) {
-  const cols = projKeys.map(k => PROJECTS[k]);
-  if (customScenario) cols.push(customScenario);
-  const thead = document.getElementById('heatmap-thead');
-  const tbody = document.getElementById('heatmap-tbody');
-  if (cols.length === 0) { thead.innerHTML=''; tbody.innerHTML='<tr><td class="no-results" colspan="2">Select at least one project type.</td></tr>'; return; }
-
-  let hRow = '<tr><th class="metric-col">Metric</th>';
-  cols.forEach(c => { hRow += `<th>${c.emoji||''} ${c.label}</th>`; });
-  thead.innerHTML = hRow + '</tr>';
-
-  let html = '';
-  HEATMAP_ROWS.forEach(row => {
-    html += `<tr><td class="row-label">${row.label}</td>`;
-    cols.forEach(c => {
-      const val = c[row.key];
-      const cls = row.cls(val);
-      html += `<td class="${cls}">${row.fmt(val)}</td>`;
+  const cols=projKeys.map(k=>PROJECTS[k]);
+  if(customScenario)cols.push(customScenario);
+  const thead=document.getElementById('heatmap-thead'), tbody=document.getElementById('heatmap-tbody');
+  if(cols.length===0){thead.innerHTML='';tbody.innerHTML='<tr><td class="no-results" colspan="2">Select at least one project type.</td></tr>';return;}
+  const rows = activeDim!=='projects' ? heatmapRowsForCommunity(activeDim) : HEATMAP_ROWS_BASE;
+  let hRow='<tr><th class="metric-col">Metric</th>';
+  cols.forEach(c=>{hRow+=`<th>${c.emoji||''} ${c.label}</th>`;});
+  thead.innerHTML=hRow+'</tr>';
+  let html='';
+  rows.forEach(row=>{
+    html+=`<tr><td class="row-label">${row.label}</td>`;
+    cols.forEach(c=>{
+      const val=row.custom?row.fn(c):c[row.key];
+      const cls=row.cls(val);
+      html+=`<td class="${cls}">${row.fmt(val)}</td>`;
     });
-    html += '</tr>';
+    html+='</tr>';
   });
-  tbody.innerHTML = html;
+  tbody.innerHTML=html;
 }
 
+// ── Scorecard ──
 function buildScorecard(projKeys) {
-  const cols = projKeys.map(k => PROJECTS[k]);
-  if (customScenario) cols.push(customScenario);
-  const thead = document.getElementById('scorecard-thead');
-  const tbody = document.getElementById('scorecard-tbody');
-  if (cols.length === 0) { thead.innerHTML=''; tbody.innerHTML='<tr><td class="no-results" colspan="2">Select at least one project type.</td></tr>'; return; }
+  const projCols=projKeys.map(k=>PROJECTS[k]);
+  if(customScenario)projCols.push(customScenario);
+  const thead=document.getElementById('scorecard-thead'), tbody=document.getElementById('scorecard-tbody');
+  if(projCols.length===0){thead.innerHTML='';tbody.innerHTML='<tr><td class="no-results" colspan="2">Select at least one project type.</td></tr>';return;}
 
-  let hRow = '<tr><th class="proj-col">Project</th>';
-  SCORECARD_CATS.forEach(cat => { hRow += `<th>${cat.label}</th>`; });
-  thead.innerHTML = hRow + '</tr>';
+  const communities = activeDim==='projects' ? getSelectedCommunities() : [activeDim];
+  // If no community selected and dim=projects, show project-only scorecard (no community grouping)
+  const showCommunityGroups = communities.length > 0;
 
-  let html = '';
-  cols.forEach(c => {
-    html += `<tr><td class="proj-label">${c.emoji||''} ${c.label}</td>`;
-    SCORECARD_CATS.forEach(cat => {
-      const s = cat.score(c);
-      html += `<td class="${s.cls}">${s.lbl}</td>`;
+  // Build cats based on active dim
+  const cats = activeDim!=='projects' ? scorecardCatsForCommunity(activeDim) : SCORECARD_CATS_BASE;
+
+  let hRow='<tr><th class="proj-col">Project'+(showCommunityGroups && activeDim==='projects'?' / Community':'')+'</th>';
+  cats.forEach(cat=>{hRow+=`<th>${cat.label}</th>`;});
+  thead.innerHTML=hRow+'</tr>';
+
+  let html='';
+  if (activeDim!=='projects') {
+    // Single community: flat rows
+    projCols.forEach(c=>{
+      const catsC=scorecardCatsForCommunity(activeDim);
+      html+=`<tr><td class="proj-label">${c.emoji||''} ${c.label}</td>`;
+      catsC.forEach(cat=>{const s=cat.score(c);html+=`<td class="${s.cls}">${s.lbl}</td>`;});
+      html+='</tr>';
     });
-    html += '</tr>';
-  });
-  tbody.innerHTML = html;
+  } else if (showCommunityGroups) {
+    // Group rows by community
+    communities.forEach(commName=>{
+      html+=`<tr><td class="community-divider" colspan="${cats.length+1}">📍 ${commName}</td></tr>`;
+      const catsC=scorecardCatsForCommunity(commName);
+      projCols.forEach(c=>{
+        html+=`<tr><td class="proj-label" style="padding-left:1.25rem">${c.emoji||''} ${c.label}</td>`;
+        // base cats first, community extras may differ
+        SCORECARD_CATS_BASE.forEach(cat=>{const s=cat.score(c);html+=`<td class="${s.cls}">${s.lbl}</td>`;});
+        html+='</tr>';
+      });
+    });
+  } else {
+    projCols.forEach(c=>{
+      html+=`<tr><td class="proj-label">${c.emoji||''} ${c.label}</td>`;
+      SCORECARD_CATS_BASE.forEach(cat=>{const s=cat.score(c);html+=`<td class="${s.cls}">${s.lbl}</td>`;});
+      html+='</tr>';
+    });
+  }
+  tbody.innerHTML=html;
 }
 
 function render() {
-  const projKeys = getSelectedProjects();
-  document.getElementById('selection-summary').textContent =
-    `${projKeys.length} project type${projKeys.length!==1?'s':''} selected`;
+  const projKeys=getSelectedProjects();
+  document.getElementById('selection-summary').textContent=`${projKeys.length} project type${projKeys.length!==1?'s':''} selected`;
   buildTable(projKeys);
   buildBubbleChart(projKeys);
   buildHeatmap(projKeys);
@@ -789,59 +620,84 @@ function render() {
 }
 
 // ── View toggle ──
-let activeView = 'bubble-heatmap';
 function setView(v) {
-  activeView = v;
-  document.getElementById('view-bubble-heatmap').style.display = v === 'bubble-heatmap' ? '' : 'none';
-  document.getElementById('view-scorecard').style.display = v === 'scorecard' ? '' : 'none';
-  document.getElementById('btn-view-bubble-heatmap').classList.toggle('active', v === 'bubble-heatmap');
-  document.getElementById('btn-view-scorecard').classList.toggle('active', v === 'scorecard');
+  activeView=v;
+  // Use explicit block/none — never empty string on elements with inline display:none
+  document.getElementById('view-bubble-heatmap').style.display = v==='bubble' ? 'block' : 'none';
+  document.getElementById('view-scorecard').style.display      = v==='scorecard' ? 'block' : 'none';
+  document.getElementById('btn-view-bubble').classList.toggle('active', v==='bubble');
+  document.getElementById('btn-view-scorecard').classList.toggle('active', v==='scorecard');
 }
-document.getElementById('btn-view-bubble-heatmap').addEventListener('click', () => setView('bubble-heatmap'));
-document.getElementById('btn-view-scorecard').addEventListener('click', () => setView('scorecard'));
+document.getElementById('btn-view-bubble').addEventListener('click', ()=>setView('bubble'));
+document.getElementById('btn-view-scorecard').addEventListener('click', ()=>setView('scorecard'));
+
+// ── Dimension bar ──
+function updateDimBar() {
+  const communities=getSelectedCommunities();
+  const bar=document.getElementById('dim-bar');
+  // Remove old community buttons (keep first = 'projects only')
+  [...bar.querySelectorAll('.dim-btn:not([data-dim="projects"])')].forEach(b=>b.remove());
+  communities.forEach(name=>{
+    const b=document.createElement('button');
+    b.className='dim-btn'+(activeDim===name?' active':'');
+    b.dataset.dim=name;
+    b.textContent=name;
+    b.addEventListener('click',()=>setDim(name));
+    bar.insertBefore(b, document.getElementById('dim-note'));
+  });
+  bar.querySelector('[data-dim="projects"]').classList.toggle('active', activeDim==='projects');
+}
+function setDim(v) {
+  activeDim=v;
+  updateDimBar();
+  render();
+}
+document.querySelector('[data-dim="projects"]').addEventListener('click',()=>setDim('projects'));
 
 // ── Wires ──
-document.getElementById('btn-apply').addEventListener('click', render);
-document.getElementById('btn-all').addEventListener('click', () => {
-  document.querySelectorAll('.proj-check').forEach(el => el.checked = true);
+document.getElementById('btn-apply').addEventListener('click', ()=>{updateDimBar();render();});
+document.getElementById('btn-all').addEventListener('click', ()=>{
+  document.querySelectorAll('.proj-check').forEach(el=>el.checked=true); updateDimBar(); render();
+});
+document.getElementById('btn-none').addEventListener('click', ()=>{
+  document.querySelectorAll('.proj-check').forEach(el=>el.checked=false); render();
+});
+document.getElementById('btn-custom-apply').addEventListener('click', ()=>{
+  const name=document.getElementById('cust-name').value.trim()||'My Scenario';
+  const acres=parseFloat(document.getElementById('cust-acres').value)||null;
+  const water=parseFloat(document.getElementById('cust-water').value);
+  const elec=parseFloat(document.getElementById('cust-elec').value)||null;
+  const jobs=parseFloat(document.getElementById('cust-jobs').value)||null;
+  const tax=parseFloat(document.getElementById('cust-tax').value)||null;
+  const cost=document.getElementById('cust-const').value?'$'+Number(document.getElementById('cust-const').value).toLocaleString():null;
+  customScenario={label:name,emoji:'✏️',color:'#64748b',acres,water:water?water/1e6:null,elec,jobs,tax,cost};
   render();
 });
-document.getElementById('btn-none').addEventListener('click', () => {
-  document.querySelectorAll('.proj-check').forEach(el => el.checked = false);
-  render();
-});
-document.getElementById('btn-custom-apply').addEventListener('click', () => {
-  const name  = document.getElementById('cust-name').value.trim() || 'My Scenario';
-  const acres = parseFloat(document.getElementById('cust-acres').value) || null;
-  const water = parseFloat(document.getElementById('cust-water').value);
-  const elec  = parseFloat(document.getElementById('cust-elec').value)  || null;
-  const jobs  = parseFloat(document.getElementById('cust-jobs').value)  || null;
-  const tax   = parseFloat(document.getElementById('cust-tax').value)   || null;
-  const cost  = document.getElementById('cust-const').value ? '$'+Number(document.getElementById('cust-const').value).toLocaleString() : null;
-  customScenario = {
-    label: name, emoji: '✏️', color: '#64748b',
-    acres, water: water ? water/1e6 : null, elec, jobs, tax, cost
-  };
-  render();
-});
+
+// ── Community checkboxes: rebuild dim bar on change ──
+document.getElementById('community-checks').addEventListener('change', ()=>{ updateDimBar(); render(); });
 
 // Load extra communities from Supabase
-(async () => {
+(async()=>{
   try {
-    const communities = await sbFetch('cid_communities?select=name,community_type&order=name.asc');
-    const known = new Set(['Kennebunkport','Westbrook','Portland','Gorham']);
-    const extra = communities.filter(c => c.community_type === 'municipal' && !known.has(c.name));
-    const checksEl = document.getElementById('community-checks');
+    const communities=await sbFetch('cid_communities?select=name,community_type,water_capacity_mgal_yr,total_assessed_value&order=name.asc');
+    const known=new Set(['Kennebunkport','Westbrook','Portland','Gorham']);
+    const extra=communities.filter(c=>c.community_type==='municipal'&&!known.has(c.name));
+    const checksEl=document.getElementById('community-checks');
     checksEl.querySelector('label[style]').remove();
-    extra.forEach(c => {
-      const lbl = document.createElement('label');
-      lbl.innerHTML = `<input type="checkbox" value="${c.name}"> ${c.name}`;
+    extra.forEach(c=>{
+      // Enrich COMMUNITIES if data available
+      if(!COMMUNITIES[c.name]) COMMUNITIES[c.name]={water:c.water_capacity_mgal_yr||null,taxBase:c.total_assessed_value||null,pop:null,area:''};
+      const lbl=document.createElement('label');
+      lbl.innerHTML=`<input type="checkbox" value="${c.name}"> ${c.name}`;
       checksEl.appendChild(lbl);
     });
-  } catch(e) { /* keep static list */ }
+    updateDimBar();
+  } catch(e){/* keep static list */}
 })();
 
-// Initial render
+// Initial
+updateDimBar();
 render();
 </script>
 </body>
