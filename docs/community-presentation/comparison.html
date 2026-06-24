@@ -3,35 +3,145 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Proposal Comparison | Coastal Maine Infrastructure</title>
+<title>Compare All | Coastal Maine Infrastructure</title>
 <link rel="stylesheet" href="style.css" />
 <style>
+/* ── Selector panel ── */
+.selector-panel {
+  background:#f8fafc;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  padding:1.5rem;
+  margin-bottom:2rem;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1.5rem;
+}
+@media(max-width:640px){ .selector-panel{ grid-template-columns:1fr; } }
+.selector-panel h3 {
+  font-size:.9rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  color:#374151;
+  margin:0 0 .75rem;
+}
+.check-group {
+  display:flex;
+  flex-direction:column;
+  gap:.45rem;
+}
+.check-group label {
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  font-size:.88rem;
+  color:#374151;
+  cursor:pointer;
+}
+.check-group input[type=checkbox] {
+  accent-color:#2563eb;
+  width:15px;
+  height:15px;
+  flex-shrink:0;
+}
+.swatch {
+  display:inline-block;
+  width:10px;
+  height:10px;
+  border-radius:2px;
+  flex-shrink:0;
+}
+.selector-actions {
+  grid-column:1/-1;
+  display:flex;
+  gap:.75rem;
+  align-items:center;
+  flex-wrap:wrap;
+  padding-top:.5rem;
+  border-top:1px solid #e5e7eb;
+}
+.btn-sm {
+  background:#2563eb;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  padding:.35rem .9rem;
+  font-size:.83rem;
+  font-weight:600;
+  cursor:pointer;
+}
+.btn-sm.btn-ghost {
+  background:#f3f4f6;
+  color:#374151;
+  border:1px solid #e5e7eb;
+}
+.btn-sm:hover { opacity:.88; }
+
+/* ── Custom inputs ── */
+.custom-inputs {
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  padding:1.25rem 1.5rem;
+  margin-bottom:2rem;
+}
+.custom-inputs h3 {
+  font-size:.9rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  color:#374151;
+  margin:0 0 1rem;
+}
+.custom-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:.75rem 1.25rem;
+}
+.custom-grid label {
+  display:flex;
+  flex-direction:column;
+  gap:.25rem;
+  font-size:.82rem;
+  color:#6b7280;
+  font-weight:500;
+}
+.custom-grid input {
+  border:1px solid #d1d5db;
+  border-radius:6px;
+  padding:.35rem .6rem;
+  font-size:.88rem;
+  color:#111827;
+}
+.custom-grid input:focus { outline:2px solid #2563eb; border-color:#2563eb; }
+.custom-note { font-size:.78rem; color:#9ca3af; margin-top:.75rem; }
+
+/* ── Comparison table ── */
 .cmp-table-wrap { overflow-x:auto; margin:1.5rem 0; }
-.cmp-table { width:100%; border-collapse:collapse; font-size:.85rem; min-width:900px; }
-.cmp-table th { background:#1e3a5f; color:#fff; padding:.6rem .7rem; text-align:left; white-space:nowrap; }
-.cmp-table th.col-golf  { background:#2e7d32; }
-.cmp-table th.col-edge  { background:#1565c0; }
-.cmp-table th.col-ent   { background:#e65100; }
-.cmp-table th.col-hyper { background:#b71c1c; }
-.cmp-table th.col-hsub  { background:#0d9488; }
-.cmp-table th.col-hmix  { background:#7c3aed; }
-.cmp-table th.col-hmul  { background:#b45309; }
-.cmp-table th.col-cap   { background:#37474f; }
+.cmp-table { width:100%; border-collapse:collapse; font-size:.85rem; }
+.cmp-table th {
+  background:#1e3a5f;
+  color:#fff;
+  padding:.6rem .7rem;
+  text-align:left;
+  white-space:nowrap;
+}
 .cmp-table td { padding:.5rem .7rem; border-bottom:1px solid #e5e7eb; vertical-align:top; }
 .cmp-table tr:nth-child(even) td { background:#f9fafb; }
 .cmp-table td.metric-name { font-weight:600; color:#374151; white-space:nowrap; }
-.badge-low    { display:inline-block; background:#dcfce7; color:#166534; font-size:.7rem; font-weight:700; padding:1px 6px; border-radius:10px; }
-.badge-med    { display:inline-block; background:#fef9c3; color:#854d0e; font-size:.7rem; font-weight:700; padding:1px 6px; border-radius:10px; }
-.badge-high   { display:inline-block; background:#fee2e2; color:#991b1b; font-size:.7rem; font-weight:700; padding:1px 6px; border-radius:10px; }
-.badge-crit   { display:inline-block; background:#7f1d1d; color:#fff; font-size:.7rem; font-weight:700; padding:1px 6px; border-radius:10px; }
-.badge-pos    { display:inline-block; background:#dbeafe; color:#1e3a8a; font-size:.7rem; font-weight:700; padding:1px 6px; border-radius:10px; }
-.capacity-row { background:#f0f4ff !important; font-style:italic; }
-.capacity-row td { color:#374151; }
+.section-divider { background:#f3f4f6 !important; font-weight:700; font-size:.78rem; color:#6b7280; letter-spacing:.05em; padding:.4rem .7rem; }
+.capacity-row td { color:#374151; font-style:italic; }
+.badge-low  { display:inline-block; background:#dcfce7; color:#166534; font-size:.7rem; font-weight:700; padding:1px 6px; border-radius:10px; }
+.badge-med  { display:inline-block; background:#fef9c3; color:#854d0e; font-size:.7rem; font-weight:700; padding:1px 6px; border-radius:10px; }
+.badge-high { display:inline-block; background:#fee2e2; color:#991b1b; font-size:.7rem; font-weight:700; padding:1px 6px; border-radius:10px; }
+.badge-crit { display:inline-block; background:#7f1d1d; color:#fff; font-size:.7rem; font-weight:700; padding:1px 6px; border-radius:10px; }
+.badge-pos  { display:inline-block; background:#dbeafe; color:#1e3a8a; font-size:.7rem; font-weight:700; padding:1px 6px; border-radius:10px; }
 .section-note { font-size:.8rem; color:#6b7280; margin-top:.5rem; }
-.legend-strip { display:flex; flex-wrap:wrap; gap:.75rem; margin:1rem 0; }
-.legend-item  { display:flex; align-items:center; gap:.4rem; font-size:.82rem; }
-.legend-swatch { width:14px; height:14px; border-radius:3px; flex-shrink:0; }
-.section-divider { background:#f3f4f6; font-weight:700; font-size:.78rem; color:#6b7280; letter-spacing:.05em; padding:.4rem .7rem; }
+.no-results { text-align:center; color:#9ca3af; padding:2rem; font-style:italic; }
+
+/* ── Charts ── */
+.chart-wrap { margin:2rem 0; }
 </style>
 </head>
 <body>
@@ -50,9 +160,9 @@
 
 <header class="page-hero">
   <div class="section-inner">
-    <div class="hero-eyebrow">All Proposals &mdash; Side by Side</div>
-    <h1>Proposal Comparison</h1>
-    <p class="hero-sub">Every key metric for each proposal, measured against community capacity. All scenarios are fictitious. All benchmarks are from public sources. The goal is apples-to-apples comparison so communities can make informed decisions.</p>
+    <div class="hero-eyebrow">Interactive Comparison Tool</div>
+    <h1>Compare All</h1>
+    <p class="hero-sub">Select any combination of communities and project types to compare side-by-side. Add your own numbers to explore custom scenarios.</p>
   </div>
 </header>
 
@@ -60,240 +170,100 @@
   <section class="section">
     <div class="section-inner">
 
-      <div class="legend-strip">
-        <div class="legend-item"><div class="legend-swatch" style="background:#2e7d32"></div> Golf Course</div>
-        <div class="legend-item"><div class="legend-swatch" style="background:#1565c0"></div> Edge DC</div>
-        <div class="legend-item"><div class="legend-swatch" style="background:#e65100"></div> Enterprise DC</div>
-        <div class="legend-item"><div class="legend-swatch" style="background:#b71c1c"></div> Hyperscale DC</div>
-        <div class="legend-item"><div class="legend-swatch" style="background:#0d9488"></div> Small Subdivision</div>
-        <div class="legend-item"><div class="legend-swatch" style="background:#7c3aed"></div> Mixed-Income</div>
-        <div class="legend-item"><div class="legend-swatch" style="background:#b45309"></div> Large Multi-Family</div>
-        <div class="legend-item"><div class="legend-swatch" style="background:#37474f"></div> Community Capacity</div>
+      <!-- ── Selector ── -->
+      <div class="selector-panel">
+        <div>
+          <h3>&#127961; Communities</h3>
+          <div class="check-group" id="community-checks">
+            <label><input type="checkbox" value="Kennebunkport" checked> Kennebunkport</label>
+            <label><input type="checkbox" value="Westbrook" checked> Westbrook</label>
+            <label><input type="checkbox" value="Portland" checked> Portland</label>
+            <label><input type="checkbox" value="Gorham" checked> Gorham</label>
+            <label style="color:#9ca3af;font-style:italic;"><input type="checkbox" disabled> More communities loading&hellip;</label>
+          </div>
+        </div>
+        <div>
+          <h3>&#128203; Project Types</h3>
+          <div class="check-group">
+            <label><input type="checkbox" class="proj-check" value="golf" checked> <span class="swatch" style="background:#2e7d32"></span> Golf Course</label>
+            <label><input type="checkbox" class="proj-check" value="edge" checked> <span class="swatch" style="background:#1565c0"></span> Edge Data Center</label>
+            <label><input type="checkbox" class="proj-check" value="ent" checked> <span class="swatch" style="background:#e65100"></span> Enterprise Data Center</label>
+            <label><input type="checkbox" class="proj-check" value="hyper" checked> <span class="swatch" style="background:#b71c1c"></span> Hyperscale Data Center</label>
+            <label><input type="checkbox" class="proj-check" value="hsub" checked> <span class="swatch" style="background:#0d9488"></span> Small Subdivision</label>
+            <label><input type="checkbox" class="proj-check" value="hmix" checked> <span class="swatch" style="background:#7c3aed"></span> Mixed-Income Housing</label>
+            <label><input type="checkbox" class="proj-check" value="hmul" checked> <span class="swatch" style="background:#b45309"></span> Large Multi-Family</label>
+          </div>
+        </div>
+        <div class="selector-actions">
+          <button class="btn-sm" id="btn-apply">&#8635; Update Comparison</button>
+          <button class="btn-sm btn-ghost" id="btn-all">Select All</button>
+          <button class="btn-sm btn-ghost" id="btn-none">Clear Projects</button>
+          <span id="selection-summary" style="font-size:.82rem;color:#6b7280;"></span>
+        </div>
       </div>
 
-      <div class="cmp-table-wrap">
-        <table class="cmp-table">
-          <thead>
-            <tr>
-              <th>Metric</th>
-              <th class="col-golf">&#9971; Golf</th>
-              <th class="col-edge">&#128225; Edge DC</th>
-              <th class="col-ent">&#128187; Enterprise DC</th>
-              <th class="col-hyper">&#9889; Hyperscale DC</th>
-              <th class="col-hsub">&#127968; Subdivision</th>
-              <th class="col-hmix">&#127970; Mixed-Income</th>
-              <th class="col-hmul">&#127963; Multi-Family</th>
-              <th class="col-cap">&#127968; Capacity</th>
-            </tr>
-          </thead>
-          <tbody>
+      <!-- ── Custom inputs ── -->
+      <details class="custom-inputs">
+        <summary style="cursor:pointer;font-size:.9rem;font-weight:700;color:#374151;">&#9998; Enter your own scenario numbers <span style="font-size:.78rem;font-weight:400;color:#9ca3af;">(optional)</span></summary>
+        <div style="margin-top:1rem;">
+          <div class="custom-grid">
+            <label>Project name<input type="text" id="cust-name" placeholder="My Project" /></label>
+            <label>Total acres<input type="number" id="cust-acres" placeholder="e.g. 50" /></label>
+            <label>Annual water use (gal/yr)<input type="number" id="cust-water" placeholder="e.g. 15000000" /></label>
+            <label>Annual electricity (MWh/yr)<input type="number" id="cust-elec" placeholder="e.g. 2000" /></label>
+            <label>Permanent FTE jobs<input type="number" id="cust-jobs" placeholder="e.g. 20" /></label>
+            <label>Est. annual tax revenue ($)<input type="number" id="cust-tax" placeholder="e.g. 400000" /></label>
+            <label>Est. construction cost ($)<input type="number" id="cust-const" placeholder="e.g. 25000000" /></label>
+          </div>
+          <p class="custom-note">Your numbers are not saved and will not affect any published data. This tool is for local exploration only.</p>
+          <button class="btn-sm" id="btn-custom-apply" style="margin-top:.75rem;">Add My Scenario &rarr;</button>
+        </div>
+      </details>
 
-            <tr><td colspan="9" class="section-divider">FOOTPRINT</td></tr>
-            <tr>
-              <td class="metric-name">Total Acres</td>
-              <td>150 ac</td><td>5 ac</td><td>30 ac</td><td>200 ac</td>
-              <td>40 ac</td><td>20 ac</td><td>25 ac</td>
-              <td class="capacity-row">&mdash;</td>
-            </tr>
-            <tr>
-              <td class="metric-name">Impervious Surface</td>
-              <td>~15 ac <span class="badge-low">LOW</span></td>
-              <td>~3 ac <span class="badge-low">LOW</span></td>
-              <td>~20 ac <span class="badge-med">MED</span></td>
-              <td>~100 ac <span class="badge-crit">CRIT</span></td>
-              <td>~8 ac <span class="badge-low">LOW</span></td>
-              <td>~10 ac <span class="badge-low">LOW</span></td>
-              <td>~16 ac <span class="badge-med">MED</span></td>
-              <td>&mdash;</td>
-            </tr>
-            <tr>
-              <td class="metric-name">Reversibility</td>
-              <td>Moderate</td><td>High</td><td>Low</td><td>None <span class="badge-crit">CRIT</span></td>
-              <td>Low (sold lots)</td><td>Moderate</td><td>Low</td>
-              <td>&mdash;</td>
-            </tr>
-
-            <tr><td colspan="9" class="section-divider">WATER USE</td></tr>
-            <tr>
-              <td class="metric-name">Annual Water Use</td>
-              <td>~110M gal/yr (17%)</td>
-              <td>&lt;1M gal/yr (&lt;1%)</td>
-              <td>~50M gal/yr (8%)</td>
-              <td>~500M gal/yr (77%) <span class="badge-crit">CRIT</span></td>
-              <td>~6.8M gal/yr (1%)</td>
-              <td>~20.5M gal/yr (3%)</td>
-              <td>~41M gal/yr (6%) <span class="badge-med">MED</span></td>
-              <td class="capacity-row">~650M gal/yr</td>
-            </tr>
-            <tr>
-              <td class="metric-name">Peak Day Demand</td>
-              <td>~312,000 gpd</td>
-              <td>~1,400 gpd</td>
-              <td>~137,000 gpd</td>
-              <td>~1.37M gpd</td>
-              <td>~28,000 gpd</td>
-              <td>~75,000 gpd</td>
-              <td>~150,000 gpd <span class="badge-med">MED</span></td>
-              <td class="capacity-row">Varies &mdash; see capacity.html</td>
-            </tr>
-            <tr>
-              <td class="metric-name">Seasonal Pattern</td>
-              <td>Summer peak <span class="badge-high">HIGH</span></td>
-              <td>Flat</td><td>Flat</td><td>Flat <span class="badge-crit">CRIT</span></td>
-              <td>Summer peak risk</td>
-              <td>Year-round</td>
-              <td>Year-round <span class="badge-med">MED</span></td>
-              <td class="capacity-row">Peak Jul&ndash;Aug</td>
-            </tr>
-
-            <tr><td colspan="9" class="section-divider">ENERGY &amp; GRID</td></tr>
-            <tr>
-              <td class="metric-name">Annual Electricity</td>
-              <td>~1,500 MWh/yr</td>
-              <td>~131,400 MWh/yr</td>
-              <td>~735,840 MWh/yr</td>
-              <td>~3.4M MWh/yr <span class="badge-crit">CRIT</span></td>
-              <td>~350 MWh/yr</td>
-              <td>~1,050 MWh/yr</td>
-              <td>~2,100 MWh/yr</td>
-              <td class="capacity-row">Maine: ~12M MWh/yr</td>
-            </tr>
-            <tr>
-              <td class="metric-name">Grid Impact</td>
-              <td>Standard commercial</td>
-              <td>15&ndash;20 MW feed <span class="badge-med">MED</span></td>
-              <td>New 115kV substation <span class="badge-high">HIGH</span></td>
-              <td>New 345kV transmission <span class="badge-crit">CRIT</span></td>
-              <td>Standard residential</td>
-              <td>Standard residential</td>
-              <td>Standard commercial</td>
-              <td class="capacity-row">Existing rural distribution</td>
-            </tr>
-
-            <tr><td colspan="9" class="section-divider">EMPLOYMENT</td></tr>
-            <tr>
-              <td class="metric-name">Permanent FTE Jobs</td>
-              <td>35 (seasonal)</td>
-              <td>25 (year-round)</td>
-              <td>80 (year-round)</td>
-              <td>250 <span class="badge-pos">POS</span></td>
-              <td>~5 (landscaping/mgmt)</td>
-              <td>~8 (property mgmt)</td>
-              <td>~15 (property mgmt)</td>
-              <td>&mdash;</td>
-            </tr>
-            <tr>
-              <td class="metric-name">Job Quality</td>
-              <td>Mixed/seasonal</td>
-              <td>High/tech <span class="badge-pos">POS</span></td>
-              <td>High/tech <span class="badge-pos">POS</span></td>
-              <td>High, few local</td>
-              <td>Construction only</td>
-              <td>Construction + mgmt</td>
-              <td>Construction + mgmt</td>
-              <td>&mdash;</td>
-            </tr>
-
-            <tr><td colspan="9" class="section-divider">FISCAL IMPACT</td></tr>
-            <tr>
-              <td class="metric-name">Est. Annual Tax Revenue</td>
-              <td>~$180K/yr</td>
-              <td>~$200K/yr</td>
-              <td>~$2M/yr</td>
-              <td>~$10M/yr</td>
-              <td>~$275K/yr</td>
-              <td>~$600K/yr</td>
-              <td>~$1.1M/yr <span class="badge-pos">POS</span></td>
-              <td>&mdash;</td>
-            </tr>
-            <tr>
-              <td class="metric-name">School Cost Risk</td>
-              <td>Low (no residents)</td>
-              <td>None</td><td>None</td><td>None</td>
-              <td>Moderate (seasonal offset) <span class="badge-med">MED</span></td>
-              <td>High (year-round families) <span class="badge-high">HIGH</span></td>
-              <td>Moderate&ndash;High <span class="badge-med">MED</span></td>
-              <td>&mdash;</td>
-            </tr>
-            <tr>
-              <td class="metric-name">TIF/Exemption Risk</td>
-              <td>Low</td>
-              <td>Low</td>
-              <td>High (BETR) <span class="badge-high">HIGH</span></td>
-              <td>Very high <span class="badge-crit">CRIT</span></td>
-              <td>Low</td>
-              <td>Moderate (LIHTC) <span class="badge-med">MED</span></td>
-              <td>Low</td>
-              <td>&mdash;</td>
-            </tr>
-            <tr>
-              <td class="metric-name">Est. Construction Cost</td>
-              <td>$12M</td><td>$40M</td><td>$350M</td><td>$3B+</td>
-              <td>$15M</td><td>$45M</td><td>$90M</td>
-              <td>&mdash;</td>
-            </tr>
-
-            <tr><td colspan="9" class="section-divider">ENVIRONMENTAL RISK</td></tr>
-            <tr>
-              <td class="metric-name">Chemical Use</td>
-              <td>Pesticides/fertilizers <span class="badge-med">MED</span></td>
-              <td>Battery/refrigerant <span class="badge-low">LOW</span></td>
-              <td>Battery/refrigerant/thermal <span class="badge-med">MED</span></td>
-              <td>Battery/thermal/diesel <span class="badge-high">HIGH</span></td>
-              <td>Residential lawn (diffuse) <span class="badge-low">LOW</span></td>
-              <td>Minimal <span class="badge-low">LOW</span></td>
-              <td>Minimal <span class="badge-low">LOW</span></td>
-              <td>&mdash;</td>
-            </tr>
-            <tr>
-              <td class="metric-name">Community Leverage</td>
-              <td>Moderate</td>
-              <td>High <span class="badge-pos">POS</span></td>
-              <td>Moderate</td>
-              <td>Very low <span class="badge-crit">CRIT</span></td>
-              <td>High (subdivision approval)</td>
-              <td>High (zoning + permits) <span class="badge-pos">POS</span></td>
-              <td>High (PUD required) <span class="badge-pos">POS</span></td>
-              <td>&mdash;</td>
-            </tr>
-
-          </tbody>
-        </table>
+      <!-- ── Table ── -->
+      <div id="cmp-output">
+        <div class="cmp-table-wrap">
+          <table class="cmp-table" id="cmp-table">
+            <thead id="cmp-thead"></thead>
+            <tbody id="cmp-tbody"></tbody>
+          </table>
+        </div>
+        <p class="section-note">All values are estimates from published benchmarks. Badges: <span class="badge-low">LOW</span> <span class="badge-med">MED</span> <span class="badge-high">HIGH</span> <span class="badge-crit">CRIT</span> risk. <span class="badge-pos">POS</span> = community benefit. See <a href="../methodology.md" target="_blank">methodology.md</a> for citations.</p>
       </div>
-      <p class="section-note">All values are estimates from published benchmarks. See each proposal page and <a href="../methodology.md" target="_blank">methodology.md</a> for full citations. Badges: <span class="badge-low">LOW</span> <span class="badge-med">MED</span> <span class="badge-high">HIGH</span> <span class="badge-crit">CRIT</span> risk relative to community capacity. <span class="badge-pos">POS</span> = community benefit.</p>
+
+      <!-- ── Charts ── -->
+      <div class="chart-wrap">
+        <h2>&#128200; Visual Comparison</h2>
+        <canvas id="chart-water" height="200"></canvas>
+        <p class="section-note">Annual water use (million gal/yr). Dashed line = selected community capacity baseline where available.</p>
+        <canvas id="chart-jobs" height="200" style="margin-top:2rem"></canvas>
+        <p class="section-note">Permanent FTE operations jobs.</p>
+        <canvas id="chart-tax" height="200" style="margin-top:2rem"></canvas>
+        <p class="section-note">Estimated gross annual tax revenue (pre-incentive, $).</p>
+      </div>
+
     </div>
   </section>
 
   <section class="section section-alt">
     <div class="section-inner">
-      <h2>&#128200; Visual Comparison &mdash; Key Metrics</h2>
-      <canvas id="cmp-water-chart" height="200"></canvas>
-      <p class="section-note" style="margin-top:.5rem">Annual water use as % of estimated community annual supply (~650M gal/yr).</p>
-      <canvas id="cmp-jobs-chart" height="200" style="margin-top:2rem"></canvas>
-      <p class="section-note" style="margin-top:.5rem">Permanent FTE operations jobs. Housing scenarios generate few direct jobs beyond property management.</p>
-      <canvas id="cmp-tax-chart" height="200" style="margin-top:2rem"></canvas>
-      <p class="section-note" style="margin-top:.5rem">Estimated gross annual tax revenue before TIF/BETR/LIHTC adjustments.</p>
+      <h2>&#128203; Per-community pages</h2>
+      <p>Each community also has its own dedicated comparison page showing how these project types stack up specifically against that community&rsquo;s baseline.</p>
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem;">
+        <a href="westbrook-comparison.html" class="btn btn-primary">Westbrook &rarr;</a>
+        <a href="portland-comparison.html" class="btn btn-primary">Portland &rarr;</a>
+        <a href="gorham-comparison.html" class="btn btn-primary">Gorham &rarr;</a>
+        <a href="capacity.html" class="btn btn-primary">Kennebunkport &rarr;</a>
+      </div>
     </div>
   </section>
 
   <section class="section">
-    <div class="section-inner">
-      <h2>&#128203; What the Comparison Tells Us</h2>
-      <div class="three-col">
-        <div class="card card-blue"><div class="card-icon">&#128167;</div><h3>Water is the binding constraint</h3><p>For coastal Maine communities, water supply headroom &mdash; not tax revenue &mdash; is the practical ceiling. Hyperscale DC fails outright. Large multi-family and enterprise DC both demand explicit peak-season modeling before approval.</p></div>
-        <div class="card card-green"><div class="card-icon">&#128181;</div><h3>Housing is the most honest fiscal trade-off</h3><p>Housing generates real tax revenue without TIF/BETR risk &mdash; but it also generates real school and services costs. Mixed-income development is the only scenario that addresses a documented community need while producing a defensible long-term fiscal return.</p></div>
-        <div class="card card-amber"><div class="card-icon">&#9878;&#65039;</div><h3>Scale and leverage move together</h3><p>Communities retain the most negotiating power with small-to-mid scale proposals. Once a $3B data center or a 300-unit development is approved and under construction, leverage shifts to the developer. Every condition must be legally binding before the first permit issues.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt">
     <div class="section-inner cta-row">
-      <div><h3>Now apply the decision framework</h3><p>The framework translates this comparison into a structured checklist any community can use for any proposal.</p></div>
+      <div><h3>Apply the decision framework</h3><p>Translate this comparison into a structured checklist any community can use.</p></div>
       <a href="framework.html" class="btn btn-primary">See the Framework &rarr;</a>
     </div>
   </section>
-
 </main>
 
 <footer class="site-footer">
@@ -308,12 +278,176 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
-<script>
-const labels = ['Golf Course','Edge DC','Enterprise DC','Hyperscale DC','Subdivision','Mixed-Income','Multi-Family'];
-const colors = ['#2e7d32','#1565c0','#e65100','#b71c1c','#0d9488','#7c3aed','#b45309'];
-new Chart(document.getElementById('cmp-water-chart'),{type:'bar',data:{labels,datasets:[{label:'Annual Water Use (% of community capacity)',data:[17,0.08,7.7,77,1.05,3.15,6.31],backgroundColor:colors,borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.parsed.x.toFixed(2)+'% of community capacity'}}},scales:{x:{max:100,title:{display:true,text:'% of estimated annual community water supply'},ticks:{callback:v=>v+'%'}},y:{ticks:{font:{size:11}}}}}});
-new Chart(document.getElementById('cmp-jobs-chart'),{type:'bar',data:{labels,datasets:[{label:'Permanent FTE Operations Jobs',data:[35,25,80,250,5,8,15],backgroundColor:colors,borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.parsed.x+' permanent FTE jobs'}}},scales:{x:{title:{display:true,text:'Permanent FTE operations jobs (est.)'}},y:{ticks:{font:{size:11}}}}}});
-new Chart(document.getElementById('cmp-tax-chart'),{type:'bar',data:{labels,datasets:[{label:'Est. Annual Tax Revenue ($)',data:[180000,200000,2000000,10000000,275000,600000,1100000],backgroundColor:colors,borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>'$'+ctx.parsed.x.toLocaleString()+'/yr (pre-incentive est.)'}}},scales:{x:{title:{display:true,text:'Est. gross annual tax revenue (pre-incentive)'},ticks:{callback:v=>'$'+(v>=1000000?(v/1000000).toFixed(1)+'M':(v/1000).toFixed(0)+'K')}},y:{ticks:{font:{size:11}}}}}});
+<script type="module">
+const SUPABASE_URL  = 'https://hhyhulqngdkwsxhymmcd.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhoeWh1bHFuZ2Rrd3N4aHltbWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxMzEyMDEsImV4cCI6MjA5MjcwNzIwMX0.dmSy7Q8Je5lEY4XCFzwvfPnkBYLebPE0yZMhy6Y8czI';
+
+async function sbFetch(path) {
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+    headers:{ 'apikey': SUPABASE_ANON, 'Authorization': `Bearer ${SUPABASE_ANON}`, 'Accept':'application/json' }
+  });
+  if (!r.ok) throw new Error(r.status);
+  return r.json();
+}
+
+// ── Static project data ──
+const PROJECTS = {
+  golf:  { label:'&#9971; Golf Course',      color:'#2e7d32', acres:150, water:110,  elec:1500,    jobs:35,  tax:180000,   cost:'$12M' },
+  edge:  { label:'&#128225; Edge DC',         color:'#1565c0', acres:5,   water:0.08, elec:131400,  jobs:25,  tax:200000,   cost:'$40M' },
+  ent:   { label:'&#128187; Enterprise DC',   color:'#e65100', acres:30,  water:50,   elec:735840,  jobs:80,  tax:2000000,  cost:'$350M' },
+  hyper: { label:'&#9889; Hyperscale DC',     color:'#b71c1c', acres:200, water:500,  elec:3400000, jobs:250, tax:10000000, cost:'$3B+' },
+  hsub:  { label:'&#127968; Subdivision',     color:'#0d9488', acres:40,  water:6.8,  elec:350,     jobs:5,   tax:275000,   cost:'$15M' },
+  hmix:  { label:'&#127970; Mixed-Income',    color:'#7c3aed', acres:20,  water:20.5, elec:1050,    jobs:8,   tax:600000,   cost:'$45M' },
+  hmul:  { label:'&#127963; Multi-Family',    color:'#b45309', acres:25,  water:41,   elec:2100,    jobs:15,  tax:1100000,  cost:'$90M' },
+};
+
+// ── Community capacity baselines (static fallback; enhanced by Supabase) ──
+const CAPACITY = {
+  'Kennebunkport': { water: 650, taxVal: null },
+  'Westbrook':     { water: null, taxVal: 2733062900 },
+  'Portland':      { water: null, taxVal: 14872866446 },
+  'Gorham':        { water: null, taxVal: 2819038000 },
+};
+
+let customScenario = null;
+let charts = {};
+
+function getSelectedProjects() {
+  return [...document.querySelectorAll('.proj-check:checked')].map(el => el.value);
+}
+function getSelectedCommunities() {
+  return [...document.querySelectorAll('#community-checks input[type=checkbox]:checked:not(:disabled)')].map(el => el.value);
+}
+
+function fmt(n) { return Number(n).toLocaleString(); }
+function fmtM(n) { return n >= 1000 ? (n/1000).toFixed(1)+'B' : n >= 1 ? n.toFixed(1)+'M' : (n*1000).toFixed(0)+'K'; }
+
+function buildTable(projKeys) {
+  const thead = document.getElementById('cmp-thead');
+  const tbody = document.getElementById('cmp-tbody');
+
+  const cols = projKeys.map(k => PROJECTS[k]);
+  if (customScenario) cols.push(customScenario);
+
+  if (cols.length === 0) {
+    thead.innerHTML = '';
+    tbody.innerHTML = '<tr><td class="no-results" colspan="2">Select at least one project type above.</td></tr>';
+    return;
+  }
+
+  // Header
+  let hRow = '<tr><th>Metric</th>';
+  cols.forEach(c => { hRow += `<th style="background:${c.color}">${c.label}</th>`; });
+  thead.innerHTML = hRow + '</tr>';
+
+  const rows = [
+    { divider: 'FOOTPRINT' },
+    { label:'Total Acres',          vals: cols.map(c => c.acres ? c.acres+' ac' : '&mdash;') },
+    { label:'Est. Construction Cost', vals: cols.map(c => c.cost || '&mdash;') },
+    { divider: 'WATER USE' },
+    { label:'Annual Water Use (M gal/yr)', vals: cols.map(c => c.water != null ? fmtM(c.water*1000000)+' gal/yr' : '&mdash;') },
+    { divider: 'ENERGY' },
+    { label:'Annual Electricity (MWh/yr)', vals: cols.map(c => c.elec ? fmt(c.elec)+' MWh' : '&mdash;') },
+    { divider: 'EMPLOYMENT' },
+    { label:'Permanent FTE Jobs',   vals: cols.map(c => c.jobs != null ? c.jobs : '&mdash;') },
+    { divider: 'FISCAL IMPACT' },
+    { label:'Est. Annual Tax Revenue', vals: cols.map(c => c.tax ? '$'+fmt(c.tax) : '&mdash;') },
+  ];
+
+  let html = '';
+  rows.forEach(r => {
+    if (r.divider) {
+      html += `<tr><td colspan="${cols.length+1}" class="section-divider">${r.divider}</td></tr>`;
+    } else {
+      html += `<tr><td class="metric-name">${r.label}</td>`;
+      r.vals.forEach(v => { html += `<td>${v}</td>`; });
+      html += '</tr>';
+    }
+  });
+  tbody.innerHTML = html;
+}
+
+function buildCharts(projKeys) {
+  const cols = projKeys.map(k => PROJECTS[k]);
+  if (customScenario) cols.push(customScenario);
+  const labels = cols.map(c => c.label.replace(/<[^>]+>/g,''));
+  const colors = cols.map(c => c.color);
+
+  ['chart-water','chart-jobs','chart-tax'].forEach(id => {
+    if (charts[id]) { charts[id].destroy(); delete charts[id]; }
+  });
+
+  if (cols.length === 0) return;
+
+  charts['chart-water'] = new Chart(document.getElementById('chart-water'),{
+    type:'bar',
+    data:{ labels, datasets:[{ label:'Annual Water (M gal/yr)', data: cols.map(c=>c.water||0), backgroundColor:colors, borderRadius:4 }]},
+    options:{ indexAxis:'y', responsive:true, plugins:{ legend:{display:false} }, scales:{ x:{ title:{display:true,text:'Million gal / yr'} }, y:{ticks:{font:{size:11}}} }}
+  });
+  charts['chart-jobs'] = new Chart(document.getElementById('chart-jobs'),{
+    type:'bar',
+    data:{ labels, datasets:[{ label:'Permanent FTE Jobs', data: cols.map(c=>c.jobs||0), backgroundColor:colors, borderRadius:4 }]},
+    options:{ indexAxis:'y', responsive:true, plugins:{ legend:{display:false} }, scales:{ x:{ title:{display:true,text:'Permanent FTE operations jobs'} }, y:{ticks:{font:{size:11}}} }}
+  });
+  charts['chart-tax'] = new Chart(document.getElementById('chart-tax'),{
+    type:'bar',
+    data:{ labels, datasets:[{ label:'Est. Annual Tax Revenue', data: cols.map(c=>c.tax||0), backgroundColor:colors, borderRadius:4 }]},
+    options:{ indexAxis:'y', responsive:true, plugins:{ legend:{display:false}, tooltip:{callbacks:{label:ctx=>'$'+fmt(ctx.parsed.x)+'/yr'}} }, scales:{ x:{ title:{display:true,text:'Est. gross annual tax revenue ($)'}, ticks:{callback:v=>'$'+(v>=1e6?(v/1e6).toFixed(1)+'M':(v/1000).toFixed(0)+'K')} }, y:{ticks:{font:{size:11}}} }}
+  });
+}
+
+function render() {
+  const projKeys = getSelectedProjects();
+  const summary = `${projKeys.length} project type${projKeys.length!==1?'s':''} selected`;
+  document.getElementById('selection-summary').textContent = summary;
+  buildTable(projKeys);
+  buildCharts(projKeys);
+}
+
+// Wires
+document.getElementById('btn-apply').addEventListener('click', render);
+document.getElementById('btn-all').addEventListener('click', () => {
+  document.querySelectorAll('.proj-check').forEach(el => el.checked = true);
+  render();
+});
+document.getElementById('btn-none').addEventListener('click', () => {
+  document.querySelectorAll('.proj-check').forEach(el => el.checked = false);
+  render();
+});
+document.getElementById('btn-custom-apply').addEventListener('click', () => {
+  const name  = document.getElementById('cust-name').value.trim() || 'My Scenario';
+  const acres = parseFloat(document.getElementById('cust-acres').value) || null;
+  const water = parseFloat(document.getElementById('cust-water').value);
+  const elec  = parseFloat(document.getElementById('cust-elec').value)  || null;
+  const jobs  = parseFloat(document.getElementById('cust-jobs').value)  || null;
+  const tax   = parseFloat(document.getElementById('cust-tax').value)   || null;
+  const cost  = document.getElementById('cust-const').value ? '$'+Number(document.getElementById('cust-const').value).toLocaleString() : null;
+  customScenario = {
+    label: name, color: '#64748b',
+    acres, water: water ? water/1e6 : null, elec, jobs, tax, cost
+  };
+  render();
+});
+
+// Load extra communities from Supabase and update checklist
+(async () => {
+  try {
+    const communities = await sbFetch('cid_communities?select=name,community_type&order=name.asc');
+    const known = new Set(['Kennebunkport','Westbrook','Portland','Gorham']);
+    const extra = communities.filter(c => c.community_type === 'municipal' && !known.has(c.name));
+    const checksEl = document.getElementById('community-checks');
+    // Remove the placeholder
+    checksEl.querySelector('label[style]').remove();
+    extra.forEach(c => {
+      const lbl = document.createElement('label');
+      lbl.innerHTML = `<input type="checkbox" value="${c.name}"> ${c.name}`;
+      checksEl.appendChild(lbl);
+    });
+  } catch(e) { /* keep static list */ }
+})();
+
+// Initial render
+render();
 </script>
 </body>
 </html>
