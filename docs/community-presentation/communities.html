@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Communities | Coastal Maine Infrastructure</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+  .community-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+  .community-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    transition: box-shadow .15s, border-color .15s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .community-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,.1);
+    border-color: #2563eb;
+  }
+  .community-card .cc-header {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+  }
+  .community-card .cc-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+  .community-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+  }
+  .community-card .cc-meta {
+    font-size: .8rem;
+    color: #6b7280;
+    display: flex;
+    gap: .75rem;
+    flex-wrap: wrap;
+  }
+  .community-card .cc-badge {
+    background: #f3f4f6;
+    border-radius: 999px;
+    padding: .15rem .6rem;
+    font-size: .75rem;
+    color: #374151;
+    font-weight: 500;
+  }
+  .community-card .cc-badge.badge-county  { background:#dbeafe; color:#1d4ed8; }
+  .community-card .cc-badge.badge-regional{ background:#fef9c3; color:#854d0e; }
+  .community-card .cc-badge.badge-municipal{ background:#dcfce7; color:#166534; }
+  .community-card .cc-notes {
+    font-size: .85rem;
+    color: #374151;
+    margin: 0;
+    flex: 1;
+  }
+  .community-card .cc-footer {
+    font-size: .8rem;
+    color: #2563eb;
+    font-weight: 600;
+    margin-top: .25rem;
+  }
+  .community-card .cc-footer.no-page {
+    color: #9ca3af;
+    font-weight: 400;
+  }
+  .community-card .cc-water {
+    font-size: .8rem;
+    color: #0369a1;
+    background: #e0f2fe;
+    border-radius: 6px;
+    padding: .2rem .6rem;
+    display: inline-block;
+    width: fit-content;
+  }
+  .filter-bar {
+    display: flex;
+    gap: .75rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    align-items: center;
+  }
+  .filter-btn {
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 999px;
+    padding: .3rem .9rem;
+    font-size: .85rem;
+    cursor: pointer;
+    transition: background .12s, border-color .12s;
+    color: #374151;
+    font-weight: 500;
+  }
+  .filter-btn.active, .filter-btn:hover {
+    background: #2563eb;
+    color: #fff;
+    border-color: #2563eb;
+  }
+  .loading-msg { color:#6b7280; font-style:italic; padding:1rem 0; }
+  .county-group-label {
+    font-size:.8rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    color:#6b7280;
+    margin: 1.75rem 0 .5rem;
+  }
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="nav-inner">
+    <span class="nav-logo">&#127968; Coastal Maine Infrastructure</span>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="communities.html" class="active">Communities</a>
+      <a href="capacity.html">Community Capacity</a>
+      <a href="comparison.html">Compare All</a>
+      <a href="framework.html">Decision Framework</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="section-inner">
+    <div class="hero-eyebrow">Southern Maine &amp; Beyond</div>
+    <h1>Communities</h1>
+    <p class="hero-sub">Explore each community in the dataset &mdash; its capacity baseline, regional context, and how it compares to its neighbors. Select any community below to dig into its profile.</p>
+  </div>
+</header>
+
+<main>
+  <section class="section">
+    <div class="section-inner">
+
+      <div class="filter-bar" id="filter-bar">
+        <span style="font-size:.85rem;color:#6b7280;font-weight:600;">Filter:</span>
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="municipal">Municipal</button>
+        <button class="filter-btn" data-filter="county">County</button>
+        <button class="filter-btn" data-filter="regional">Regional</button>
+        <button class="filter-btn" data-filter="York">York County</button>
+        <button class="filter-btn" data-filter="Cumberland">Cumberland County</button>
+      </div>
+
+      <div id="loading-msg" class="loading-msg">&#9203; Loading communities&hellip;</div>
+      <div id="community-grid" class="community-grid" style="display:none"></div>
+
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="section-inner">
+      <h2>About This Dataset</h2>
+      <p>Communities in this dataset are drawn from York County and Cumberland County, Maine, plus state-level aggregates for baseline comparison. Each community record is maintained in the project Supabase database (<code>cid_communities</code>) and linked to available infrastructure data tables.</p>
+      <ul style="margin:.75rem 0 0 1.25rem;line-height:1.8;color:#374151;">
+        <li><strong>Municipal</strong> &mdash; incorporated towns or cities with local governance</li>
+        <li><strong>County</strong> &mdash; county-level aggregate for regional context</li>
+        <li><strong>Regional</strong> &mdash; state-level baseline (State of Maine)</li>
+      </ul>
+      <p class="source-note" style="margin-top:1rem;">Water capacity data is currently available for Kennebunkport (KKWD). Additional communities will be added as data is collected and verified. Contributions and corrections welcome via <a href="https://github.com/andredavisme/community-infrastructure-development" target="_blank">GitHub</a>.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>Built on public data &mdash; for public understanding. Analysis by <a href="https://207analytix.com" target="_blank">207 Analytix</a>.</p>
+    <p class="footer-links">
+      <a href="https://github.com/andredavisme/community-infrastructure-development" target="_blank">Data Repo</a> &middot;
+      <a href="https://andredavisme.github.io/maine-civic-tracker/" target="_blank">Maine Civic Tracker</a> &middot;
+      <a href="../glossary.md" target="_blank">Glossary</a>
+    </p>
+  </div>
+</footer>
+
+<script type="module">
+const SUPABASE_URL  = 'https://hhyhulqngdkwsxhymmcd.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhoeWh1bHFuZ2Rrd3N4aHltbWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxMzEyMDEsImV4cCI6MjA5MjcwNzIwMX0.dmSy7Q8Je5lEY4XCFzwvfPnkBYLebPE0yZMhy6Y8czI';
+
+async function supabaseFetch(path) {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+    headers: {
+      'apikey': SUPABASE_ANON,
+      'Authorization': `Bearer ${SUPABASE_ANON}`,
+      'Accept': 'application/json'
+    }
+  });
+  if (!res.ok) throw new Error(`Supabase fetch failed: ${res.status}`);
+  return res.json();
+}
+
+// Communities that have a dedicated capacity page
+const COMMUNITY_PAGES = {
+  'Kennebunkport': 'capacity.html'
+};
+
+// Icons keyed by community type
+const TYPE_ICONS = {
+  municipal: '&#127961;',
+  county:    '&#128205;',
+  regional:  '&#127757;'
+};
+
+function badgeClass(type) {
+  if (type === 'county')   return 'badge-county';
+  if (type === 'regional') return 'badge-regional';
+  return 'badge-municipal';
+}
+
+function renderCard(c, waterMap) {
+  const page = COMMUNITY_PAGES[c.name];
+  const icon = TYPE_ICONS[c.community_type] || '&#127968;';
+  const water = waterMap[c.id];
+  const countyLabel = c.county ? `${c.county} County` : '';
+
+  const waterHtml = water
+    ? `<div class="cc-water">&#128167; Water: ${Number(water.utility_abbreviation ? water.rated_capacity_gpd : 0).toLocaleString()} gpd rated &mdash; ${water.utility_abbreviation}</div>`
+    : '';
+
+  const footerHtml = page
+    ? `<div class="cc-footer">View capacity page &rarr;</div>`
+    : `<div class="cc-footer no-page">Capacity page coming soon</div>`;
+
+  const card = document.createElement(page ? 'a' : 'div');
+  card.className = 'community-card';
+  card.dataset.type = c.community_type;
+  card.dataset.county = c.county || '';
+  if (page) {
+    card.href = page;
+  }
+
+  card.innerHTML = `
+    <div class="cc-header">
+      <span class="cc-icon">${icon}</span>
+      <h3>${c.name}</h3>
+    </div>
+    <div class="cc-meta">
+      <span class="cc-badge ${badgeClass(c.community_type)}">${c.community_type}</span>
+      ${countyLabel ? `<span class="cc-badge">${countyLabel}</span>` : ''}
+      <span class="cc-badge">${c.state_code}</span>
+    </div>
+    ${c.notes ? `<p class="cc-notes">${c.notes}</p>` : ''}
+    ${waterHtml}
+    ${footerHtml}
+  `;
+  return card;
+}
+
+function applyFilter(filter, cards) {
+  cards.forEach(card => {
+    const type   = card.dataset.type;
+    const county = card.dataset.county;
+    const show =
+      filter === 'all' ||
+      filter === type ||
+      (filter === 'York'      && county === 'York') ||
+      (filter === 'Cumberland' && county === 'Cumberland');
+    card.style.display = show ? '' : 'none';
+  });
+}
+
+(async () => {
+  const loadingEl = document.getElementById('loading-msg');
+  const gridEl    = document.getElementById('community-grid');
+
+  try {
+    const [communities, waterRows] = await Promise.all([
+      supabaseFetch('cid_communities?select=*&order=name.asc'),
+      supabaseFetch('cid_community_water_capacity?select=community_id,utility_abbreviation,rated_capacity_gpd')
+    ]);
+
+    const waterMap = {};
+    for (const w of waterRows) waterMap[w.community_id] = w;
+
+    const cards = communities.map(c => renderCard(c, waterMap));
+    cards.forEach(card => gridEl.appendChild(card));
+
+    loadingEl.style.display = 'none';
+    gridEl.style.display = 'grid';
+
+    // Wire up filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyFilter(btn.dataset.filter, cards);
+      });
+    });
+
+  } catch (e) {
+    loadingEl.textContent = '\u26a0 Could not load communities. Please try again later.';
+    console.error(e);
+  }
+})();
+</script>
+</body>
+</html>

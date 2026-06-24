@@ -12,6 +12,7 @@
     <span class="nav-logo">&#127968; Coastal Maine Infrastructure</span>
     <div class="nav-links">
       <a href="index.html">Home</a>
+      <a href="communities.html">Communities</a>
       <a href="capacity.html" class="active">Community Capacity</a>
       <a href="comparison.html">Compare All</a>
       <a href="framework.html">Decision Framework</a>
@@ -232,7 +233,7 @@ function setBar(id, pctVal) {
     document.getElementById('water-bars').style.display = 'flex';
     document.getElementById('ww-bars').style.display = 'flex';
   } catch(e) {
-    document.getElementById('water-loading').textContent = '⚠ Could not load live data. Values shown are estimates from published sources.';
+    document.getElementById('water-loading').textContent = '\u26a0 Could not load live data. Values shown are estimates from published sources.';
     document.getElementById('ww-loading').textContent = '';
     document.getElementById('water-bars').style.display = 'flex';
     document.getElementById('ww-bars').style.display = 'flex';
