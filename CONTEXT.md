@@ -10,7 +10,10 @@
 |-----|-------|
 | **Project ID** | `hhyhulqngdkwsxhymmcd` |
 | **Project Name** | (207 Analytix / CID shared backend) |
-| **Region** | (check Supabase dashboard if needed) |
+| **Region** | `us-west-2` |
+| **Organization ID** | `imdfkatmviazvwtqgzbk` |
+| **Postgres Version** | 17 |
+| **Status** | `ACTIVE_HEALTHY` |
 | **Schema prefix** | `cid_` for infrastructure tables; `civic_` for civic tracker tables |
 
 All structured data for this repository lives in this single Supabase project. Do not spin up or query a different project without explicit instruction.
@@ -60,6 +63,26 @@ Full schema files are in [`shared/schema/`](shared/schema/).
 - All entries cite published sources (USGA, EPA, BLS, USGS, Uptime Institute, etc.)
 - Supabase migrations live in `shared/schema/` and are numbered sequentially (e.g., `005_cid_proposed_infrastructure.sql`)
 - Community-facing HTML is in `docs/community-presentation/` and served via GitHub Pages
+
+---
+
+## Perplexity Space
+
+| Key | Value |
+|-----|-------|
+| **Space Name** | `community-infrastructure-development` |
+| **Description** | "Let's continue work on https://github.com/andredavisme/community-infrastructure-development" |
+| **Prioritized Sources** | `github.com/andredavisme/civic-identity-toolkit`, `github.com/andredavisme/maine-civic-tracker` |
+| **MCP Tools Active** | GitHub (andredavisme), Supabase (andredavisme's org) |
+
+### Space Instructions for AI Assistants
+
+- This Space is the **primary working context** for all CID development sessions.
+- Always assume continuity from prior conversations — do not ask for project IDs, repo names, or Supabase credentials that are documented here.
+- The GitHub repo is `andredavisme/community-infrastructure-development` on branch `main`.
+- The Supabase project is **"andredavisme's Project"**, ID `hhyhulqngdkwsxhymmcd`, region `us-west-2`.
+- The two prioritized source repos (`civic-identity-toolkit`, `maine-civic-tracker`) provide methodology and the public display layer respectively — consult them for standards and schema alignment.
+- When in doubt about what table, schema, or repo to use, refer to this file first before asking the user.
 
 ---
 
