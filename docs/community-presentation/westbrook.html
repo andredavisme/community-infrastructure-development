@@ -37,19 +37,14 @@
       <div class="fiscal-table-wrap">
         <table class="data-table">
           <thead>
-            <tr><th>Metric</th><th>Value</th><th>Source / Notes</th></tr>
+            <tr><th>Metric</th><th>Value</th><th>Notes</th></tr>
           </thead>
-          <tbody>
-            <tr><td>Total taxable valuation</td><td>$2,733,062,900</td><td>2024 Maine MVR Statistical Summary &mdash; Cumberland County</td></tr>
-            <tr><td>Taxable land valuation</td><td>$852,233,100</td><td>2024 MVR</td></tr>
-            <tr><td>Taxable building valuation</td><td>$1,880,829,800</td><td>2024 MVR</td></tr>
-            <tr><td>Certified ratio</td><td>94%</td><td>2024 MVR &mdash; slight underassessment relative to market</td></tr>
-            <tr><td>Tax commitment</td><td>$47,905,095</td><td>2024 MVR</td></tr>
-            <tr><td>Tax rate (mil rate)</td><td>$0.01668 / $1</td><td>2024 MVR</td></tr>
+          <tbody id="fiscal-tbody">
+            <tr><td colspan="3" style="color:#9ca3af;font-style:italic;">&#8635; Loading live data&hellip;</td></tr>
           </tbody>
         </table>
       </div>
-      <div class="source-note">Source: Maine Revenue Services, 2024 Municipal Valuation Return Statistical Summary. Full citations in <a href="https://github.com/andredavisme/community-infrastructure-development/blob/main/docs/data-dictionary.md" target="_blank">data-dictionary.md</a>.</div>
+      <div class="source-note" id="fiscal-source">Loading&hellip;</div>
     </div>
   </section>
 
@@ -118,5 +113,39 @@
     </p>
   </div>
 </footer>
+
+<script type="module">
+const SUPABASE_URL  = 'https://hhyhulqngdkwsxhymmcd.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhoeWh1bHFuZ2Rrd3N4aHltbWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxMzEyMDEsImV4cCI6MjA5MjcwNzIwMX0.dmSy7Q8Je5lEY4XCFzwvfPnkBYLebPE0yZMhy6Y8czI';
+
+(async () => {
+  try {
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/cid_communities?name=eq.Westbrook&select=name,population,total_assessed_value,mill_rate,water_capacity_mgal_yr,annual_tax_levy&limit=1`,
+      { headers: { apikey: SUPABASE_ANON, Authorization: `Bearer ${SUPABASE_ANON}`, Accept: 'application/json' } }
+    );
+    const [c] = await res.json();
+    if (!c) throw new Error('no data');
+    const fmt = n => Number(n).toLocaleString('en-US');
+    const fmtDollar = n => '$' + fmt(Math.round(Number(n)));
+    const millDisplay = c.mill_rate ? `$${Number(c.mill_rate).toFixed(4)} / $1 (${c.mill_rate} mills)` : '—';
+    const rows = [
+      ['Total assessed valuation', c.total_assessed_value ? fmtDollar(c.total_assessed_value) : '—', 'Maine MVR Statistical Summary (live from database)'],
+      ['Annual tax levy (generated)', c.annual_tax_levy ? fmtDollar(c.annual_tax_levy) : '—', 'Calculated: assessed value × mill rate ÷ 1,000'],
+      ['Mill rate', millDisplay, 'Maine Revenue Services MVR'],
+      ['Population (est.)', c.population ? fmt(c.population) : '—', 'Community record'],
+      ['Water capacity', c.water_capacity_mgal_yr ? fmt(c.water_capacity_mgal_yr) + ' M gal/yr' : 'Regional utility (PWD) — data pending', 'Portland Water District'],
+    ];
+    document.getElementById('fiscal-tbody').innerHTML = rows.map(
+      ([metric, val, note]) => `<tr><td>${metric}</td><td><strong>${val}</strong></td><td>${note}</td></tr>`
+    ).join('');
+    document.getElementById('fiscal-source').innerHTML =
+      'Data pulled live from project database. Full citations in <a href="https://github.com/andredavisme/community-infrastructure-development/blob/main/docs/data-dictionary.md" target="_blank">data-dictionary.md</a>.';
+  } catch (e) {
+    document.getElementById('fiscal-tbody').innerHTML =
+      '<tr><td colspan="3" style="color:#9ca3af;">&#9888; Could not load live data &mdash; check database connection.</td></tr>';
+  }
+})();
+</script>
 </body>
 </html>
